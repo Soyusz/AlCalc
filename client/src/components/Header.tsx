@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Header = () => {
   return (
     <Container>
-      <Title>CalcOfAlc</Title>
+      <Title>AlCalc</Title>
     </Container>
   );
 };
