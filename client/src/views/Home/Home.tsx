@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { Button } from "../../components/Button";
-import { Header } from "../../components/Header";
 import { Input } from "../../components/Input";
 import { Ring } from "./components/Ring";
 
@@ -29,33 +28,30 @@ export const Home = () => {
   }, [value]);
 
   return (
-    <>
-      <Header />
-      <Container>
-        <Input
-          label="Voltage"
-          value={value.voltage}
-          onValueChange={(v) => handleChange(v, "voltage")}
-          type="number"
-        />
-        <Input
-          label="Volume"
-          value={`${value.volume}`}
-          onValueChange={(v) => handleChange(v, "volume")}
-          type="number"
-        />
-        <Input
-          label="Price"
-          value={`${value.price}`}
-          onValueChange={(v) => handleChange(v, "price")}
-          type="number"
-        />
-        <Ring fill={30} total={100}>
-          {score.toFixed(2)}
-        </Ring>
-        <Button label={"nice cock"} />
-      </Container>
-    </>
+    <Container>
+      <Input
+        label="Voltage"
+        value={value.voltage}
+        onValueChange={(v) => handleChange(v, "voltage")}
+        type="number"
+      />
+      <Input
+        label="Volume"
+        value={`${value.volume}`}
+        onValueChange={(v) => handleChange(v, "volume")}
+        type="number"
+      />
+      <Input
+        label="Price"
+        value={`${value.price}`}
+        onValueChange={(v) => handleChange(v, "price")}
+        type="number"
+      />
+      <Ring fill={30} total={100}>
+        {score.toFixed(2)}
+      </Ring>
+      <Button label={"nice cock"} />
+    </Container>
   );
 };
 
