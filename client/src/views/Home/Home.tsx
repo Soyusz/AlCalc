@@ -5,7 +5,11 @@ import { Input } from "../../components/Input";
 import { Ring } from "./components/Ring";
 
 export const Home = () => {
-  const [value, setValue] = useState({ voltage: "0", volume: "0", price: "1" });
+  const [value, setValue] = useState({
+    voltage: "0",
+    volume: "500",
+    price: "1",
+  });
   const [score, setScore] = useState(0);
 
   const calcScore = (voltage: number, price: number, volume: number) =>
@@ -47,9 +51,7 @@ export const Home = () => {
         onValueChange={(v) => handleChange(v, "price")}
         type="number"
       />
-      <Ring fill={30} total={100}>
-        {score.toFixed(2)}
-      </Ring>
+      <Ring fill={Math.floor(score)} total={100}></Ring>
       <Button label={"nice cock"} />
     </Container>
   );
