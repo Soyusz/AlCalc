@@ -7,7 +7,7 @@ import { Fallback404 } from "./views/Fallback404/Fallback404";
 import { Home } from "./views/Home/Home";
 
 function App() {
-  const [showSidebar, setShowSidebar] = useState(true);
+  const [showSidebar, setShowSidebar] = useState(false);
 
   return (
     <Container>
