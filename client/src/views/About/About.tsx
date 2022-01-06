@@ -1,5 +1,5 @@
 import { DefaultTemplate } from "../Templates/DefaultTemplate";
 
 export const About = () => {
-  return <DefaultTemplate></DefaultTemplate>;
+  return <DefaultTemplate>about</DefaultTemplate>;
 };
