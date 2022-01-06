@@ -1,6 +1,5 @@
-import { useLocation } from "react-router-dom";
 import styled from "styled-components";
-import { titleMap } from "./Navigation/TitleMap";
+import { ReactComponent as HamburgerIcon } from "../assets/hamburger.svg";
 
 type HeaderProps = {
   onIconClick: () => void;
@@ -9,7 +8,7 @@ type HeaderProps = {
 export const Header = ({ onIconClick }: HeaderProps) => {
   return (
     <Container className="Header">
-      <SidebarIcon onClick={onIconClick}>E</SidebarIcon>
+      <SidebarIcon onClick={onIconClick} />
       <Title>AlCalc</Title>
     </Container>
   );
@@ -21,6 +20,7 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: row;
+  width: 100vw;
 `;
 
 const Title = styled.div`
@@ -31,6 +31,10 @@ const Title = styled.div`
   padding: 20px 10px;
 `;
 
-const SidebarIcon = styled.div`
+const SidebarIcon = styled(HamburgerIcon)`
   font-weight: 900;
+  height: 25px;
+  width: 25px;
+  position: absolute;
+  left: 20px;
 `;
