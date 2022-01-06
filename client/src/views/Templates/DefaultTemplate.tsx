@@ -6,11 +6,16 @@ import { Sidebar } from "../../components/Sidebar";
 export const DefaultTemplate: React.FC = ({ children }) => {
   const [showSidebar, setShowSidebar] = useState(false);
 
+  const handleClickContent = () => {
+    if (!showSidebar) return;
+    setShowSidebar(false);
+  };
+
   return (
     <Container>
       <Header onIconClick={() => setShowSidebar(!showSidebar)} />
-      <Sidebar show={showSidebar} />
-      <Content>{children}</Content>
+      <Sidebar show={showSidebar} onClick={() => setShowSidebar(false)} />
+      <Content onClick={handleClickContent}>{children}</Content>
     </Container>
   );
 };
