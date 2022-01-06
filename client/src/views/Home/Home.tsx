@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { Button } from "../../components/Button";
 import { Input } from "../../components/Input";
+import { DefaultTemplate } from "../Templates/DefaultTemplate";
 import { Ring } from "./components/Ring";
 
 export const Home = () => {
@@ -32,40 +33,35 @@ export const Home = () => {
   }, [value]);
 
   return (
-    <Container>
-      <Input
+    <DefaultTemplate>
+      <StyledInput
         label="Voltage"
         value={value.voltage}
         onValueChange={(v) => handleChange(v, "voltage")}
         type="number"
       />
-      <Input
+      <StyledInput
         label="Volume"
         value={`${value.volume}`}
         onValueChange={(v) => handleChange(v, "volume")}
         type="number"
       />
-      <Input
+      <StyledInput
         label="Price"
         value={`${value.price}`}
         onValueChange={(v) => handleChange(v, "price")}
         type="number"
       />
       <Ring fill={Math.floor(score)} total={100}></Ring>
-      <Button label={"nice cock"} />
-    </Container>
+      <StyledButton label={"nice cock"} />
+    </DefaultTemplate>
   );
 };
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding: 10px 10px 30px 10px;
-  align-items: stretch;
-  flex: 1;
+const StyledInput = styled(Input)`
+  align-self: stretch;
+`;
 
-  button {
-    align-self: center;
-    margin-top: auto;
-  }
+const StyledButton = styled(Button)`
+  margin-top: auto;
 `;
