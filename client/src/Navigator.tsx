@@ -1,4 +1,4 @@
-import { Home } from "./views/Home";
+import { Home } from "./views/Home/Home";
 
 export const Navigator = () => (
   <>

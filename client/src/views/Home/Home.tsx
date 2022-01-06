@@ -1,13 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
-import { Button } from "../components/Button";
-import { Header } from "../components/Header";
-import { Input } from "../components/Input";
+import { Button } from "../../components/Button";
+import { Header } from "../../components/Header";
+import { Input } from "../../components/Input";
+import { Ring } from "./components/Ring";
 
 export const Home = () => {
-  const [value, setValue] = useState({ voltage: "", volume: "", price: "" });
+  const [value, setValue] = useState({ voltage: "0", volume: "0", price: "1" });
   const [score, setScore] = useState(0);
-  const inputRef = useRef<HTMLInputElement>(null);
 
   const calcScore = (voltage: number, price: number, volume: number) =>
     (voltage * volume) / (price * 100);
@@ -37,23 +37,22 @@ export const Home = () => {
           value={value.voltage}
           onValueChange={(v) => handleChange(v, "voltage")}
           type="number"
-          ref={inputRef}
         />
         <Input
           label="Volume"
           value={`${value.volume}`}
           onValueChange={(v) => handleChange(v, "volume")}
           type="number"
-          ref={inputRef}
         />
         <Input
           label="Price"
           value={`${value.price}`}
           onValueChange={(v) => handleChange(v, "price")}
           type="number"
-          ref={inputRef}
         />
-        <Score>{score.toFixed(2)}</Score>
+        <Ring fill={30} total={100}>
+          {score.toFixed(2)}
+        </Ring>
         <Button label={"nice cock"} />
       </Container>
     </>
@@ -71,10 +70,4 @@ const Container = styled.div`
     align-self: center;
     margin-top: auto;
   }
-`;
-
-const Score = styled.div`
-  align-self: center;
-  font-size: 90px;
-  margin: 30px 0px;
 `;
