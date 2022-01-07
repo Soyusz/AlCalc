@@ -22,7 +22,7 @@ export const Sidebar = ({ show, onClick }: SidebarProps) => {
 };
 
 const Container = styled(motion.div)`
-  background-color: #0e7ed3;
+  background-color: #ffffff;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -32,7 +32,7 @@ const Container = styled(motion.div)`
 
 const ContainerStyles = {
   shown: {
-    width: 200,
+    width: 150,
   },
   hidden: {
     width: 0,
@@ -41,7 +41,7 @@ const ContainerStyles = {
 };
 
 const Element = styled(Link)`
-  color: white;
+  color: #1d1d1d;
   margin: 10px 0;
   padding: 8px;
   border-radius: 10px;
@@ -51,6 +51,6 @@ const Element = styled(Link)`
   text-decoration: none;
 
   &:hover {
-    background-color: blue;
+    background-color: #00000010;
   }
 `;

@@ -32,16 +32,17 @@ const WrapperButton = styled.button<any>`
   width: 100%;
   font-weight: 700;
   padding: 12px 12px;
-  background-color: #0088ff;
+  background-color: #a04eff;
   color: ${({ variant }) => (variant === "primary" ? "white" : "#0088ff")};
-  border: 1px solid #0088ff;
+  border: 1px solid #a04eff;
   border-radius: 10px;
   font-size: 16px;
+
   opacity: ${({ disabled }) => (disabled ? 0.5 : 1)};
 
   &:active {
     background-color: ${({ variant }) =>
-      variant === "primary" ? "#0088ff" : "white"};
+      variant === "primary" ? "#a04eff" : "white"};
   }
 
   @media screen and (max-height: 600px) {

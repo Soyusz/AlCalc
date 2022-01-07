@@ -1,9 +1,19 @@
+import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Header } from "../../components/Header";
 import { Sidebar } from "../../components/Sidebar";
 
-export const DefaultTemplate: React.FC = ({ children }) => {
+type DefaultTemplateProps = {
+  className?: string;
+  contentPadding?: string;
+};
+
+export const DefaultTemplate: React.FC<DefaultTemplateProps> = ({
+  children,
+  className,
+  contentPadding,
+}) => {
   const [showSidebar, setShowSidebar] = useState(false);
 
   const handleClickContent = () => {
@@ -12,28 +22,56 @@ export const DefaultTemplate: React.FC = ({ children }) => {
   };
 
   return (
-    <Container>
+    <Container className={className}>
       <Header onIconClick={() => setShowSidebar(!showSidebar)} />
       <Sidebar show={showSidebar} onClick={() => setShowSidebar(false)} />
-      <Content onClick={handleClickContent}>{children}</Content>
+      <Content
+        onClick={handleClickContent}
+        padding={contentPadding}
+        variants={variants}
+        animate={showSidebar ? "sidebar" : "normal"}
+        initial={false}
+        transition={{ type: "tween" }}
+      >
+        {children}
+      </Content>
     </Container>
   );
 };
 
 const Container = styled.div`
+  background-color: #ffffff;
   height: 100vh;
+  overflow: hidden;
   display: grid;
   grid-template: auto 1fr / auto 100vw;
-  overflow: hidden;
-
   .Header {
     grid-column: 1 / 3;
   }
 `;
 
-const Content = styled.div`
-  padding: 20px 10px;
+const Content = styled(motion.div)<{ padding?: string }>`
+  background-image: linear-gradient(
+    to bottom,
+    #266bff,
+    #00a2e3,
+    #00d09f,
+    #9cf468
+  );
+  padding: ${(props) => props.padding ?? `20px 10px`};
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow: scroll;
 `;
+
+const variants = {
+  normal: {
+    transform: "scale(1.01) rotateY(0deg)",
+    borderRadius: 0,
+  },
+  sidebar: {
+    transform: "scale(0.9) rotateY(0deg)",
+    borderRadius: "10px",
+  },
+};

@@ -74,7 +74,7 @@ const InputContainer = styled.div`
 `;
 
 const InputStyled = styled.input<{ isError: boolean }>`
-  background-color: lightgray;
+  background-color: #f4f4f4;
   border-radius: 5px;
   padding: 12px 15px;
   margin-right: 5px;
@@ -95,5 +95,5 @@ const ErrorMessage = styled.p`
 
 const Label = styled.label<{ isError: boolean }>`
   font-size: 12px;
-  color: ${({ isError }) => (isError ? "red" : "black")};
+  color: ${({ isError }) => (isError ? "red" : "white")};
 `;
