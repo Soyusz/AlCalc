@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
+import { useGesture, useHover, useMove } from "@use-gesture/react";
 import { Header } from "../../components/Header";
 import { Sidebar } from "../../components/Sidebar";
 
@@ -15,11 +16,22 @@ export const DefaultTemplate: React.FC<DefaultTemplateProps> = ({
   contentPadding,
 }) => {
   const [showSidebar, setShowSidebar] = useState(false);
-
+  const contentRef = useRef<HTMLDivElement>(null);
   const handleClickContent = () => {
     if (!showSidebar) return;
     setShowSidebar(false);
   };
+
+  useGesture(
+    {
+      onHover: () => {
+        console.log(2137);
+      },
+    },
+    {
+      target: contentRef,
+    }
+  );
 
   return (
     <Container className={className}>
@@ -63,16 +75,18 @@ const Content = styled(motion.div)<{ padding?: string }>`
   flex-direction: column;
   align-items: center;
   overflow: scroll;
-  box-shadow: 0px 0px 10px 0px #00000035;
+  z-index: 32;
 `;
 
 const variants = {
   normal: {
     transform: "scale(1.01) rotateY(0deg)",
     borderRadius: 0,
+    boxShadow: "0px 0px 10px 0px #00000000",
   },
   sidebar: {
     transform: "scale(0.9) rotateY(0deg)",
     borderRadius: "10px",
+    boxShadow: "0px 0px 10px 0px #00000035",
   },
 };
