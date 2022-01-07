@@ -1,0 +1,13 @@
+/home/magulloff/code/web/alkierz/server/target/debug/deps/net2-dccc03d2e90fb98d.rmeta: /home/magulloff/.cargo/registry/src/github.com-1ecc6299db9ec823/net2-0.2.37/src/lib.rs /home/magulloff/.cargo/registry/src/github.com-1ecc6299db9ec823/net2-0.2.37/src/tcp.rs /home/magulloff/.cargo/registry/src/github.com-1ecc6299db9ec823/net2-0.2.37/src/udp.rs /home/magulloff/.cargo/registry/src/github.com-1ecc6299db9ec823/net2-0.2.37/src/socket.rs /home/magulloff/.cargo/registry/src/github.com-1ecc6299db9ec823/net2-0.2.37/src/ext.rs /home/magulloff/.cargo/registry/src/github.com-1ecc6299db9ec823/net2-0.2.37/src/utils.rs /home/magulloff/.cargo/registry/src/github.com-1ecc6299db9ec823/net2-0.2.37/src/sys/unix/mod.rs /home/magulloff/.cargo/registry/src/github.com-1ecc6299db9ec823/net2-0.2.37/src/sys/unix/impls.rs /home/magulloff/.cargo/registry/src/github.com-1ecc6299db9ec823/net2-0.2.37/src/unix.rs
+
+/home/magulloff/code/web/alkierz/server/target/debug/deps/net2-dccc03d2e90fb98d.d: /home/magulloff/.cargo/registry/src/github.com-1ecc6299db9ec823/net2-0.2.37/src/lib.rs /home/magulloff/.cargo/registry/src/github.com-1ecc6299db9ec823/net2-0.2.37/src/tcp.rs /home/magulloff/.cargo/registry/src/github.com-1ecc6299db9ec823/net2-0.2.37/src/udp.rs /home/magulloff/.cargo/registry/src/github.com-1ecc6299db9ec823/net2-0.2.37/src/socket.rs /home/magulloff/.cargo/registry/src/github.com-1ecc6299db9ec823/net2-0.2.37/src/ext.rs /home/magulloff/.cargo/registry/src/github.com-1ecc6299db9ec823/net2-0.2.37/src/utils.rs /home/magulloff/.cargo/registry/src/github.com-1ecc6299db9ec823/net2-0.2.37/src/sys/unix/mod.rs /home/magulloff/.cargo/registry/src/github.com-1ecc6299db9ec823/net2-0.2.37/src/sys/unix/impls.rs /home/magulloff/.cargo/registry/src/github.com-1ecc6299db9ec823/net2-0.2.37/src/unix.rs
+
+/home/magulloff/.cargo/registry/src/github.com-1ecc6299db9ec823/net2-0.2.37/src/lib.rs:
+/home/magulloff/.cargo/registry/src/github.com-1ecc6299db9ec823/net2-0.2.37/src/tcp.rs:
+/home/magulloff/.cargo/registry/src/github.com-1ecc6299db9ec823/net2-0.2.37/src/udp.rs:
+/home/magulloff/.cargo/registry/src/github.com-1ecc6299db9ec823/net2-0.2.37/src/socket.rs:
+/home/magulloff/.cargo/registry/src/github.com-1ecc6299db9ec823/net2-0.2.37/src/ext.rs:
+/home/magulloff/.cargo/registry/src/github.com-1ecc6299db9ec823/net2-0.2.37/src/utils.rs:
+/home/magulloff/.cargo/registry/src/github.com-1ecc6299db9ec823/net2-0.2.37/src/sys/unix/mod.rs:
+/home/magulloff/.cargo/registry/src/github.com-1ecc6299db9ec823/net2-0.2.37/src/sys/unix/impls.rs:
+/home/magulloff/.cargo/registry/src/github.com-1ecc6299db9ec823/net2-0.2.37/src/unix.rs:
