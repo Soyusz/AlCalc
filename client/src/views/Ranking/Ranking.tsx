@@ -1,3 +1,4 @@
+import { motion, useViewportScroll } from "framer-motion";
 import styled from "styled-components";
 import { DefaultTemplate } from "../Templates/DefaultTemplate";
 import { Row, RowProps } from "./components/Row";
@@ -17,14 +18,16 @@ export const Ranking = () => {
 
 const CustomDefaultTemplate = styled(DefaultTemplate)``;
 
-const Background = styled.div`
+const Background = styled(motion.div)`
   min-height: 30vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   color: white;
-  font-weight: 700;
+  font-size: 30px;
+  font-weight: 200;
+  letter-spacing: 10px;
 `;
 
 const Content = styled.div`

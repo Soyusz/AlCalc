@@ -40,7 +40,7 @@ export const DefaultTemplate: React.FC<DefaultTemplateProps> = ({
 };
 
 const Container = styled.div`
-  background-color: #ffffff;
+  background-color: #f7f7f7;
   height: 100vh;
   overflow: hidden;
   display: grid;
@@ -63,6 +63,7 @@ const Content = styled(motion.div)<{ padding?: string }>`
   flex-direction: column;
   align-items: center;
   overflow: scroll;
+  box-shadow: 0px 0px 10px 0px #00000035;
 `;
 
 const variants = {

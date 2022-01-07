@@ -22,7 +22,6 @@ export const Sidebar = ({ show, onClick }: SidebarProps) => {
 };
 
 const Container = styled(motion.div)`
-  background-color: #ffffff;
   display: flex;
   flex-direction: column;
   overflow: hidden;
