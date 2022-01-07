@@ -15,12 +15,13 @@ export const Header = ({ onIconClick }: HeaderProps) => {
 };
 
 const Container = styled.div`
-  background-color: #0066ff;
+  background-color: #266bff;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: row;
-  width: 100vw;
+  width: calc(100vw);
+  z-index: 30;
 `;
 
 const Title = styled.div`

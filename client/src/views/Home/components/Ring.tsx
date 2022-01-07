@@ -41,4 +41,5 @@ const Inside = styled(motion.div)`
   align-self: center;
   font-size: 90px;
   margin: 30px 0px;
+  color: white;
 `;

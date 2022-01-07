@@ -53,7 +53,6 @@ export const Home = () => {
         type="number"
       />
       <Ring fill={Math.floor(score)} total={100}></Ring>
-      <StyledButton label={"nice cock"} />
     </DefaultTemplate>
   );
 };
