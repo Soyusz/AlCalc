@@ -1,2 +1,0 @@
-[global.databases.alcalc]
-url = "postgres://postgres:postgres@localhost/alcalc"
