@@ -1,5 +1,5 @@
-import React, { forwardRef, InputHTMLAttributes, RefObject } from "react";
-import styled, { css } from "styled-components";
+import React, { forwardRef, InputHTMLAttributes } from "react";
+import styled from "styled-components";
 
 export type InputProps = {
   value: string;

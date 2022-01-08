@@ -1,7 +1,6 @@
-import { animate, motion, useMotionValue, useSpring } from "framer-motion";
+import { motion, useSpring } from "framer-motion";
 import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
-import { ReactComponent as Ellipse } from "../../../assets/ellipse.svg";
 
 type RingProps = {
   fill: number;
@@ -17,11 +16,11 @@ export const Ring: React.FC<RingProps> = ({ fill }) => {
       if (!ref.current) return;
       ref.current.innerText = v.get().toFixed(2);
     });
-  }, [ref.current]);
+  }, [v]);
 
   useEffect(() => {
     v.set(isNaN(fill) ? 0 : fill);
-  }, [fill]);
+  }, [fill, v]);
 
   return (
     <Container>
