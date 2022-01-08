@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export type RowProps = {
   name: string;
-  image?: string;
+  photo?: string;
   score: number;
   place: number;
 };
@@ -10,7 +10,7 @@ export type RowProps = {
 export const Row = (p: RowProps) => {
   return (
     <Container>
-      <Image src={p.image} />
+      <Image src={p.photo} />
       <Name>{p.name}</Name>
       <Score>{p.score}</Score>
       <Place>{p.place}</Place>
