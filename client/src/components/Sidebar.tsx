@@ -1,28 +1,37 @@
 import { motion } from "framer-motion";
-import { builtinModules } from "module";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 type SidebarProps = {
   show: boolean;
-  onClick: () => void;
+  onClick?: () => void;
+  afterClick?: () => void;
 };
 
-export const Sidebar = ({ show, onClick }: SidebarProps) => {
+export const Sidebar = ({
+  show,
+  onClick = () => {},
+  afterClick = () => {},
+}: SidebarProps) => {
   return (
     <Container
       onClick={onClick}
       animate={show ? ContainerStyles.shown : ContainerStyles.hidden}
     >
-      <Element to="/">Home</Element>
-      <Element to="/ranking">Ranking</Element>
-      <Element to="/about">About</Element>
+      <Element to="/" onClick={afterClick}>
+        Home
+      </Element>
+      <Element to="/ranking" onClick={afterClick}>
+        Ranking
+      </Element>
+      <Element to="/about" onClick={afterClick}>
+        About
+      </Element>
     </Container>
   );
 };
 
 const Container = styled(motion.div)`
-  background-color: #ffffff;
   display: flex;
   flex-direction: column;
   overflow: hidden;

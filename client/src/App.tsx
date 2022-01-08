@@ -1,9 +1,12 @@
+import { QueryClientProvider, QueryClient } from "react-query";
 import { Navigator } from "./components/Navigation/Navigator";
 
 function App() {
   return (
     <>
-      <Navigator />
+      <QueryClientProvider client={new QueryClient()}>
+        <Navigator />
+      </QueryClientProvider>
     </>
   );
 }

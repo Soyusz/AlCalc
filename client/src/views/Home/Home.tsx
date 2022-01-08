@@ -1,8 +1,6 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { Button } from "../../components/Button";
 import { Input } from "../../components/Input";
-import { DefaultTemplate } from "../Templates/DefaultTemplate";
 import { Ring } from "./components/Ring";
 
 export const Home = () => {
@@ -33,7 +31,7 @@ export const Home = () => {
   }, [value]);
 
   return (
-    <DefaultTemplate>
+    <>
       <StyledInput
         label="Voltage"
         value={value.voltage}
@@ -53,14 +51,10 @@ export const Home = () => {
         type="number"
       />
       <Ring fill={Math.floor(score)} total={100}></Ring>
-    </DefaultTemplate>
+    </>
   );
 };
 
 const StyledInput = styled(Input)`
   align-self: stretch;
-`;
-
-const StyledButton = styled(Button)`
-  margin-top: auto;
 `;

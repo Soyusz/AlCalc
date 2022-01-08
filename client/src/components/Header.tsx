@@ -22,6 +22,7 @@ const Container = styled.div`
   flex-direction: row;
   width: calc(100vw);
   z-index: 30;
+  box-shadow: 0px 3px 10px 0px #00000035;
 `;
 
 const Title = styled.div`

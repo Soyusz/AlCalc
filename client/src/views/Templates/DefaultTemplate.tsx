@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Header } from "../../components/Header";
 import { Sidebar } from "../../components/Sidebar";
@@ -15,7 +15,6 @@ export const DefaultTemplate: React.FC<DefaultTemplateProps> = ({
   contentPadding,
 }) => {
   const [showSidebar, setShowSidebar] = useState(false);
-
   const handleClickContent = () => {
     if (!showSidebar) return;
     setShowSidebar(false);
@@ -24,7 +23,7 @@ export const DefaultTemplate: React.FC<DefaultTemplateProps> = ({
   return (
     <Container className={className}>
       <Header onIconClick={() => setShowSidebar(!showSidebar)} />
-      <Sidebar show={showSidebar} onClick={() => setShowSidebar(false)} />
+      <Sidebar show={showSidebar} afterClick={()=>setShowSidebar(false)} />
       <Content
         onClick={handleClickContent}
         padding={contentPadding}
@@ -40,7 +39,7 @@ export const DefaultTemplate: React.FC<DefaultTemplateProps> = ({
 };
 
 const Container = styled.div`
-  background-color: #ffffff;
+  background-color: #f7f7f7;
   height: 100vh;
   overflow: hidden;
   display: grid;
@@ -63,15 +62,18 @@ const Content = styled(motion.div)<{ padding?: string }>`
   flex-direction: column;
   align-items: center;
   overflow: scroll;
+  z-index: 32;
 `;
 
 const variants = {
   normal: {
     transform: "scale(1.01) rotateY(0deg)",
     borderRadius: 0,
+    boxShadow: "0px 0px 10px 0px #00000000",
   },
   sidebar: {
     transform: "scale(0.9) rotateY(0deg)",
     borderRadius: "10px",
+    boxShadow: "0px 0px 10px 0px #00000035",
   },
 };
