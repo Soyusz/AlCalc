@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import { useGesture, useHover, useMove } from "@use-gesture/react";
 import { Header } from "../../components/Header";
 import { Sidebar } from "../../components/Sidebar";
 
@@ -16,27 +15,15 @@ export const DefaultTemplate: React.FC<DefaultTemplateProps> = ({
   contentPadding,
 }) => {
   const [showSidebar, setShowSidebar] = useState(false);
-  const contentRef = useRef<HTMLDivElement>(null);
   const handleClickContent = () => {
     if (!showSidebar) return;
     setShowSidebar(false);
   };
 
-  useGesture(
-    {
-      onHover: () => {
-        console.log(2137);
-      },
-    },
-    {
-      target: contentRef,
-    }
-  );
-
   return (
     <Container className={className}>
       <Header onIconClick={() => setShowSidebar(!showSidebar)} />
-      <Sidebar show={showSidebar} onClick={() => setShowSidebar(false)} />
+      <Sidebar show={showSidebar} afterClick={()=>setShowSidebar(false)} />
       <Content
         onClick={handleClickContent}
         padding={contentPadding}

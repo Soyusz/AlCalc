@@ -33,7 +33,7 @@ export const Home = () => {
   }, [value]);
 
   return (
-    <DefaultTemplate>
+    <>
       <StyledInput
         label="Voltage"
         value={value.voltage}
@@ -53,7 +53,7 @@ export const Home = () => {
         type="number"
       />
       <Ring fill={Math.floor(score)} total={100}></Ring>
-    </DefaultTemplate>
+    </>
   );
 };
 

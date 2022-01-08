@@ -7,18 +7,16 @@ import { Row, RowProps } from "./components/Row";
 export const Ranking = () => {
   useEntry();
   return (
-    <CustomDefaultTemplate contentPadding="0px">
+    <>
       <Background>ranking</Background>
       <Content>
         {mockedData.map((el) => (
           <Row {...el} />
         ))}
       </Content>
-    </CustomDefaultTemplate>
+    </>
   );
 };
-
-const CustomDefaultTemplate = styled(DefaultTemplate)``;
 
 const Background = styled(motion.div)`
   min-height: 30vh;
