@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import styled from "styled-components";
 import { useEntry } from "../../queries/useEntry";
-import { Row, RowProps } from "./components/Row";
+import { Row } from "./components/Row";
 
 export const Ranking = () => {
   const { data } = useEntry();

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
+import { BubbleContainer } from "../../components/BubbleContainer";
 import { Input } from "../../components/Input";
 import { Ring } from "./components/Ring";
 
@@ -32,6 +33,7 @@ export const Home = () => {
 
   return (
     <>
+      <BubbleContainer intensity={Math.min(100, score * 4)} />
       <StyledInput
         label="Voltage"
         value={value.voltage}
