@@ -8,10 +8,6 @@ export const useEntry = () => {
     }).then((res) => res.json())
   );
 
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
-
   return {
     data,
   };

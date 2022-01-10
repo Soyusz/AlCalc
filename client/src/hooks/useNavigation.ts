@@ -8,9 +8,8 @@ export const useNavigation = () => {
 
   return useMemo(
     () => ({
-      history,
       navigate,
     }),
-    [history, navigate]
+    [navigate]
   );
 };

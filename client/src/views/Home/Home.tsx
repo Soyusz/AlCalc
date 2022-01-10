@@ -8,7 +8,7 @@ export const Home = () => {
   const [value, setValue] = useState({
     voltage: "0",
     volume: "500",
-    price: "1",
+    price: "5",
   });
   const [score, setScore] = useState(0);
 

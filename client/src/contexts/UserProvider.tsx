@@ -4,7 +4,7 @@ import { UserContext, UserContextType } from "./UserContext";
 export const UserContextProvider: FC = memo(({ children }) => {
   const [isLogged, setIsLogged] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [isAdmin, setIsAdmin] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(true);
   const [username, setUsername] = useState("");
 
   const setLoadingFalse = () => setIsLoading(false);
