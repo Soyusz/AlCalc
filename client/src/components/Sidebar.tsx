@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { useUserContext } from "../contexts/useUserContext";
 
 type SidebarProps = {
   show: boolean;
@@ -13,6 +14,7 @@ export const Sidebar = ({
   onClick = () => {},
   afterClick = () => {},
 }: SidebarProps) => {
+  const { isAdmin } = useUserContext();
   return (
     <Container
       onClick={onClick}
@@ -27,6 +29,11 @@ export const Sidebar = ({
       <Element to="/about" onClick={afterClick}>
         About
       </Element>
+      {isAdmin && (
+        <Element to="/admin" onClick={afterClick}>
+          Admin
+        </Element>
+      )}
     </Container>
   );
 };

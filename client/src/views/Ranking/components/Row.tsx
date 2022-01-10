@@ -12,7 +12,7 @@ export const Row = (p: RowProps) => {
     <Container>
       <Image src={p.photo} />
       <Name>{p.name}</Name>
-      <Score>{p.score}</Score>
+      <Score>{Math.floor(p.score)}</Score>
       <Place>{p.place}</Place>
     </Container>
   );

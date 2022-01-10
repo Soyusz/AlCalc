@@ -49,4 +49,6 @@ const Content = styled.div`
   border-top-right-radius: 15px;
   padding: 20px;
   flex: 1;
+  margin-bottom: -20px;
+  padding-bottom: 20px;
 `;
