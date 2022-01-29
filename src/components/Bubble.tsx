@@ -20,7 +20,7 @@ export const Bubble = ({ onDeath }: BubbleProps) => {
   return (
     <Container
       start={start}
-      initial={{ translateY: "0", opacity: 1 }}
+      initial={{ translateY: "3px", opacity: 1 }}
       animate={{
         translateY: "-100vh",
         opacity: 0,
