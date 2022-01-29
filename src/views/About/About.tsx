@@ -32,7 +32,7 @@ const Container = styled.div`
 `;
 
 const Element = styled.div`
-  background-color: #f2f2f2;
+  background-color: #ffffff;
   border-radius: 5px;
   background-position: center;
   background-size: cover;
