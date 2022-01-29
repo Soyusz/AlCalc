@@ -23,7 +23,7 @@ export const DefaultTemplate: React.FC<DefaultTemplateProps> = ({
   return (
     <Container className={className}>
       <Header onIconClick={() => setShowSidebar(!showSidebar)} />
-      <Sidebar show={showSidebar} afterClick={()=>setShowSidebar(false)} />
+      <Sidebar show={showSidebar} afterClick={() => setShowSidebar(false)} />
       <Content
         onClick={handleClickContent}
         padding={contentPadding}
@@ -47,6 +47,7 @@ const Container = styled.div`
   .Header {
     grid-column: 1 / 3;
   }
+  perspective: 200px;
 `;
 
 const Content = styled(motion.div)<{ padding?: string }>`
@@ -72,7 +73,7 @@ const variants = {
     boxShadow: "0px 0px 10px 0px #00000000",
   },
   sidebar: {
-    transform: "scale(0.9) rotateY(0deg)",
+    transform: "scale(0.9) rotateY(-5deg)",
     borderRadius: "10px",
     boxShadow: "0px 0px 10px 0px #00000035",
   },
