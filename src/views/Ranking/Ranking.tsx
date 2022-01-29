@@ -10,7 +10,7 @@ export const Ranking = () => {
     (voltage * volume) / (price * 100);
 
   return (
-    <>
+    <Container>
       <Background>ranking</Background>
       <Content>
         {data
@@ -25,9 +25,13 @@ export const Ranking = () => {
             <Row {...el} place={index + 1} />
           ))}
       </Content>
-    </>
+    </Container>
   );
 };
+
+const Container = styled.div`
+  background: ${(props) => props.theme.colors.background};
+`;
 
 const Background = styled(motion.div)`
   min-height: 30vh;

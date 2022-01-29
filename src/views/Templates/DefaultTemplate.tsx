@@ -51,13 +51,16 @@ const Container = styled.div`
 `;
 
 const Content = styled(motion.div)<{ padding?: string }>`
-  background: ${(props) => props.theme.colors.background};
-  padding: ${(props) => props.padding ?? `20px 10px`};
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  overflow: scroll;
+  display: grid;
+  grid-template: 1fr / 1fr;
+  overflow: hidden;
   z-index: 32;
+  & > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: scroll;
+  }
 `;
 
 const variants = {
