@@ -44,7 +44,7 @@ const Background = styled(motion.div)`
 const Content = styled.div`
   background-color: #ffffff;
   align-self: stretch;
-  margin: 10px 30px 0px 30px;
+  margin: 10px 10px 0px 10px;
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
   padding: 20px;

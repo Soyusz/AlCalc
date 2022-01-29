@@ -51,13 +51,7 @@ const Container = styled.div`
 `;
 
 const Content = styled(motion.div)<{ padding?: string }>`
-  background-image: linear-gradient(
-    to bottom,
-    #266bff,
-    #00a2e3,
-    #00d09f,
-    #9cf468
-  );
+  background: ${(props) => props.theme.colors.background};
   padding: ${(props) => props.padding ?? `20px 10px`};
   display: flex;
   flex-direction: column;
