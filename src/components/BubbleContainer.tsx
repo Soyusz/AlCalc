@@ -21,7 +21,7 @@ export const BubbleContainer = ({ intensity }: BubbleContainerProps) => {
   };
 
   useEffect(() => {
-    if (intensity === 0) return;
+    if (intensity === 0 || isNaN(intensity)) return;
     const interval = setInterval(() => {
       if (Math.random() > 0.2) newBubble();
     }, (1 / intensity) * 100 * 100);

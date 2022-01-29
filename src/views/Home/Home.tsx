@@ -32,7 +32,7 @@ export const Home = () => {
   }, [value]);
 
   return (
-    <>
+    <Container>
       <BubbleContainer intensity={Math.min(100, score * 4)} />
       <StyledInput
         label="Voltage"
@@ -53,9 +53,14 @@ export const Home = () => {
         type="number"
       />
       <Ring fill={Math.floor(score)} total={100}></Ring>
-    </>
+    </Container>
   );
 };
+
+const Container = styled.div`
+  background: ${(props) => props.theme.colors.background};
+  padding: ${(props) => props.theme.spacing.s};
+`;
 
 const StyledInput = styled(Input)`
   align-self: stretch;

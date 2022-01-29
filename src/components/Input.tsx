@@ -77,7 +77,6 @@ const InputStyled = styled.input<{ isError: boolean }>`
   background-color: #f4f4f4;
   border-radius: 5px;
   padding: 12px 15px;
-  margin-right: 5px;
   outline: none;
   align-self: stretch;
   border: 1px solid ${({ isError }) => (isError ? "red" : "transparent")};
