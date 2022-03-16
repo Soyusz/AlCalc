@@ -1,7 +1,6 @@
 import { useQuery } from "react-query";
+import { BACKEND_URL } from "../backend_url";
 import { Entry } from "../types/entry";
-
-const BACKEND_URL = "http://localhost:5000";
 
 export const useFeed = () => {
   return useQuery<Entry[]>("feed", () =>

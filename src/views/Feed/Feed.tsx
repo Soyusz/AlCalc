@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Entry } from "../../components/Entry";
-import { useFeed } from "../../hooks/useFeed";
+import { useFeed } from "../../queries/useFeed";
 
 export const Feed = () => {
   const { data } = useFeed();

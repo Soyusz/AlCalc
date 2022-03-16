@@ -1,15 +1,19 @@
 import styled from "styled-components";
+import { useUser } from "../../queries/useUser";
 import { Entry as EntryType } from "../../types/entry";
 
 const sampleImage = "https://avatars.githubusercontent.com/u/45801065";
 
-export const Top = (props: EntryType) => (
-  <Container>
-    <UserPhoto src={sampleImage} />
-    <Username>Magulloff</Username>
-    <Location>{props.name}</Location>
-  </Container>
-);
+export const Top = (props: EntryType) => {
+  const { data: user } = useUser(props.user_id);
+  return (
+    <Container>
+      <UserPhoto src={sampleImage} />
+      <Username>{user?.name}</Username>
+      <Location>{props.name}</Location>
+    </Container>
+  );
+};
 
 const Container = styled.div`
   display: grid;

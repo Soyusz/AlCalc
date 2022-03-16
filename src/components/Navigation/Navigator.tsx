@@ -11,8 +11,8 @@ export const Navigator = () => (
   <Router>
     <DefaultTemplate>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/feed" element={<Feed />} />
+        <Route path="/" element={<Feed />} />
+        <Route path="/calc" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/ranking" element={<Ranking />} />
         <Route path="/404" element={<Fallback404 />} />

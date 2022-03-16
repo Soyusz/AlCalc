@@ -34,6 +34,7 @@ export const Photo = ({ src, isLiked, setIsLiked }: PhotoProps) => {
       <LikedIconContainer>
         <motion.img
           variants={LikedIconAnimation}
+          initial="hidden"
           animate={showLikedIcon ? "shown" : "hidden"}
           src={like}
           alt="like"
