@@ -9,7 +9,7 @@ export const Header = ({ onIconClick }: HeaderProps) => {
   return (
     <Container className="Header">
       <SidebarIcon onClick={onIconClick} />
-      <Title>AlCalc</Title>
+      <Title>Alkierz</Title>
     </Container>
   );
 };
