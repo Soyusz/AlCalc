@@ -58,7 +58,7 @@ export const Home = () => {
 };
 
 const Container = styled.div`
-  background: ${(props) => props.theme.colors.background};
+  background: ${(props) => props.theme.colors.appBackground};
   padding: ${(props) => props.theme.spacing.s};
 `;
 

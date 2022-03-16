@@ -37,13 +37,8 @@ export const defaultTheme = {
   colors: {
     black: "#1F1F1F",
     white: "#ffffff",
-    background: `linear-gradient(
-    to bottom,
-    #266bff,
-    #00a2e3,
-    #00d09f,
-    #9cf468
-    )`,
+    background: "#ffffff",
+    appBackground: "#aaaaaa",
     textOnBackground: "#000000",
     text: "#1F1F1F",
     warning: "#EF5B5E",
