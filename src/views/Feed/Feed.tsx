@@ -8,7 +8,7 @@ export const Feed = () => {
     <>
       <Scroll>
         {data?.map((entry) => (
-          <Entry {...entry} key={entry.id} />
+          <Entry {...entry} key={Math.random()} />
         ))}
       </Scroll>
     </>
