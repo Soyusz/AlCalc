@@ -1,11 +1,11 @@
 import { createContext } from "react";
+import { User } from "../types/user";
 
 export type UserContextType = {
-  isLoading: boolean;
-  isLogged: boolean;
+  token?: string | null;
+  user: User | null;
   isAdmin: boolean;
-  username: string;
-  setLoadingFalse: () => void;
+  setToken: React.Dispatch<string>;
 };
 
 export const UserContext = createContext<UserContextType | null>(null);

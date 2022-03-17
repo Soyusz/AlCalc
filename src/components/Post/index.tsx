@@ -1,17 +1,17 @@
 import styled from "styled-components";
-import { Entry as EntryType } from "../../types/entry";
+import { Post as PostType } from "../../types/post";
 import { useState } from "react";
 import { Top } from "./Top";
 import { Bottom } from "./Bottom";
 import { Photo } from "./Photo";
 
-export const Entry = (props: EntryType) => {
+export const Post = (props: PostType) => {
   const [isLiked, setIsLiked] = useState(false);
 
   return (
     <Container>
       <Top {...props} />
-      <Photo src={props.photo} {...{ isLiked, setIsLiked }} />
+      <Photo src={props.photos[0]} {...{ isLiked, setIsLiked }} />
       <Bottom {...{ isLiked, setIsLiked }} />
     </Container>
   );
