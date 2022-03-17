@@ -3,7 +3,7 @@ import { BACKEND_URL } from "../backend_url";
 import { User } from "../types/user";
 
 export const useMe = (token?: string | null) => {
-  return useQuery<User>(
+  return useQuery<User, 400 | 401>(
     "me",
     () =>
       fetch(`${BACKEND_URL}/user/me`, {
@@ -11,7 +11,10 @@ export const useMe = (token?: string | null) => {
         headers: {
           Authorization: token as string,
         },
-      }).then((res) => res.json()),
+      }).then((res) => {
+        if (!res.ok) throw res.status;
+        return res.json();
+      }),
     {
       enabled: !!token,
     }

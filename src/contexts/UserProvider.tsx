@@ -5,7 +5,7 @@ import { useNavigation } from "../hooks/useNavigation";
 
 export const UserContextProvider: FC = memo(({ children }) => {
   const [token, setToken] = useState<string | null | undefined>();
-  const { data: user } = useMe(token);
+  const { data: user, error: authError } = useMe(token);
   const navigation = useNavigation();
 
   useEffect(() => {
@@ -21,6 +21,10 @@ export const UserContextProvider: FC = memo(({ children }) => {
   useEffect(() => {
     setToken(localStorage.getItem("token"));
   }, []);
+
+  useEffect(() => {
+    if (authError === 401) setToken(null);
+  }, [authError]);
 
   const value: UserContextType = {
     user: user ?? null,
