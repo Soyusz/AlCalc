@@ -3,16 +3,19 @@ import { QueryClientProvider, QueryClient } from "react-query";
 import { Navigator } from "./components/Navigation/Navigator";
 import { UserContextProvider } from "./contexts/UserProvider";
 import { defaultTheme } from "./utils/theme";
+import { BrowserRouter as Router } from "react-router-dom";
 
 function App() {
   return (
-    <ThemeProvider theme={defaultTheme}>
-      <UserContextProvider>
+    <Router>
+      <ThemeProvider theme={defaultTheme}>
         <QueryClientProvider client={new QueryClient()}>
-          <Navigator />
+          <UserContextProvider>
+            <Navigator />
+          </UserContextProvider>
         </QueryClientProvider>
-      </UserContextProvider>
-    </ThemeProvider>
+      </ThemeProvider>
+    </Router>
   );
 }
 

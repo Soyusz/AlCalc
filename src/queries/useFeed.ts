@@ -1,15 +1,16 @@
 import { useQuery } from "react-query";
 import { BACKEND_URL } from "../backend_url";
-import { Entry } from "../types/entry";
+import { useUserContext } from "../contexts/useUserContext";
+import { Post } from "../types/post";
 
 export const useFeed = () => {
-  return useQuery<Entry[]>("feed", () =>
-    fetch(`${BACKEND_URL}/entry`)
-      .then((res) => res.json())
-      .then((res) => {
-        console.log({ res });
-        return [...res, ...res, ...res, ...res, ...res];
-      })
-      .then((res) => [...res, ...res, ...res, ...res])
+  const { token } = useUserContext();
+  return useQuery<Post[]>("feed", () =>
+    fetch(`${BACKEND_URL}/post/feed`, {
+      method: "GET",
+      headers: {
+        Authorization: token as string,
+      },
+    }).then((res) => res.json())
   );
 };

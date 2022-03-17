@@ -1,16 +1,16 @@
 import styled from "styled-components";
 import { useUser } from "../../queries/useUser";
-import { Entry as EntryType } from "../../types/entry";
+import { Post as PostType } from "../../types/post";
 
 const sampleImage = "https://avatars.githubusercontent.com/u/45801065";
 
-export const Top = (props: EntryType) => {
+export const Top = (props: PostType) => {
   const { data: user } = useUser(props.user_id);
   return (
     <Container>
       <UserPhoto src={sampleImage} />
       <Username>{user?.name}</Username>
-      <Location>{props.name}</Location>
+      <Location>{props.location}</Location>
     </Container>
   );
 };

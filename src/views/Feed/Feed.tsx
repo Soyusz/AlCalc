@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Entry } from "../../components/Entry";
+import { Post } from "../../components/Post";
 import { useFeed } from "../../queries/useFeed";
 
 export const Feed = () => {
@@ -7,8 +7,8 @@ export const Feed = () => {
   return (
     <>
       <Scroll>
-        {data?.map((entry) => (
-          <Entry {...entry} key={Math.random()} />
+        {data?.map((post) => (
+          <Post {...post} key={Math.random()} />
         ))}
       </Scroll>
     </>
