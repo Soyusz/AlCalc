@@ -39,7 +39,7 @@ export const DefaultTemplate: React.FC<DefaultTemplateProps> = ({
 };
 
 const Container = styled.div`
-  background-color: #f7f7f7;
+  background-color: ${(props) => props.theme.colors.appBackground};
   height: 100vh;
   overflow: hidden;
   display: grid;
@@ -65,7 +65,7 @@ const Content = styled(motion.div)<{ padding?: string }>`
 
 const variants = {
   normal: {
-    transform: "scale(1.01) rotateY(0deg)",
+    transform: "scale(1.00) rotateY(0deg)",
     borderRadius: 0,
     boxShadow: "0px 0px 10px 0px #00000000",
   },

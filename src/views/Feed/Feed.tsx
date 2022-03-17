@@ -16,6 +16,7 @@ export const Feed = () => {
 };
 
 const Scroll = styled.div`
+  padding-top: 5px;
   display: flex;
   flex-direction: column;
   width: 100vw;
