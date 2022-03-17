@@ -2,7 +2,7 @@ import { useQuery } from "react-query";
 import { BACKEND_URL } from "../backend_url";
 import { User } from "../types/user";
 
-export const useMe = (token: string | null) => {
+export const useMe = (token?: string | null) => {
   return useQuery<User>(
     "me",
     () =>
