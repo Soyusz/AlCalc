@@ -17,6 +17,7 @@ export const useMe = (token?: string | null) => {
       }),
     {
       enabled: !!token,
+      retry: 1,
     }
   );
 };
