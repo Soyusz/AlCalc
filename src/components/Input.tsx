@@ -74,15 +74,12 @@ const InputContainer = styled.div`
 `;
 
 const InputStyled = styled.input<{ isError: boolean }>`
-  background-color: #f4f4f4;
-  border-radius: 5px;
-  padding: 12px 15px;
+  padding: 5px 15px;
   outline: none;
   align-self: stretch;
-  border: 1px solid ${({ isError }) => (isError ? "red" : "transparent")};
-  &:focus {
-    border: 1px solid "black";
-  }
+  border: none;
+  border-bottom: 1px solid ${(props) => props.theme.colors.black};
+  background-color: transparent;
 `;
 
 const ErrorMessage = styled.p`

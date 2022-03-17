@@ -32,9 +32,11 @@ const WrapperButton = styled.button<any>`
   width: 100%;
   font-weight: 700;
   padding: 12px 12px;
-  background-color: #a04eff;
-  color: ${({ variant }) => (variant === "primary" ? "white" : "#0088ff")};
-  border: 1px solid #a04eff;
+  background-color: ${({ variant, theme }) =>
+    variant === "primary" ? theme.colors.primary : theme.colors.white};
+  color: ${({ variant, theme }) =>
+    variant === "primary" ? theme.colors.white : theme.colors.primary};
+  border: none;
   border-radius: 10px;
   font-size: 16px;
 
