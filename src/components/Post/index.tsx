@@ -9,7 +9,7 @@ export const Post = (props: PostType) => {
   const [isLiked, setIsLiked] = useState(false);
 
   return (
-    <Container>
+    <Container id={props.id}>
       <Top {...props} />
       <Photo src={props.photos[0]} {...{ isLiked, setIsLiked }} />
       <Bottom {...{ isLiked, setIsLiked }} />

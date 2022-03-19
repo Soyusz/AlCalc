@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useUserPosts } from "../../queries/useUserPosts";
 
@@ -6,14 +7,14 @@ type GalleryProps = {
 };
 
 export const Gallery = ({ userId }: GalleryProps) => {
-  const { data: temp } = useUserPosts(userId);
-  const data = temp ?? [];
-  const posts = [...data, ...data, ...data, ...data];
+  const { data: posts } = useUserPosts(userId);
 
   return (
     <Container>
       {posts?.map((post) => (
-        <Image src={""} />
+        <Image to={`/user/${userId}/posts/${post.id}/#${post.id}`}>
+          <img src={post.photos[0]} />
+        </Image>
       ))}
     </Container>
   );
@@ -27,9 +28,13 @@ const Container = styled.div`
   padding: 5px;
 `;
 
-const Image = styled.img`
+const Image = styled(Link)`
   background-color: red;
   aspect-ratio: 1;
   overflow: hidden;
-  object-fit: cover;
+  & > img {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+  }
 `;
