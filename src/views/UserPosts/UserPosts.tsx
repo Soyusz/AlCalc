@@ -13,7 +13,7 @@ export const UserPosts = () => {
     document.getElementById(postId)?.scrollIntoView({
       behavior: "smooth",
     });
-  }, []);
+  }, [postId]);
 
   return (
     <>

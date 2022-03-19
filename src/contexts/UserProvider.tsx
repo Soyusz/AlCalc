@@ -10,7 +10,7 @@ export const UserContextProvider: FC = memo(({ children }) => {
 
   useEffect(() => {
     if (token === null) navigation.navigate("/login");
-  }, [token]);
+  }, [token, navigation]);
 
   useEffect(() => {
     if (token === undefined) return;

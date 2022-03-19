@@ -13,7 +13,7 @@ export const Gallery = ({ userId }: GalleryProps) => {
     <Container>
       {posts?.map((post) => (
         <Image to={`/user/${userId}/posts/${post.id}/#${post.id}`}>
-          <img src={post.photos[0]} />
+          <img src={post.photos[0]} alt="post" />
         </Image>
       ))}
     </Container>

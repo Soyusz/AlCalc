@@ -8,5 +8,5 @@ export const useAdminOnlyRoute = () => {
 
   useEffect(() => {
     if (!isAdmin) navigate("/");
-  }, []);
+  }, [navigate, isAdmin]);
 };
