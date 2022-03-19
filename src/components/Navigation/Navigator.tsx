@@ -7,6 +7,7 @@ import { DefaultTemplate } from "../../views/Templates/DefaultTemplate";
 import { Admin } from "../../views/Admin/Admin";
 import { Feed } from "../../views/Feed/Feed";
 import { Login } from "../../views/Login/Login";
+import { User } from "../../views/User/User";
 
 export const Navigator = () => (
   <DefaultTemplate>
@@ -18,6 +19,7 @@ export const Navigator = () => (
       <Route path="/404" element={<Fallback404 />} />
       <Route path="/admin" element={<Admin />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/user/:userId" element={<User />} />
     </Routes>
   </DefaultTemplate>
 );
