@@ -3,14 +3,16 @@ import { useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
 import { Touchable } from "../Touchable";
 import like from "../../assets/like2.png";
+import Skeleton from "react-loading-skeleton";
 
 type PhotoProps = {
   src?: string | null;
   isLiked: boolean;
   setIsLiked: React.Dispatch<boolean>;
+  skeleton: boolean;
 };
 
-export const Photo = ({ src, isLiked, setIsLiked }: PhotoProps) => {
+export const Photo = ({ src, isLiked, setIsLiked, skeleton }: PhotoProps) => {
   const [showLikedIcon, setShowLikedIcon] = useState(false);
 
   const animateLike = useCallback(() => {
@@ -30,7 +32,11 @@ export const Photo = ({ src, isLiked, setIsLiked }: PhotoProps) => {
 
   return (
     <Container onDoubleTap={handlePhotoDoubleClick}>
-      <EntryPhoto src={src ?? undefined} alt="entry" />
+      {skeleton ? (
+        <Skeleton height={200} width="100vw" />
+      ) : (
+        <EntryPhoto src={src ?? undefined} alt="entry" />
+      )}
       <LikedIconContainer>
         <motion.img
           variants={LikedIconAnimation}

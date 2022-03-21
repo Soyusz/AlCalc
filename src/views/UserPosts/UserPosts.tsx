@@ -19,7 +19,7 @@ export const UserPosts = () => {
     <>
       <Scroll>
         {data?.map((post) => (
-          <Post {...post} key={Math.random()} />
+          <Post {...post} key={Math.random()} skeleton={false} />
         ))}
       </Scroll>
     </>

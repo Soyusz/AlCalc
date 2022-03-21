@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import Skeleton from "react-loading-skeleton";
 import { useUserPosts } from "../../queries/useUserPosts";
 
 type GalleryProps = {
@@ -7,15 +8,24 @@ type GalleryProps = {
 };
 
 export const Gallery = ({ userId }: GalleryProps) => {
-  const { data: posts } = useUserPosts(userId);
+  const { data } = useUserPosts(userId);
+  const posts = data ? data : [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
   return (
     <Container>
-      {posts?.map((post) => (
-        <Image to={`/user/${userId}/posts/${post.id}/#${post.id}`}>
-          <img src={post.photos[0]} alt="post" />
-        </Image>
-      ))}
+      {posts?.map((post) => {
+        if (typeof post == "number")
+          return (
+            <Image to="">
+              <Skeleton />
+            </Image>
+          );
+        return (
+          <Image to={`/user/${userId}/posts/${post.id}/#${post.id}`}>
+            <img src={post.photos[0]} alt="post" />
+          </Image>
+        );
+      })}
     </Container>
   );
 };
@@ -29,7 +39,6 @@ const Container = styled.div`
 `;
 
 const Image = styled(Link)`
-  background-color: red;
   aspect-ratio: 1;
   overflow: hidden;
   & > img {

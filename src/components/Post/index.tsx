@@ -5,14 +5,27 @@ import { Top } from "./Top";
 import { Bottom } from "./Bottom";
 import { Photo } from "./Photo";
 
-export const Post = (props: PostType) => {
+export type PostProps =
+  | ({ skeleton: false } & PostType)
+  | ({ skeleton: true } & Partial<PostType>);
+
+export const Post = (props: PostProps) => {
   const [isLiked, setIsLiked] = useState(false);
 
   return (
     <Container id={props.id}>
       <Top {...props} />
-      <Photo src={props.photos[0]} {...{ isLiked, setIsLiked }} />
-      <Bottom {...{ isLiked, setIsLiked }} />
+      <Photo
+        src={props.photos?.[0]}
+        isLiked={isLiked}
+        setIsLiked={setIsLiked}
+        skeleton={props.skeleton}
+      />
+      <Bottom
+        isLiked={isLiked}
+        setIsLiked={setIsLiked}
+        skeleton={props.skeleton}
+      />
     </Container>
   );
 };

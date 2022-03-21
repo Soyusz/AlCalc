@@ -6,13 +6,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
-  background-image: linear-gradient(
-    to bottom,
-    #266bff,
-    #00a2e3,
-    #00d09f,
-    #9cf468
-  );
 }
 
 * {

@@ -1,3 +1,4 @@
+import Skeleton from "react-loading-skeleton";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { Gallery } from "../../components/Gallery";
@@ -12,10 +13,11 @@ export const User = () => {
   return (
     <>
       <Container>
+        <Skeleton width="200px" />
         <h1>user screen </h1>
         <h2>{userId}</h2>
-        <h4>{user?.name}</h4>
-        <h4>{user?.role}</h4>
+        <h4>{user?.name || <Skeleton width="9ex" />}</h4>
+        <h4>{user?.role || <Skeleton />}</h4>
         <Gallery userId={userId} />
       </Container>
     </>
