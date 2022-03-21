@@ -43,10 +43,7 @@ const Container = styled.div`
   height: 100vh;
   overflow: hidden;
   display: grid;
-  grid-template: auto 1fr / auto 100vw;
-  .Header {
-    grid-column: 1 / 3;
-  }
+  grid-template: 60px 1fr / auto 100vw;
   perspective: 200px;
 `;
 
@@ -55,6 +52,8 @@ const Content = styled(motion.div)<{ padding?: string }>`
   grid-template: 1fr / 1fr;
   overflow: hidden;
   z-index: 32;
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
   & > div {
     display: flex;
     flex-direction: column;

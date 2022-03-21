@@ -44,6 +44,8 @@ const Container = styled(motion.div)`
   overflow: hidden;
   padding: 10px 10px;
   align-items: strech;
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
 `;
 
 const ContainerStyles = {

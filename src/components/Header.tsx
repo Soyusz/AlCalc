@@ -28,9 +28,10 @@ const Container = styled.div`
   align-items: center;
   flex-direction: row;
   width: 100vw;
-  z-index: 30;
   box-shadow: 0px 3px 10px 0px #00000030;
   z-index: 200;
+  position: fixed;
+  top: 0;
 `;
 
 const Title = styled.div`

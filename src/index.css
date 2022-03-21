@@ -23,5 +23,8 @@ code {
   flex-direction: column;
 }
 
-* {
+/* disable scroll-refresh  */
+html,
+body {
+  overscroll-behavior-y: contain;
 }
