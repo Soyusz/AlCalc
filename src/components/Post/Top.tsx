@@ -1,19 +1,39 @@
+import Skeleton from "react-loading-skeleton";
 import styled from "styled-components";
 import { useNavigation } from "../../hooks/useNavigation";
 import { useUser } from "../../queries/useUser";
 import { Post as PostType } from "../../types/post";
+import { SkelText } from "../SkelText";
 
 const sampleImage = "https://avatars.githubusercontent.com/u/45801065";
 
-export const Top = (props: PostType) => {
-  const { data: user } = useUser(props.user_id);
+type TopProps =
+  | ({ skeleton: true } & Partial<PostType>)
+  | ({ skeleton: false } & PostType);
+
+export const Top = (p: TopProps) => {
+  const { data: user } = useUser(!p.skeleton && p.user_id);
   const { navigate } = useNavigation();
-  const handleClick = () => navigate(`/user/${props.user_id}`);
+  const handleClick = () => {
+    if (p.skeleton) return;
+    navigate(`/user/${p.user_id}`);
+  };
+
   return (
     <Container>
-      <UserPhoto src={sampleImage} onClick={handleClick} />
-      <Username onClick={handleClick}>{user?.name}</Username>
-      <Location>{props.location}</Location>
+      <UserPhoto onClick={handleClick}>
+        {p.skeleton ? (
+          <UserPhotoSkeleton />
+        ) : (
+          <img alt="user" src={sampleImage} />
+        )}
+      </UserPhoto>
+      <Username onClick={handleClick}>
+        <SkelText v={user?.name} w={9} />
+      </Username>
+      <Location>
+        <SkelText v={p.location} w={13} />
+      </Location>
     </Container>
   );
 };
@@ -24,13 +44,20 @@ const Container = styled.div`
   margin: 10px 5px;
 `;
 
-const UserPhoto = styled.img`
+const UserPhoto = styled.div`
   height: 35px;
-  widht: 35px;
+  width: 35px;
   border-radius: 50%;
   grid-row: 1 / 3;
   margin-right: 10px;
+  overflow: hidden;
+  & > img {
+    height: 100%;
+    width: 100%;
+  }
 `;
+const UserPhotoSkeleton = () => <Skeleton width="35px" height="35px" circle />;
+
 const Username = styled.div`
   font-weight: 600;
 `;

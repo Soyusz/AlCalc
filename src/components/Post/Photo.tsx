@@ -1,17 +1,20 @@
 import { motion } from "framer-motion";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { Touchable } from "../Touchable";
 import like from "../../assets/like2.png";
+import Skeleton from "react-loading-skeleton";
 
 type PhotoProps = {
   src?: string | null;
-  isLiked: boolean;
+  isLiked: boolean | null;
   setIsLiked: React.Dispatch<boolean>;
+  skeleton: boolean;
 };
 
-export const Photo = ({ src, isLiked, setIsLiked }: PhotoProps) => {
+export const Photo = ({ src, isLiked, setIsLiked, skeleton }: PhotoProps) => {
   const [showLikedIcon, setShowLikedIcon] = useState(false);
+  const isInitial = useRef(true);
 
   const animateLike = useCallback(() => {
     setShowLikedIcon(true);
@@ -19,22 +22,29 @@ export const Photo = ({ src, isLiked, setIsLiked }: PhotoProps) => {
   }, []);
 
   useEffect(() => {
-    if (!isLiked) return;
-    animateLike();
+    if (isLiked === null) return;
+    if (isInitial.current) {
+      isInitial.current = false;
+      return;
+    }
+    if (isLiked) animateLike();
   }, [isLiked, animateLike]);
 
   const handlePhotoDoubleClick = () => {
-    if (isLiked) return animateLike();
-    setIsLiked(true);
+    if (!isLiked) setIsLiked(true);
+    else animateLike();
   };
 
   return (
     <Container onDoubleTap={handlePhotoDoubleClick}>
-      <EntryPhoto src={src ?? undefined} alt="entry" />
+      {skeleton ? (
+        <Skeleton height={200} width="100vw" />
+      ) : (
+        <EntryPhoto src={src ?? undefined} alt="entry" />
+      )}
       <LikedIconContainer>
         <motion.img
           variants={LikedIconAnimation}
-          initial="hidden"
           animate={showLikedIcon ? "shown" : "hidden"}
           src={like}
           alt="like"

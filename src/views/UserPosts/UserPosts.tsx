@@ -13,13 +13,13 @@ export const UserPosts = () => {
     document.getElementById(postId)?.scrollIntoView({
       behavior: "smooth",
     });
-  }, []);
+  }, [postId]);
 
   return (
     <>
       <Scroll>
         {data?.map((post) => (
-          <Post {...post} key={Math.random()} />
+          <Post {...post} key={Math.random()} skeleton={false} />
         ))}
       </Scroll>
     </>

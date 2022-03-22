@@ -21,7 +21,7 @@ export const Login = () => {
     if (!isSuccess || !data?.token) return;
     setToken(data.token);
     navigation.navigate("/");
-  }, [isSuccess]);
+  }, [isSuccess, data?.token, navigation, setToken]);
 
   return (
     <>
