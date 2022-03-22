@@ -5,7 +5,7 @@ import like2 from "../../assets/like2.png";
 import share from "../../assets/share.png";
 
 type BottomProps = {
-  isLiked: boolean;
+  isLiked: boolean | null;
   setIsLiked: React.Dispatch<boolean>;
   skeleton?: boolean;
 };
@@ -14,10 +14,14 @@ export const Bottom = ({ isLiked, setIsLiked, skeleton }: BottomProps) => {
   return (
     <Container>
       <IconContainer onClick={() => setIsLiked(!isLiked)}>
-        {!skeleton ? <img src={isLiked ? like2 : like1} /> : <IconSkeleton />}
+        {!skeleton ? (
+          <img alt="icon" src={isLiked ? like2 : like1} />
+        ) : (
+          <IconSkeleton />
+        )}
       </IconContainer>
       <IconContainer>
-        {!skeleton ? <img src={share} /> : <IconSkeleton />}
+        {!skeleton ? <img alt="icon" src={share} /> : <IconSkeleton />}
       </IconContainer>
     </Container>
   );

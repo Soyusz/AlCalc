@@ -1,16 +1,30 @@
 import styled from "styled-components";
 import { Post as PostType } from "../../types/post";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Top } from "./Top";
 import { Bottom } from "./Bottom";
 import { Photo } from "./Photo";
+import { useFetchLike } from "../../queries/useFetchLike";
+import { useSendLike } from "../../queries/useSendLike";
 
 export type PostProps =
   | ({ skeleton: false } & PostType)
   | ({ skeleton: true } & Partial<PostType>);
 
 export const Post = (props: PostProps) => {
-  const [isLiked, setIsLiked] = useState(false);
+  const { amILiking, isLoading: areLikesLoading } = useFetchLike(props.id);
+  const { mutate: sendLike } = useSendLike();
+  const [isLiked, setIsLiked] = useState<boolean | null>(null);
+
+  useEffect(() => setIsLiked(amILiking), [amILiking]);
+
+  const isLoading = areLikesLoading;
+  const isSkeleton = isLoading || props.skeleton;
+
+  const handleLikePost = (value: boolean) => {
+    sendLike({ value, postId: props.id as string });
+    setIsLiked(value);
+  };
 
   return (
     <Container id={props.id}>
@@ -18,13 +32,13 @@ export const Post = (props: PostProps) => {
       <Photo
         src={props.photos?.[0]}
         isLiked={isLiked}
-        setIsLiked={setIsLiked}
-        skeleton={props.skeleton}
+        setIsLiked={handleLikePost}
+        skeleton={isSkeleton}
       />
       <Bottom
         isLiked={isLiked}
-        setIsLiked={setIsLiked}
-        skeleton={props.skeleton}
+        setIsLiked={handleLikePost}
+        skeleton={props.skeleton || isLoading}
       />
     </Container>
   );

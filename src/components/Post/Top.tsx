@@ -1,5 +1,5 @@
 import Skeleton from "react-loading-skeleton";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { useNavigation } from "../../hooks/useNavigation";
 import { useUser } from "../../queries/useUser";
 import { Post as PostType } from "../../types/post";
@@ -22,7 +22,11 @@ export const Top = (p: TopProps) => {
   return (
     <Container>
       <UserPhoto onClick={handleClick}>
-        {p.skeleton ? <UserPhotoSkeleton /> : <img src={sampleImage} />}
+        {p.skeleton ? (
+          <UserPhotoSkeleton />
+        ) : (
+          <img alt="user" src={sampleImage} />
+        )}
       </UserPhoto>
       <Username onClick={handleClick}>
         <SkelText v={user?.name} w={9} />
