@@ -1,20 +1,18 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Skeleton from "react-loading-skeleton";
-import { useUserPosts } from "../../queries/useUserPosts";
+import { Post } from "../../types/post";
 
 type GalleryProps = {
+  posts: (Post | null)[];
   userId: string;
 };
 
-export const Gallery = ({ userId }: GalleryProps) => {
-  const { data } = useUserPosts(userId);
-  const posts = data ? data : [1, 2, 3, 4, 5, 6, 7, 8, 9];
-
+export const Gallery = ({ posts, userId }: GalleryProps) => {
   return (
     <Container>
       {posts?.map((post) => {
-        if (typeof post == "number")
+        if (post === null)
           return (
             <Image to="">
               <Skeleton />
