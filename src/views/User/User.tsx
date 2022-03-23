@@ -6,7 +6,8 @@ import { SkelText } from "../../components/SkelText";
 import { useUser } from "../../queries/useUser";
 import { useUserPosts } from "../../queries/useUserPosts";
 
-const sampleImage = "https://avatars.githubusercontent.com/u/45801065";
+const sampleImage =
+  "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.WHfN_fEpKjn2hGiq_OgIUAHaHa%26pid%3DApi&f=1";
 
 export const User = () => {
   const { userId } = useParams();
@@ -18,7 +19,7 @@ export const User = () => {
   return (
     <>
       <Container>
-        <UserImage src={sampleImage} />
+        <UserImage src={user?.photo || sampleImage} />
         <UserName>
           <SkelText v={user?.name} w={10} />
         </UserName>

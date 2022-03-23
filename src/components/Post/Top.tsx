@@ -5,7 +5,8 @@ import { useUser } from "../../queries/useUser";
 import { Post as PostType } from "../../types/post";
 import { SkelText } from "../SkelText";
 
-const sampleImage = "https://avatars.githubusercontent.com/u/45801065";
+const sampleImage =
+  "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.WHfN_fEpKjn2hGiq_OgIUAHaHa%26pid%3DApi&f=1";
 
 type TopProps =
   | ({ skeleton: true } & Partial<PostType>)
@@ -25,7 +26,7 @@ export const Top = (p: TopProps) => {
         {p.skeleton ? (
           <UserPhotoSkeleton />
         ) : (
-          <img alt="user" src={sampleImage} />
+          <img alt="user" src={user?.photo ?? sampleImage} />
         )}
       </UserPhoto>
       <Username onClick={handleClick}>
