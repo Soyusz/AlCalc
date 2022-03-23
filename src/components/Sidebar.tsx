@@ -26,6 +26,9 @@ export const Sidebar = ({
       <Element to="/ranking" onClick={afterClick}>
         Ranking
       </Element>
+      <Element to="/calc" onClick={afterClick}>
+        Calc
+      </Element>
       <Element to="/about" onClick={afterClick}>
         About
       </Element>

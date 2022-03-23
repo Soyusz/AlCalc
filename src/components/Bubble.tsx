@@ -31,7 +31,7 @@ export const Bubble = ({ onDeath }: BubbleProps) => {
 };
 
 const Container = styled(motion.div)<{ start: number }>`
-  border: 1px solid white;
+  border: 1px solid pink;
   border-radius: 50%;
   height: 30px;
   width: 30px;

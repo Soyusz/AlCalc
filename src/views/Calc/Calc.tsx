@@ -4,7 +4,7 @@ import { BubbleContainer } from "../../components/BubbleContainer";
 import { Input } from "../../components/Input";
 import { Ring } from "./components/Ring";
 
-export const Home = () => {
+export const Calc = () => {
   const [value, setValue] = useState({
     voltage: "0",
     volume: "500",
@@ -58,7 +58,7 @@ export const Home = () => {
 };
 
 const Container = styled.div`
-  background: ${(props) => props.theme.colors.appBackground};
+  background: ${(props) => props.theme.colors.white};
   padding: ${(props) => props.theme.spacing.s};
 `;
 
