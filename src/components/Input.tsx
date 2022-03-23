@@ -68,6 +68,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
 
 const InputContainer = styled.div`
   margin: 0;
+  margin-bottom: 20px;
   padding: 0;
   display: flex;
   flex-direction: column;
@@ -80,6 +81,8 @@ const InputStyled = styled.input<{ isError: boolean }>`
   border: none;
   border-bottom: 1px solid ${(props) => props.theme.colors.black};
   background-color: transparent;
+  font-size: 16px;
+  border-radius: 0;
 `;
 
 const ErrorMessage = styled.p`
@@ -91,5 +94,5 @@ const ErrorMessage = styled.p`
 
 const Label = styled.label<{ isError: boolean }>`
   font-size: 12px;
-  color: ${({ isError }) => (isError ? "red" : "white")};
+  color: ${({ isError }) => (isError ? "red" : "#555555")};
 `;

@@ -1,11 +1,12 @@
 import { useAdminOnlyRoute } from "../../hooks/useAdminOnlyRoute";
+import { Judge } from "./Judge";
 
 export const Admin = () => {
   useAdminOnlyRoute();
 
   return (
     <>
-      <h1>admin panel</h1>
+      <Judge />
     </>
   );
 };

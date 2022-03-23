@@ -29,8 +29,8 @@ export const Login = () => {
         <SInput
           value={email}
           onValueChange={setEmail}
-          label="email"
-          placeholder="Email"
+          label="Email"
+          type="email"
         />
         <SButton label="Log in" onClick={handleClick} />
       </Container>
@@ -48,9 +48,13 @@ const Container = styled.div`
 
 const SInput = styled(Input)`
   grid-row: 2 / 3;
-  width: 180px;
+  width: 250px;
+  max-width: 90vw;
+  align-self: stretch;
 `;
 
 const SButton = styled(Button)`
   grid-row: 3 / 4;
+  width: 250px;
+  max-width: 90vw;
 `;

@@ -47,7 +47,7 @@ const Element = styled.div`
     grid-column: 2 / 3;
   }
   &:nth-of-type(3) {
-    background: #9cf468;
+    background: white;
   }
   &:nth-of-type(4) {
     grid-row: 3 / 4;
@@ -61,7 +61,7 @@ const Element = styled.div`
     background-image: url("http://localhost:3000/soyjack.png");
   }
   &:nth-of-type(6) {
-    background: #266bff;
+    background: white;
   }
 `;
 
