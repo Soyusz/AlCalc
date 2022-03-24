@@ -9,12 +9,14 @@ import { Login } from "../../views/Login/Login";
 import { User } from "../../views/User/User";
 import { UserPosts } from "../../views/UserPosts/UserPosts";
 import { Calc } from "../../views/Calc/Calc";
+import { AddEntry } from "../../views/AddEntry/AddEntry";
 
 export const Navigator = () => (
   <DefaultTemplate>
     <Routes>
       <Route path="/" element={<Feed />} />
       <Route path="/calc" element={<Calc />} />
+      <Route path="/entry/add" element={<AddEntry />} />
       <Route path="/about" element={<About />} />
       <Route path="/ranking" element={<Ranking />} />
       <Route path="/404" element={<Fallback404 />} />
