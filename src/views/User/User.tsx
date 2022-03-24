@@ -39,6 +39,7 @@ const UserImage = styled.img`
   height: 150px;
   width: 150px;
   border-radius: 50%;
+  object-fit: cover;
 `;
 
 const UserName = styled.div`
