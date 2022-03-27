@@ -3,12 +3,13 @@ import styled from "styled-components";
 import { BubbleContainer } from "../../components/BubbleContainer";
 import { Button } from "../../components/Button";
 import { Input } from "../../components/Input";
+import { useCachedState } from "../../hooks/useCachedState";
 import { useNavigation } from "../../hooks/useNavigation";
 import { Ring } from "./components/Ring";
 
 export const Calc = () => {
   const navigator = useNavigation();
-  const [value, setValue] = useState({
+  const [value, setValue] = useCachedState("calc", {
     voltage: "0",
     volume: "500",
     price: "5",
