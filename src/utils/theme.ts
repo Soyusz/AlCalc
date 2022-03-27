@@ -37,6 +37,7 @@ export const defaultTheme = {
   colors: {
     black: "#1F1F1F",
     white: "#ffffff",
+    gray: "#ccc",
     background: "#ffffff",
     appBackground: "#fafafa",
     textOnBackground: "#000000",

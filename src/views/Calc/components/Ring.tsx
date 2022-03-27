@@ -34,6 +34,7 @@ const Container = styled.div`
   overflow: hidden;
   display: flex;
   justify-content: center;
+  z-index: 2;
 `;
 
 const Inside = styled(motion.div)`

@@ -9,7 +9,7 @@ type Props = {
   setImage: React.Dispatch<string | null>;
 };
 
-export const Step2 = ({ next, image, setImage }: Props) => {
+export const Image = ({ next, image, setImage }: Props) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const handleClick = () => {
     inputRef.current?.click();
@@ -24,7 +24,7 @@ export const Step2 = ({ next, image, setImage }: Props) => {
     <Container>
       <input type="file" ref={inputRef} onChange={handleChange} hidden />
       <PhotoContainer onClick={handleClick}>
-        <Image src={image ?? undefined} />
+        <SImage src={image ?? undefined} />
       </PhotoContainer>
       <NextButton label="Save" onClick={next} />
     </Container>
@@ -47,7 +47,7 @@ const PhotoContainer = styled.div`
   border-radius: 10px;
 `;
 
-const Image = styled.img`
+const SImage = styled.img`
   object-fit: cover;
   height: 100%;
   width: 100%;

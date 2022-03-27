@@ -1,15 +1,19 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import styled from "styled-components";
+import { Progress } from "../../components/Progress";
 import { usePostEntry } from "../../queries/usePostEntry";
-import { Step1 } from "./Step1";
-import { Step2 } from "./Step2";
+import { Image } from "./Image";
+import { Name } from "./Name";
+import { Price } from "./Price";
+import { Voltage } from "./Voltage";
+import { Volume } from "./Volume";
 
 export const AddEntry = () => {
   const [params] = useSearchParams();
-  const { mutate: createEntry } = usePostEntry();
+  const { mutate: createEntry, isLoading, isSuccess } = usePostEntry();
 
-  const [step, setStep] = useState<1 | 2>(1);
+  const [step, setStep] = useState(0);
   const [image, setImage] = useState<null | string>(null);
   const [value, setValue] = useState({
     voltage: params.get("voltage") ?? "0",
@@ -25,26 +29,58 @@ export const AddEntry = () => {
   };
 
   const handleNext = () => {
-    if (step === 1) setStep(2);
-    if (step === 2)
-      createEntry({
+    if (step === 4)
+      return createEntry({
         voltage: parseFloat(value.voltage),
         volume: parseFloat(value.volume),
         price: parseFloat(value.price),
         name: value.name,
         photo: "",
       });
+    setStep(step + 1);
   };
+
+  useEffect(() => {
+    setStep(step + 1);
+  }, [isSuccess]);
 
   return (
     <>
       <Container>
+        <Progress total={5} current={step} />
+        {step === 0 && (
+          <Voltage
+            value={value.voltage}
+            update={(v: string) => handleChange(v, "voltage")}
+            next={handleNext}
+          />
+        )}
         {step === 1 && (
-          <Step1 value={value} update={handleChange} next={handleNext} />
+          <Volume
+            value={value.volume}
+            update={(v: string) => handleChange(v, "volume")}
+            next={handleNext}
+          />
         )}
         {step === 2 && (
-          <Step2 next={handleNext} image={image} setImage={setImage} />
+          <Price
+            value={value.price}
+            update={(v: string) => handleChange(v, "price")}
+            next={handleNext}
+          />
         )}
+        {step === 3 && (
+          <Name
+            value={value.name}
+            update={(v: string) => handleChange(v, "name")}
+            next={handleNext}
+          />
+        )}
+        {step === 4 && (
+          <Image next={handleNext} image={image} setImage={setImage} />
+        )}
+        {isLoading && <h1>Loading</h1>}
+        {isSuccess && <h1>Success</h1>}
       </Container>
     </>
   );
