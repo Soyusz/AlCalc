@@ -42,7 +42,7 @@ export const defaultTheme = {
     appBackground: "#fafafa",
     textOnBackground: "#000000",
     text: "#1F1F1F",
-    primary: "#8102e2",
+    primary: "#3458aa",
     warning: "#EF5B5E",
     error: "#F15A5A",
     positive: "#168F31",

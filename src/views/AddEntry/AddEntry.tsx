@@ -11,7 +11,7 @@ import { Volume } from "./Volume";
 
 export const AddEntry = () => {
   const [params] = useSearchParams();
-  const { mutate: createEntry, isLoading, isSuccess } = usePostEntry();
+  const { mutate: createEntry, isError: isSuccess } = usePostEntry();
 
   const [step, setStep] = useState(0);
   const [image, setImage] = useState<null | string>(null);
@@ -41,6 +41,7 @@ export const AddEntry = () => {
   };
 
   useEffect(() => {
+    if (!isSuccess) return;
     setStep(step + 1);
   }, [isSuccess]);
 
@@ -79,7 +80,6 @@ export const AddEntry = () => {
         {step === 4 && (
           <Image next={handleNext} image={image} setImage={setImage} />
         )}
-        {isLoading && <h1>Loading</h1>}
         {isSuccess && <h1>Success</h1>}
       </Container>
     </>
