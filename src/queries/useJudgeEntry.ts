@@ -1,6 +1,6 @@
 import { useMutation } from "react-query";
 import { BACKEND_URL } from "../backend_url";
-import { useUserContext } from "../contexts/useUserContext";
+import { useUserContext } from "../contexts/User/useUserContext";
 
 type MutationProps = {
   entryId: string;

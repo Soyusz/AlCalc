@@ -1,11 +1,15 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { BubbleContainer } from "../../components/BubbleContainer";
+import { Button } from "../../components/Button";
 import { Input } from "../../components/Input";
+import { useCachedState } from "../../hooks/useCachedState";
+import { useNavigation } from "../../hooks/useNavigation";
 import { Ring } from "./components/Ring";
 
 export const Calc = () => {
-  const [value, setValue] = useState({
+  const navigator = useNavigation();
+  const [value, setValue] = useCachedState("calc", {
     voltage: "0",
     volume: "500",
     price: "5",
@@ -20,6 +24,11 @@ export const Calc = () => {
     newValue[key] = v;
     setValue(newValue);
   };
+
+  const handleClick = () =>
+    navigator.navigate(
+      `/entry/add?voltage=${value.voltage}&volume=${value.volume}&price=${value.price}`
+    );
 
   useEffect(() => {
     const { price, voltage, volume } = value;
@@ -53,6 +62,8 @@ export const Calc = () => {
         type="number"
       />
       <Ring fill={Math.floor(score)} total={100}></Ring>
+
+      <AddButton label="Save" onClick={handleClick} />
     </Container>
   );
 };
@@ -65,4 +76,10 @@ const Container = styled.div`
 
 const StyledInput = styled(Input)`
   align-self: stretch;
+`;
+
+const AddButton = styled(Button)`
+  margin-top: auto;
+  margin-bottom: 50px;
+  z-index: 1;
 `;

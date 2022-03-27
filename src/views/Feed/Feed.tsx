@@ -1,16 +1,9 @@
-import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Post } from "../../components/Post";
 import { useFeed } from "../../queries/useFeed";
 
 export const Feed = () => {
-  const [isLoading, setIsLoading] = useState(true);
-  const { data } = useFeed();
-
-  useEffect(() => {
-    if (!data) return;
-    setTimeout(() => setIsLoading(false), 1000);
-  }, [data]);
+  const { data, isLoading } = useFeed();
 
   return (
     <>
