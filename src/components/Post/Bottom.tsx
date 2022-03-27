@@ -2,7 +2,6 @@ import Skeleton from "react-loading-skeleton";
 import styled from "styled-components";
 import like1 from "../../assets/like1.png";
 import like2 from "../../assets/like2.png";
-import share from "../../assets/share.png";
 
 type BottomProps = {
   isLiked: boolean | null;
@@ -19,9 +18,6 @@ export const Bottom = ({ isLiked, setIsLiked, skeleton }: BottomProps) => {
         ) : (
           <IconSkeleton />
         )}
-      </IconContainer>
-      <IconContainer>
-        {!skeleton ? <img alt="icon" src={share} /> : <IconSkeleton />}
       </IconContainer>
     </Container>
   );
