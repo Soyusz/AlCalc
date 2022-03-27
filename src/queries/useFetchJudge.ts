@@ -1,6 +1,6 @@
 import { useQuery } from "react-query";
 import { BACKEND_URL } from "../backend_url";
-import { useUserContext } from "../contexts/useUserContext";
+import { useUserContext } from "../contexts/User/useUserContext";
 import { Entry } from "../types/entry";
 
 export const useFetchJudge = () => {

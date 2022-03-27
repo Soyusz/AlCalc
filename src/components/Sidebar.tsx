@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { useUserContext } from "../contexts/useUserContext";
+import { useUserContext } from "../contexts/User/useUserContext";
 
 type SidebarProps = {
   show: boolean;

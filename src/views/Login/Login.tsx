@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Button } from "../../components/Button";
 import { Input } from "../../components/Input";
-import { useUserContext } from "../../contexts/useUserContext";
+import { useUserContext } from "../../contexts/User/useUserContext";
 import { useNavigation } from "../../hooks/useNavigation";
 import { useLogin } from "../../queries/useLogin";
 

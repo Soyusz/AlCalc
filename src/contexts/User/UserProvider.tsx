@@ -1,7 +1,7 @@
 import { FC, memo, useEffect, useState } from "react";
 import { UserContext, UserContextType } from "./UserContext";
-import { useMe } from "../queries/useMe";
-import { useNavigation } from "../hooks/useNavigation";
+import { useMe } from "../../queries/useMe";
+import { useNavigation } from "../../hooks/useNavigation";
 
 export const UserContextProvider: FC = memo(({ children }) => {
   const [token, setToken] = useState<string | null | undefined>();

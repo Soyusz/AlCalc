@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useUserContext } from "../contexts/useUserContext";
+import { useUserContext } from "../contexts/User/useUserContext";
 import { useNavigation } from "./useNavigation";
 
 export const useAdminOnlyRoute = () => {

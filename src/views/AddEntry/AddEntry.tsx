@@ -43,7 +43,7 @@ export const AddEntry = () => {
   useEffect(() => {
     if (!isSuccess) return;
     setStep(step + 1);
-  }, [isSuccess]);
+  }, [isSuccess, step]);
 
   return (
     <>
