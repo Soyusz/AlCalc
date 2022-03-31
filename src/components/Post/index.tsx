@@ -11,26 +11,28 @@ export type PostProps =
   | ({ skeleton: false } & PostType)
   | ({ skeleton: true } & Partial<PostType>);
 
-export const Post = (props: PostProps) => {
-  const { amILiking, isLoading: areLikesLoading } = useFetchLike(props.id);
+export const Post = (p: PostProps) => {
+  const { amILiking, isLoading: areLikesLoading } = useFetchLike(
+    !p.skeleton && p.id
+  );
   const { mutate: sendLike } = useSendLike();
   const [isLiked, setIsLiked] = useState<boolean | null>(null);
 
   useEffect(() => setIsLiked(amILiking), [amILiking]);
 
   const isLoading = areLikesLoading;
-  const isSkeleton = isLoading || props.skeleton;
+  const isSkeleton = isLoading || p.skeleton;
 
   const handleLikePost = (value: boolean) => {
-    sendLike({ value, postId: props.id as string });
+    sendLike({ value, postId: p.id as string });
     setIsLiked(value);
   };
 
   return (
-    <Container id={props.id}>
-      <Top {...props} />
+    <Container id={p.id}>
+      <Top {...p} />
       <Photo
-        src={props.photos?.[0]}
+        src={p.photos?.[0]}
         isLiked={isLiked}
         setIsLiked={handleLikePost}
         skeleton={isSkeleton}
@@ -38,7 +40,7 @@ export const Post = (props: PostProps) => {
       <Bottom
         isLiked={isLiked}
         setIsLiked={handleLikePost}
-        skeleton={props.skeleton || isLoading}
+        skeleton={p.skeleton || isLoading}
       />
     </Container>
   );
@@ -46,7 +48,7 @@ export const Post = (props: PostProps) => {
 
 const Container = styled.div`
   width: 100vw;
-  background: ${(props) => props.theme.colors.background};
+  background: ${props => props.theme.colors.background};
   margin-bottom: 10px;
   display: flex;
   flex-direction: column;

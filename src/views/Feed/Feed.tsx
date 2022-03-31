@@ -8,17 +8,9 @@ export const Feed = () => {
   return (
     <>
       <Scroll disabled={isLoading}>
-        {isLoading && (
-          <>
-            <Post key={1} skeleton />
-            <Post key={2} skeleton />
-            <Post key={3} skeleton />
-          </>
-        )}
-        {data &&
-          data?.map((post) => (
-            <Post {...post} key={Math.random()} skeleton={false} />
-          ))}
+        {data?.map(post => (
+          <Post {...post} key={post.id} skeleton={post.skeleton ?? false} />
+        ))}
       </Scroll>
     </>
   );

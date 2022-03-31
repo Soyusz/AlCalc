@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
@@ -6,24 +7,30 @@ import { SkelText } from "../../components/SkelText";
 import { useUser } from "../../queries/useUser";
 import { useUserPosts } from "../../queries/useUserPosts";
 
-const sampleImage =
+const placeholderImage =
   "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.WHfN_fEpKjn2hGiq_OgIUAHaHa%26pid%3DApi&f=1";
 
 export const User = () => {
   const { userId } = useParams();
-  const { data: user } = useUser(userId ?? "");
+  const { data: user, isLoading: isUserLoading } = useUser(userId ?? "");
   const { data: posts } = useUserPosts(userId);
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   if (!userId) return null;
+
+  const imageSrc =
+    !isUserLoading && !user?.photo
+      ? placeholderImage
+      : user?.photo ?? undefined;
 
   return (
     <>
       <Container>
-        <UserImage src={user?.photo || sampleImage} />
+        <UserImage src={imageSrc} onLoad={() => setImageLoaded(true)} />
         <UserName>
           <SkelText v={user?.name} w={10} />
         </UserName>
-        <Gallery userId={userId} posts={posts ?? Array(9).fill(null)} />
+        <Gallery userId={userId} posts={posts ?? []} />
       </Container>
     </>
   );

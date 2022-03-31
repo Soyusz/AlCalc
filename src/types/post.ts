@@ -4,4 +4,5 @@ export type Post = {
   photos: string[];
   id: string;
   user_id: string;
+  skeleton?: boolean;
 };

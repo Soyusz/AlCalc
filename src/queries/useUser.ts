@@ -8,7 +8,7 @@ export const useUser = (user_id?: string | null | false) => {
     () =>
       fetch(`${BACKEND_URL}/user/${user_id}`, {
         method: "GET",
-      }).then((res) => res.json()),
+      }).then(res => res.json()),
     {
       enabled: !!user_id,
     }
