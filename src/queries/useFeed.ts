@@ -15,13 +15,39 @@ export const useFeed = () => {
           Authorization: token as string,
         },
       })
-        .then((res) => res.json())
-        .then(async (res) => {
+        .then(res => res.json())
+        .then(async res => {
           await wait(1000);
           return res;
         }),
     {
       enabled: !!token,
+      placeholderData: [
+        {
+          id: "p1",
+          location: "",
+          photos: [],
+          title: "",
+          user_id: "",
+          skeleton: true,
+        },
+        {
+          id: "p2",
+          location: "",
+          photos: [],
+          title: "",
+          user_id: "",
+          skeleton: true,
+        },
+        {
+          id: "p3",
+          location: "",
+          photos: [],
+          title: "",
+          user_id: "",
+          skeleton: true,
+        },
+      ],
     }
   );
 };
