@@ -12,7 +12,7 @@ type PhotoProps = {
   skeleton: boolean;
 };
 
-export const Photo = ({ src, isLiked, setIsLiked, skeleton }: PhotoProps) => {
+export const Photo = (p: PhotoProps) => {
   const [showLikedIcon, setShowLikedIcon] = useState(false);
   const isInitial = useRef(true);
 
@@ -22,25 +22,25 @@ export const Photo = ({ src, isLiked, setIsLiked, skeleton }: PhotoProps) => {
   }, []);
 
   useEffect(() => {
-    if (isLiked === null) return;
+    if (p.isLiked === null) return;
     if (isInitial.current) {
       isInitial.current = false;
       return;
     }
-    if (isLiked) animateLike();
-  }, [isLiked, animateLike]);
+    if (p.isLiked) animateLike();
+  }, [p.isLiked, animateLike]);
 
   const handlePhotoDoubleClick = () => {
-    if (!isLiked) setIsLiked(true);
+    if (!p.isLiked) p.setIsLiked(true);
     else animateLike();
   };
 
   return (
     <Container onDoubleTap={handlePhotoDoubleClick}>
-      {skeleton ? (
+      {p.skeleton ? (
         <Skeleton height={200} width="100vw" />
       ) : (
-        <EntryPhoto src={src ?? undefined} alt="entry" />
+        <PostPhoto src={p.src ?? undefined} alt="entry" />
       )}
       <LikedIconContainer>
         <motion.img
@@ -71,7 +71,7 @@ const Container = styled(Touchable)`
   position: relative;
 `;
 
-const EntryPhoto = styled.img`
+const PostPhoto = styled.img`
   min-height: 200px;
   width: 100%;
 `;

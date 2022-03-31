@@ -15,7 +15,7 @@ export const useFetchLike = (post_id?: string | null | false) => {
       enabled: !!post_id,
     }
   );
-  const amILiking = query.data?.some(u => u.id === me?.id) ?? false;
+  const amILiking = query.data ? query.data.some(u => u.id === me?.id) : null;
   const likesNumber = query.data?.length;
   return {
     ...query,
