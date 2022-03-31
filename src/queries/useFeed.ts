@@ -2,6 +2,7 @@ import { useQuery } from "react-query";
 import { BACKEND_URL } from "../backend_url";
 import { useUserContext } from "../contexts/User/useUserContext";
 import { Post } from "../types/post";
+import { getPlacehodlerPost } from "../utils/placeholders";
 import { wait } from "../utils/wait";
 
 export const useFeed = () => {
@@ -23,30 +24,9 @@ export const useFeed = () => {
     {
       enabled: !!token,
       placeholderData: [
-        {
-          id: "p1",
-          location: "",
-          photos: [],
-          title: "",
-          user_id: "",
-          skeleton: true,
-        },
-        {
-          id: "p2",
-          location: "",
-          photos: [],
-          title: "",
-          user_id: "",
-          skeleton: true,
-        },
-        {
-          id: "p3",
-          location: "",
-          photos: [],
-          title: "",
-          user_id: "",
-          skeleton: true,
-        },
+        getPlacehodlerPost(),
+        getPlacehodlerPost(),
+        getPlacehodlerPost(),
       ],
     }
   );

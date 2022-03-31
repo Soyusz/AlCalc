@@ -4,26 +4,27 @@ import Skeleton from "react-loading-skeleton";
 import { Post } from "../../types/post";
 
 type GalleryProps = {
-  posts: (Post | null)[];
+  posts: Post[];
   userId: string;
 };
 
 export const Gallery = ({ posts, userId }: GalleryProps) => {
   return (
     <Container>
-      {posts?.map((post) => {
-        if (post === null)
-          return (
-            <Image to="">
-              <Skeleton />
-            </Image>
-          );
-        return (
-          <Image to={`/user/${userId}/posts/${post.id}/#${post.id}`}>
+      {posts?.map(post => (
+        <Image
+          key={post.id}
+          to={
+            post?.skeleton ? "" : `/user/${userId}/posts/${post.id}/#${post.id}`
+          }
+        >
+          {post.skeleton ? (
+            <Skeleton />
+          ) : (
             <img src={post.photos[0]} alt="post" />
-          </Image>
-        );
-      })}
+          )}
+        </Image>
+      ))}
     </Container>
   );
 };
