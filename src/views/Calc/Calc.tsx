@@ -26,8 +26,8 @@ export const Calc = () => {
   };
 
   const handleClick = () =>
-    navigator.navigate(
-      `/entry/add?voltage=${value.voltage}&volume=${value.volume}&price=${value.price}`
+    navigator.push(
+      `/stack/entry/add?voltage=${value.voltage}&volume=${value.volume}&price=${value.price}`
     );
 
   useEffect(() => {
