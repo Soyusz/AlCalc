@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Skeleton from "react-loading-skeleton";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { Gallery } from "../../components/Gallery";
@@ -14,7 +13,7 @@ export const User = () => {
   const { userId } = useParams();
   const { data: user, isLoading: isUserLoading } = useUser(userId ?? "");
   const { data: posts } = useUserPosts(userId);
-  const [imageLoaded, setImageLoaded] = useState(false);
+  const [, setImageLoaded] = useState(false);
 
   if (!userId) return null;
 

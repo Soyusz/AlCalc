@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useUserContext } from "../contexts/User/useUserContext";
+import { useNavigation } from "../hooks/useNavigation";
 
 type SidebarProps = {
   show: boolean;
@@ -15,27 +15,24 @@ export const Sidebar = ({
   afterClick = () => {},
 }: SidebarProps) => {
   const { isAdmin } = useUserContext();
+  const { navigate } = useNavigation();
+  const handleNavigate = (path: string) => {
+    afterClick();
+    navigate(path);
+  };
   return (
     <Container
       onClick={onClick}
       animate={show ? ContainerStyles.shown : ContainerStyles.hidden}
     >
-      <Element to="/" onClick={afterClick}>
-        Home
-      </Element>
-      <Element to="/ranking" onClick={afterClick}>
-        Ranking
-      </Element>
-      <Element to="/calc" onClick={afterClick}>
-        Calc
-      </Element>
-      <Element to="/about" onClick={afterClick}>
-        About
-      </Element>
+      <Element onClick={() => handleNavigate("/")}>Home</Element>
+      <Element onClick={() => handleNavigate("/calc")}>Calc</Element>
+      <Element onClick={() => handleNavigate("/ranking")}>Ranking</Element>
+      <Element onClick={() => handleNavigate("/about")}>About</Element>
       {isAdmin && (
-        <Element to="/admin" onClick={afterClick}>
-          Admin
-        </Element>
+        <>
+          <Element onClick={() => handleNavigate("/admin")}>Admin</Element>
+        </>
       )}
     </Container>
   );
@@ -61,7 +58,7 @@ const ContainerStyles = {
   },
 };
 
-const Element = styled(Link)`
+const Element = styled.div`
   color: #1d1d1d;
   margin: 10px 0;
   padding: 8px;
