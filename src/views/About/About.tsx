@@ -38,11 +38,11 @@ const Element = styled.div`
   background-size: cover;
 
   &:nth-of-type(1) {
-    background-image: url("http://localhost:3000/alcwojak.png");
+    background-image: url("/alcwojak.png");
   }
   &:nth-of-type(2) {
     grid-row: 1 / 3;
-    background-image: url("http://localhost:3000/bigbrain.jpeg");
+    background-image: url("/bigbrain.jpeg");
     transform: scaleX(-1);
     grid-column: 2 / 3;
   }
@@ -58,7 +58,7 @@ const Element = styled.div`
     padding: 10px;
   }
   &:nth-of-type(5) {
-    background-image: url("http://localhost:3000/soyjack.png");
+    background-image: url("/soyjack.png");
   }
   &:nth-of-type(6) {
     background: white;

@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Skeleton from "react-loading-skeleton";
 import { Post } from "../../types/post";
