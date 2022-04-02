@@ -36,4 +36,8 @@ export const stackScreens = [
     path: "entry/add",
     name: "Add Entry",
   },
+  {
+    path: "user/",
+    name: " ",
+  },
 ];

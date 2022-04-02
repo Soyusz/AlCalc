@@ -7,7 +7,7 @@ export const useNavigation = () => {
   return useMemo(
     () => ({
       navigate: (path: string) => navigate(path, { replace: true }),
-      push: (path: string) => navigate(path, { replace: false }),
+      push: (path: string) => navigate(`/stack${path}`, { replace: false }),
       back: () => navigate(-1),
     }),
     [navigate]

@@ -48,6 +48,7 @@ const Container = styled.div`
   z-index: 200;
   position: fixed;
   top: 0;
+  min-height: 65px;
 `;
 
 const Title = styled.div`
@@ -55,6 +56,7 @@ const Title = styled.div`
   font-weight: 700;
   text-align: center;
   padding: 20px 10px;
+  content: "1";
 `;
 
 const SidebarIcon = styled(HamburgerIcon)`
