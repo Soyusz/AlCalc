@@ -11,7 +11,7 @@ import { Volume } from "./Volume";
 
 export const AddEntry = () => {
   const [params] = useSearchParams();
-  const { mutate: createEntry, isError: isSuccess } = usePostEntry();
+  const { mutate: createEntry, isSuccess } = usePostEntry();
 
   const [step, setStep] = useState(0);
   const [image, setImage] = useState<null | string>(null);
@@ -29,21 +29,25 @@ export const AddEntry = () => {
   };
 
   const handleNext = () => {
-    if (step === 4)
+    if (step === 4 && !!image)
       return createEntry({
         voltage: parseFloat(value.voltage),
         volume: parseFloat(value.volume),
         price: parseFloat(value.price),
         name: value.name,
-        photo: "",
+        photo: image.slice(image.search(",") + 1, image.length - 1),
       });
     setStep(step + 1);
   };
 
   useEffect(() => {
     if (!isSuccess) return;
-    setStep(step + 1);
-  }, [isSuccess, step]);
+    setStep((prev) => prev + 1);
+  }, [isSuccess]);
+
+  useEffect(() => {
+    console.log(image);
+  }, [image]);
 
   return (
     <>

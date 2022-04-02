@@ -1,6 +1,9 @@
 import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { ReactComponent as HamburgerIcon } from "../assets/hamburger.svg";
+import { ReactComponent as BackArrow } from "../assets/back.svg";
+import { useNavigation } from "../hooks/useNavigation";
+import { stackScreens } from "./Navigation/Navigator";
 
 type HeaderProps = {
   onIconClick: () => void;
@@ -10,6 +13,19 @@ const NoMenuLocations = ["/login"];
 
 export const Header = ({ onIconClick }: HeaderProps) => {
   const { pathname } = useLocation();
+  const isStack = pathname.includes("/stack");
+  const { back } = useNavigation();
+
+  if (isStack)
+    return (
+      <Container className="Header">
+        <BackIcon onClick={back} />
+        <Title>
+          {stackScreens.find((e) => pathname.includes(e.path))?.name}
+        </Title>
+      </Container>
+    );
+
   return (
     <Container className="Header">
       {!NoMenuLocations.includes(pathname) && (
@@ -32,6 +48,7 @@ const Container = styled.div`
   z-index: 200;
   position: fixed;
   top: 0;
+  min-height: 65px;
 `;
 
 const Title = styled.div`
@@ -39,6 +56,7 @@ const Title = styled.div`
   font-weight: 700;
   text-align: center;
   padding: 20px 10px;
+  content: "1";
 `;
 
 const SidebarIcon = styled(HamburgerIcon)`
@@ -47,4 +65,11 @@ const SidebarIcon = styled(HamburgerIcon)`
   width: 25px;
   position: absolute;
   left: 20px;
+`;
+const BackIcon = styled(BackArrow)`
+  font-weight: 900;
+  height: 25px;
+  width: 25px;
+  position: absolute;
+  left: 18px;
 `;

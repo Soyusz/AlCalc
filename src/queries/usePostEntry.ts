@@ -10,6 +10,7 @@ export const usePostEntry = () => {
       method: "POST",
       headers: {
         Authorization: token as string,
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(entry),
     }).then((res) => {

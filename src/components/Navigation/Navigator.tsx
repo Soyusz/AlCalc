@@ -16,14 +16,28 @@ export const Navigator = () => (
     <Routes>
       <Route path="/" element={<Feed />} />
       <Route path="/calc" element={<Calc />} />
-      <Route path="/entry/add" element={<AddEntry />} />
       <Route path="/about" element={<About />} />
       <Route path="/ranking" element={<Ranking />} />
       <Route path="/404" element={<Fallback404 />} />
       <Route path="/admin" element={<Admin />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/user/:userId" element={<User />} />
-      <Route path="/user/:userId/posts/:postId" element={<UserPosts />} />
+
+      <Route path="/stack">
+        <Route path="user/:userId" element={<User />} />
+        <Route path="user/:userId/posts/:postId" element={<UserPosts />} />
+        <Route path="entry/add" element={<AddEntry />} />
+      </Route>
     </Routes>
   </DefaultTemplate>
 );
+
+export const stackScreens = [
+  {
+    path: "entry/add",
+    name: "Add Entry",
+  },
+  {
+    path: "user/",
+    name: " ",
+  },
+];

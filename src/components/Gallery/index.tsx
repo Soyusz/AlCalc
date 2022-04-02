@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Skeleton from "react-loading-skeleton";
 import { Post } from "../../types/post";
+import { useNavigation } from "../../hooks/useNavigation";
 
 type GalleryProps = {
   posts: Post[];
@@ -9,14 +10,17 @@ type GalleryProps = {
 };
 
 export const Gallery = ({ posts, userId }: GalleryProps) => {
+  const { push } = useNavigation();
+  const handleClick = (postId: string, skeleton?: boolean) => {
+    if (skeleton) return;
+    push(`/user/${userId}/posts/${postId}/#${postId}`);
+  };
   return (
     <Container>
-      {posts?.map(post => (
+      {posts?.map((post) => (
         <Image
           key={post.id}
-          to={
-            post?.skeleton ? "" : `/user/${userId}/posts/${post.id}/#${post.id}`
-          }
+          onClick={() => handleClick(post.id, post.skeleton)}
         >
           {post.skeleton ? (
             <Skeleton />
@@ -37,12 +41,15 @@ const Container = styled.div`
   padding: 5px;
 `;
 
-const Image = styled(Link)`
+const Image = styled.div`
   aspect-ratio: 1;
   overflow: hidden;
   & > img {
     object-fit: cover;
     height: 100%;
     width: 100%;
+  }
+  & .react-loading-skeleton {
+    aspect-ratio: 1;
   }
 `;

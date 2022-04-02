@@ -42,7 +42,7 @@ const WrapperButton = styled.button<any>`
 
   opacity: ${({ disabled }) => (disabled ? 0.5 : 1)};
 
-  &:active {
+  &:activee {
     background-color: ${({ variant }) =>
       variant === "primary" ? "#a04eff" : "white"};
   }

@@ -18,10 +18,10 @@ export const Top = (p: Props) => {
     !p.skeleton && p.user_id
   );
   const [isImageLoaded, setIsImageLoaded] = useState(false);
-  const { navigate } = useNavigation();
+  const { push } = useNavigation();
   const handleClick = () => {
     if (p.skeleton) return;
-    navigate(`/user/${p.user_id}`);
+    push(`/user/${p.user_id}`);
   };
 
   const displayImageSkeleton = p.skeleton || !isImageLoaded;
