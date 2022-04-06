@@ -1,8 +1,8 @@
-import { useMemo } from "react";
-import { useNavigate } from "react-router-dom";
+import { useMemo } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 export const useNavigation = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   return useMemo(
     () => ({
@@ -11,5 +11,5 @@ export const useNavigation = () => {
       back: () => navigate(-1),
     }),
     [navigate]
-  );
-};
+  )
+}

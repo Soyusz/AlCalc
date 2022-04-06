@@ -1,24 +1,24 @@
-import { useRef } from "react";
-import styled from "styled-components";
-import { Button } from "../../components/Button";
-import { blobToUri } from "../../utils/blobToUri";
+import { useRef } from 'react'
+import styled from 'styled-components'
+import { Button } from '../../components/Button'
+import { blobToUri } from '../../utils/blobToUri'
 
 type Props = {
-  next: () => void;
-  image: string | null;
-  setImage: React.Dispatch<string | null>;
-};
+  next: () => void
+  image: string | null
+  setImage: React.Dispatch<string | null>
+}
 
 export const Image = ({ next, image, setImage }: Props) => {
-  const inputRef = useRef<HTMLInputElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null)
   const handleClick = () => {
-    inputRef.current?.click();
-  };
+    inputRef.current?.click()
+  }
   const handleChange = () => {
-    const newFile = inputRef.current?.files?.[0] ?? null;
-    if (!newFile) return setImage(null);
-    blobToUri(newFile).then((base) => setImage(base));
-  };
+    const newFile = inputRef.current?.files?.[0] ?? null
+    if (!newFile) return setImage(null)
+    blobToUri(newFile).then((base) => setImage(base))
+  }
 
   return (
     <Container>
@@ -28,8 +28,8 @@ export const Image = ({ next, image, setImage }: Props) => {
       </PhotoContainer>
       <NextButton label="Save" onClick={next} />
     </Container>
-  );
-};
+  )
+}
 
 const Container = styled.div`
   width: 100%;
@@ -37,7 +37,7 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   flex: 1;
-`;
+`
 
 const PhotoContainer = styled.div`
   background: lightblue;
@@ -45,15 +45,15 @@ const PhotoContainer = styled.div`
   aspect-ratio: 1;
   overflow: hidden;
   border-radius: 10px;
-`;
+`
 
 const SImage = styled.img`
   object-fit: cover;
   height: 100%;
   width: 100%;
-`;
+`
 
 const NextButton = styled(Button)`
   margin-top: auto;
   margin-bottom: 50px;
-`;
+`

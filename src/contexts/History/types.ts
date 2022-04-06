@@ -1,2 +1,2 @@
-export type DrawerScreens = string;
-export type StackScreens = string;
+export type DrawerScreens = string
+export type StackScreens = string

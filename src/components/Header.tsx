@@ -1,40 +1,36 @@
-import { useLocation } from "react-router-dom";
-import styled from "styled-components";
-import { ReactComponent as HamburgerIcon } from "../assets/hamburger.svg";
-import { ReactComponent as BackArrow } from "../assets/back.svg";
-import { useNavigation } from "../hooks/useNavigation";
-import { stackScreens } from "./Navigation/Navigator";
+import { useLocation } from 'react-router-dom'
+import styled from 'styled-components'
+import { ReactComponent as HamburgerIcon } from '../assets/hamburger.svg'
+import { ReactComponent as BackArrow } from '../assets/back.svg'
+import { useNavigation } from '../hooks/useNavigation'
+import { stackScreens } from './Navigation/Navigator'
 
 type HeaderProps = {
-  onIconClick: () => void;
-};
+  onIconClick: () => void
+}
 
-const NoMenuLocations = ["/login"];
+const NoMenuLocations = ['/login']
 
 export const Header = ({ onIconClick }: HeaderProps) => {
-  const { pathname } = useLocation();
-  const isStack = pathname.includes("/stack");
-  const { back } = useNavigation();
+  const { pathname } = useLocation()
+  const isStack = pathname.includes('/stack')
+  const { back } = useNavigation()
 
   if (isStack)
     return (
       <Container className="Header">
         <BackIcon onClick={back} />
-        <Title>
-          {stackScreens.find((e) => pathname.includes(e.path))?.name}
-        </Title>
+        <Title>{stackScreens.find((e) => pathname.includes(e.path))?.name}</Title>
       </Container>
-    );
+    )
 
   return (
     <Container className="Header">
-      {!NoMenuLocations.includes(pathname) && (
-        <SidebarIcon onClick={onIconClick} />
-      )}
+      {!NoMenuLocations.includes(pathname) && <SidebarIcon onClick={onIconClick} />}
       <Title>Alkierz v2</Title>
     </Container>
-  );
-};
+  )
+}
 
 const Container = styled.div`
   background-color: ${(props) => props.theme.colors.appBackground};
@@ -49,15 +45,15 @@ const Container = styled.div`
   position: fixed;
   top: 0;
   min-height: 65px;
-`;
+`
 
 const Title = styled.div`
   font-size: 20px;
   font-weight: 700;
   text-align: center;
   padding: 20px 10px;
-  content: "1";
-`;
+  content: '1';
+`
 
 const SidebarIcon = styled(HamburgerIcon)`
   font-weight: 900;
@@ -65,11 +61,11 @@ const SidebarIcon = styled(HamburgerIcon)`
   width: 25px;
   position: absolute;
   left: 20px;
-`;
+`
 const BackIcon = styled(BackArrow)`
   font-weight: 900;
   height: 25px;
   width: 25px;
   position: absolute;
   left: 18px;
-`;
+`

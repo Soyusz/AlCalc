@@ -1,42 +1,35 @@
-import { motion } from "framer-motion";
-import styled from "styled-components";
-import { useUserContext } from "../contexts/User/useUserContext";
-import { useNavigation } from "../hooks/useNavigation";
+import { motion } from 'framer-motion'
+import styled from 'styled-components'
+import { useUserContext } from '../contexts/User/useUserContext'
+import { useNavigation } from '../hooks/useNavigation'
 
 type SidebarProps = {
-  show: boolean;
-  onClick?: () => void;
-  afterClick?: () => void;
-};
+  show: boolean
+  onClick?: () => void
+  afterClick?: () => void
+}
 
-export const Sidebar = ({
-  show,
-  onClick = () => {},
-  afterClick = () => {},
-}: SidebarProps) => {
-  const { isAdmin } = useUserContext();
-  const { navigate } = useNavigation();
+export const Sidebar = ({ show, onClick = () => {}, afterClick = () => {} }: SidebarProps) => {
+  const { isAdmin } = useUserContext()
+  const { navigate } = useNavigation()
   const handleNavigate = (path: string) => {
-    afterClick();
-    navigate(path);
-  };
+    afterClick()
+    navigate(path)
+  }
   return (
-    <Container
-      onClick={onClick}
-      animate={show ? ContainerStyles.shown : ContainerStyles.hidden}
-    >
-      <Element onClick={() => handleNavigate("/")}>Home</Element>
-      <Element onClick={() => handleNavigate("/calc")}>Calc</Element>
-      <Element onClick={() => handleNavigate("/ranking")}>Ranking</Element>
-      <Element onClick={() => handleNavigate("/about")}>About</Element>
+    <Container onClick={onClick} animate={show ? ContainerStyles.shown : ContainerStyles.hidden}>
+      <Element onClick={() => handleNavigate('/')}>Home</Element>
+      <Element onClick={() => handleNavigate('/calc')}>Calc</Element>
+      <Element onClick={() => handleNavigate('/ranking')}>Ranking</Element>
+      <Element onClick={() => handleNavigate('/about')}>About</Element>
       {isAdmin && (
         <>
-          <Element onClick={() => handleNavigate("/admin")}>Admin</Element>
+          <Element onClick={() => handleNavigate('/admin')}>Admin</Element>
         </>
       )}
     </Container>
-  );
-};
+  )
+}
 
 const Container = styled(motion.div)`
   display: flex;
@@ -46,7 +39,7 @@ const Container = styled(motion.div)`
   align-items: strech;
   grid-column: 1 / 2;
   grid-row: 2 / 3;
-`;
+`
 
 const ContainerStyles = {
   shown: {
@@ -56,7 +49,7 @@ const ContainerStyles = {
     width: 0,
     padding: 0,
   },
-};
+}
 
 const Element = styled.div`
   color: #1d1d1d;
@@ -71,4 +64,4 @@ const Element = styled.div`
   &:hover {
     background-color: #00000010;
   }
-`;
+`

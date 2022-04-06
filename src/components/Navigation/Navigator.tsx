@@ -1,15 +1,15 @@
-import { Route, Routes } from "react-router-dom";
-import { Fallback404 } from "../../views/Fallback404/Fallback404";
-import { About } from "../../views/About/About";
-import { Ranking } from "../../views/Ranking/Ranking";
-import { DefaultTemplate } from "../../views/Templates/DefaultTemplate";
-import { Admin } from "../../views/Admin/Admin";
-import { Feed } from "../../views/Feed/Feed";
-import { Login } from "../../views/Login/Login";
-import { User } from "../../views/User/User";
-import { UserPosts } from "../../views/UserPosts/UserPosts";
-import { Calc } from "../../views/Calc/Calc";
-import { AddEntry } from "../../views/AddEntry/AddEntry";
+import { Route, Routes } from 'react-router-dom'
+import { Fallback404 } from '../../views/Fallback404/Fallback404'
+import { About } from '../../views/About/About'
+import { Ranking } from '../../views/Ranking/Ranking'
+import { DefaultTemplate } from '../../views/Templates/DefaultTemplate'
+import { Admin } from '../../views/Admin/Admin'
+import { Feed } from '../../views/Feed/Feed'
+import { Login } from '../../views/Login/Login'
+import { User } from '../../views/User/User'
+import { UserPosts } from '../../views/UserPosts/UserPosts'
+import { Calc } from '../../views/Calc/Calc'
+import { AddEntry } from '../../views/AddEntry/AddEntry'
 
 export const Navigator = () => (
   <DefaultTemplate>
@@ -29,15 +29,15 @@ export const Navigator = () => (
       </Route>
     </Routes>
   </DefaultTemplate>
-);
+)
 
 export const stackScreens = [
   {
-    path: "entry/add",
-    name: "Add Entry",
+    path: 'entry/add',
+    name: 'Add Entry',
   },
   {
-    path: "user/",
-    name: " ",
+    path: 'user/',
+    name: ' ',
   },
-];
+]

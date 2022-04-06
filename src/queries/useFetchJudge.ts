@@ -1,15 +1,15 @@
-import { useQuery } from "react-query";
-import { BACKEND_URL } from "../backend_url";
-import { useUserContext } from "../contexts/User/useUserContext";
-import { Entry } from "../types/entry";
+import { useQuery } from 'react-query'
+import { BACKEND_URL } from '../backend_url'
+import { useUserContext } from '../contexts/User/useUserContext'
+import { Entry } from '../types/entry'
 
 export const useFetchJudge = () => {
-  const { token } = useUserContext();
+  const { token } = useUserContext()
   return useQuery<Entry[]>(
-    "judgement entry fetch",
+    'judgement entry fetch',
     () =>
       fetch(`${BACKEND_URL}/entry/unverified`, {
-        method: "GET",
+        method: 'GET',
         headers: {
           Authorization: token as string,
         },
@@ -17,5 +17,5 @@ export const useFetchJudge = () => {
     {
       enabled: !!token,
     }
-  );
-};
+  )
+}

@@ -1,13 +1,12 @@
-import { motion } from "framer-motion";
-import styled from "styled-components";
-import { useEntry } from "../../queries/useEntry";
-import { Row } from "./components/Row";
+import { motion } from 'framer-motion'
+import styled from 'styled-components'
+import { useEntry } from '../../queries/useEntry'
+import { Row } from './components/Row'
 
 export const Ranking = () => {
-  const { data } = useEntry();
+  const { data } = useEntry()
 
-  const calcScore = (voltage: number, price: number, volume: number) =>
-    (voltage * volume) / (price * 100);
+  const calcScore = (voltage: number, price: number, volume: number) => (voltage * volume) / (price * 100)
 
   return (
     <Container>
@@ -26,12 +25,12 @@ export const Ranking = () => {
           ))}
       </Content>
     </Container>
-  );
-};
+  )
+}
 
 const Container = styled.div`
   background: ${(props) => props.theme.colors.background};
-`;
+`
 
 const Background = styled(motion.div)`
   min-height: 30vh;
@@ -43,7 +42,7 @@ const Background = styled(motion.div)`
   font-size: 30px;
   font-weight: 200;
   letter-spacing: 10px;
-`;
+`
 
 const Content = styled.div`
   background-color: #ffffff;
@@ -55,4 +54,4 @@ const Content = styled.div`
   flex: 1;
   margin-bottom: -20px;
   padding-bottom: 20px;
-`;
+`

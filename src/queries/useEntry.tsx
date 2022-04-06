@@ -1,14 +1,14 @@
-import { useQuery } from "react-query";
-import { BACKEND_URL } from "../backend_url";
+import { useQuery } from 'react-query'
+import { BACKEND_URL } from '../backend_url'
 
 export const useEntry = () => {
-  const { data } = useQuery<unknown, unknown, any[]>("entries", () =>
+  const { data } = useQuery<unknown, unknown, any[]>('entries', () =>
     fetch(`${BACKEND_URL}/entry/verified`, {
-      method: "GET",
+      method: 'GET',
     }).then((res) => res.json())
-  );
+  )
 
   return {
     data,
-  };
-};
+  }
+}
