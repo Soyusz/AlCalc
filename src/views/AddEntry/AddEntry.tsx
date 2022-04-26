@@ -14,7 +14,7 @@ export const AddEntry = () => {
   const { mutate: createEntry, isSuccess } = usePostEntry()
 
   const [step, setStep] = useState(0)
-  const [image, setImage] = useState<null | string>(null)
+  const [, setImage] = useState<null | string>(null)
   const [value, setValue] = useState({
     voltage: params.get('voltage') ?? '0',
     volume: params.get('volume') ?? '0',
@@ -28,7 +28,7 @@ export const AddEntry = () => {
     setValue(newValue)
   }
 
-  const handleNext = () => {
+  const handleNext = (image?: string) => {
     if (step === 4 && !!image)
       return createEntry({
         voltage: parseFloat(value.voltage),
@@ -57,7 +57,7 @@ export const AddEntry = () => {
         )}
         {step === 2 && <Price value={value.price} update={(v: string) => handleChange(v, 'price')} next={handleNext} />}
         {step === 3 && <Name value={value.name} update={(v: string) => handleChange(v, 'name')} next={handleNext} />}
-        {step === 4 && <Image next={handleNext} image={image} setImage={setImage} />}
+        {step === 4 && <Image next={handleNext} />}
         {isSuccess && <h1>Success</h1>}
       </Container>
     </>

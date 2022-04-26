@@ -1,40 +1,42 @@
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
+import { Area } from 'react-easy-crop/types'
 import styled from 'styled-components'
 import { Button } from '../../components/Button'
 import { Crop } from '../../components/Crop'
 import { blobToUri } from '../../utils/blobToUri'
+import { getCroppedImg } from '../../utils/getCroppedImage'
 
 type Props = {
-  next: () => void
-  image: string | null
-  setImage: React.Dispatch<string | null>
+  next: React.Dispatch<string>
 }
 
-export const Image = ({ next, image, setImage }: Props) => {
+export const Image = ({ next }: Props) => {
+  const [croppedArea, setCroppedArea] = useState<Area>()
+  const [selectedImage, setSelectedImage] = useState<string>()
   const inputRef = useRef<HTMLInputElement>(null)
+
   const handleClick = () => {
     inputRef.current?.click()
   }
+
   const handleChange = () => {
     const newFile = inputRef.current?.files?.[0] ?? null
-    if (!newFile) return setImage(null)
-    blobToUri(newFile).then((base) => setImage(base))
+    if (!newFile) return
+    blobToUri(newFile).then((base) => setSelectedImage(base))
   }
 
-  return (
-    <Container onClick={handleClick}>
-      <input type="file" ref={inputRef} onChange={handleChange} hidden />
-      <Crop image={image ?? undefined} setImage={setImage} />
-    </Container>
-  )
+  const handleSubmit = () => {
+    if (!selectedImage || !croppedArea) return
+    getCroppedImg(selectedImage, croppedArea).then((res) => {
+      next(res)
+    })
+  }
 
   return (
     <Container>
       <input type="file" ref={inputRef} onChange={handleChange} hidden />
-      <PhotoContainer onClick={handleClick}>
-        <SImage src={image ?? undefined} />
-      </PhotoContainer>
-      <NextButton label="Save" onClick={next} />
+      <Crop image={selectedImage} onChange={setCroppedArea} onClick={handleClick} />
+      <NextButton label="Submit" onClick={handleSubmit} />
     </Container>
   )
 }
@@ -45,20 +47,10 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   flex: 1;
-`
-
-const PhotoContainer = styled.div`
-  background: lightblue;
-  width: 100%;
-  aspect-ratio: 1;
-  overflow: hidden;
-  border-radius: 10px;
-`
-
-const SImage = styled.img`
-  object-fit: cover;
-  height: 100%;
-  width: 100%;
+  > img {
+    max-height: 300px;
+    max-width: 300px;
+  }
 `
 
 const NextButton = styled(Button)`

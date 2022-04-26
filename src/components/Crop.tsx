@@ -7,7 +7,8 @@ import { getImageSize } from '../utils/getImageSize'
 
 type Props = {
   image?: string
-  setImage: (image: string | null) => void
+  onChange: (area: Area) => void
+  onClick: () => void
 }
 
 const Container = styled.div`
@@ -24,12 +25,7 @@ export const Crop = (p: Props) => {
   const [minZoom, setMinZoom] = useState<number>()
   const [zoom, setZoom] = useState(1.157)
 
-  const onCropComplete = useCallback((croppedArea: Area, croppedAreaPixels: Area) => {
-    if (!p.image) return
-    getCroppedImg(p.image, croppedArea).then((res) => {
-      // TODO
-    })
-  }, [])
+  const onCropComplete = useCallback((_, croppedArea: Area) => p.onChange(croppedArea), [])
 
   const getCropSize = () => {
     if (!containerRef.current) return
@@ -51,12 +47,8 @@ export const Crop = (p: Props) => {
     })
   }, [p.image])
 
-  useEffect(() => {
-    console.log(zoom)
-  }, [zoom])
-
   return (
-    <Container ref={containerRef}>
+    <Container ref={containerRef} onClick={p.onClick}>
       <Cropper
         image={p.image}
         crop={crop}
