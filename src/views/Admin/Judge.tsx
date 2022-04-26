@@ -1,29 +1,29 @@
-import { useEffect, useState } from "react";
-import styled from "styled-components";
-import { Button } from "../../components/Button";
-import { Label } from "../../components/Label";
-import { useFetchJudge } from "../../queries/useFetchJudge";
-import { useJudgeEntry } from "../../queries/useJudgeEntry";
+import { useEffect, useState } from 'react'
+import styled from 'styled-components'
+import { Button } from '../../components/Button'
+import { Label } from '../../components/Label'
+import { useFetchJudge } from '../../queries/useFetchJudge'
+import { useJudgeEntry } from '../../queries/useJudgeEntry'
 
 export const Judge = () => {
-  const [skipped, setSkipped] = useState<string[]>([]);
-  const { data, refetch } = useFetchJudge();
-  const { mutate: judge, status } = useJudgeEntry();
-  const entry = data?.find((el) => !skipped.includes(el.id));
+  const [skipped, setSkipped] = useState<string[]>([])
+  const { data, refetch } = useFetchJudge()
+  const { mutate: judge, status } = useJudgeEntry()
+  const entry = data?.find((el) => !skipped.includes(el.id))
 
   const handleSkip = () => {
-    if (!entry) return;
-    setSkipped((p) => [...p, entry.id]);
-  };
+    if (!entry) return
+    setSkipped((p) => [...p, entry.id])
+  }
 
-  const handleAccept = () => judge({ entryId: entry?.id!, judgement: true });
-  const handleReject = () => judge({ entryId: entry?.id!, judgement: false });
+  const handleAccept = () => judge({ entryId: entry?.id!, judgement: true })
+  const handleReject = () => judge({ entryId: entry?.id!, judgement: false })
 
   useEffect(() => {
-    refetch();
-  }, [refetch, status]);
+    refetch()
+  }, [refetch, status])
 
-  if (!entry) return null;
+  if (!entry) return null
 
   return (
     <Container>
@@ -35,8 +35,8 @@ export const Judge = () => {
       <Button label="Skip" onClick={handleSkip} />
       <Button label="Accept" onClick={handleAccept} />
     </Container>
-  );
-};
+  )
+}
 
 const Container = styled.div`
   margin: 20px;
@@ -46,13 +46,13 @@ const Container = styled.div`
   align-items: center;
   justify-items: center;
   margin-bottom: 20px;
-`;
+`
 
 const EntryImage = styled.img`
   max-width: 100%;
   grid-column: 1 / 4;
   grid-row: 1 / 2;
   border-radius: 15px;
-  background: red;
+  background-color: #0000002c;
   object-fit: fill;
-`;
+`

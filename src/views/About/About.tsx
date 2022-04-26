@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const About = () => {
   return (
@@ -19,8 +19,8 @@ export const About = () => {
       <Element></Element>
       <Element></Element>
     </Container>
-  );
-};
+  )
+}
 
 const Container = styled.div`
   background: ${(props) => props.theme.colors.background};
@@ -29,7 +29,7 @@ const Container = styled.div`
   display: grid !important;
   grid-template: 1fr 1fr 1fr 1fr / 1fr 1fr;
   align-items: stretch !important;
-`;
+`
 
 const Element = styled.div`
   background-color: #ffffff;
@@ -38,11 +38,11 @@ const Element = styled.div`
   background-size: cover;
 
   &:nth-of-type(1) {
-    background-image: url("/alcwojak.png");
+    background-image: url('/alcwojak.png');
   }
   &:nth-of-type(2) {
     grid-row: 1 / 3;
-    background-image: url("/bigbrain.jpeg");
+    background-image: url('/bigbrain.jpeg');
     transform: scaleX(-1);
     grid-column: 2 / 3;
   }
@@ -58,12 +58,12 @@ const Element = styled.div`
     padding: 10px;
   }
   &:nth-of-type(5) {
-    background-image: url("/soyjack.png");
+    background-image: url('/soyjack.png');
   }
   &:nth-of-type(6) {
     background: white;
   }
-`;
+`
 
 const Soyusz = styled(Element)`
   .title {
@@ -93,4 +93,4 @@ const Soyusz = styled(Element)`
       font-size: 15px;
     }
   }
-`;
+`

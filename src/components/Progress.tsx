@@ -1,23 +1,23 @@
-import { motion } from "framer-motion";
-import styled from "styled-components";
+import { motion } from 'framer-motion'
+import styled from 'styled-components'
 
-type states = "done" | "active" | "todo";
+type states = 'done' | 'active' | 'todo'
 
 type Props = {
-  current: number;
-  total: number;
-};
+  current: number
+  total: number
+}
 
 type BarProps = {
-  state: states;
-};
+  state: states
+}
 
 export const Progress = ({ total, current }: Props) => {
   const getState = (i: number): states => {
-    if (i < current) return "done";
-    if (i === current) return "active";
-    return "todo";
-  };
+    if (i < current) return 'done'
+    if (i === current) return 'active'
+    return 'todo'
+  }
 
   return (
     <Container>
@@ -27,26 +27,26 @@ export const Progress = ({ total, current }: Props) => {
           <Bar state={getState(i)} />
         ))}
     </Container>
-  );
-};
+  )
+}
 
 export const Bar = ({ state }: BarProps) => {
   return (
     <BarContainer>
       <Fill
-        initial={{ width: "0%" }}
-        animate={{ width: state === "todo" ? "0%" : "100%" }}
-        transition={{ ease: "easeOut", duration: 0.5 }}
+        initial={{ width: '0%' }}
+        animate={{ width: state === 'todo' ? '0%' : '100%' }}
+        transition={{ ease: 'easeOut', duration: 0.5 }}
       />
     </BarContainer>
-  );
-};
+  )
+}
 
 const Container = styled.div`
   width: 100%;
   display: flex;
   margin-bottom: 30px;
-`;
+`
 
 const BarContainer = styled.div`
   flex: 1;
@@ -63,10 +63,10 @@ const BarContainer = styled.div`
   &:last-of-type {
     margin-right: 0;
   }
-`;
+`
 
 const Fill = styled(motion.div)`
   position: absolute;
   background-color: ${({ theme }) => theme.colors.primary};
   inset: 0;
-`;
+`

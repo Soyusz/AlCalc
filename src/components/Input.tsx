@@ -1,20 +1,20 @@
-import React, { forwardRef, InputHTMLAttributes } from "react";
-import styled from "styled-components";
+import React, { forwardRef, InputHTMLAttributes } from 'react'
+import styled from 'styled-components'
 
 export type InputProps = {
-  value: string;
-  onValueChange?: (value: string) => void;
-  disabled?: true;
-  required?: boolean;
-  error?: string[];
-  hideErrorMessage?: true;
-  className?: string;
-  label?: string;
-  infoIcon?: true;
-  onInfoIconOpen?: () => void;
-  mask?: string;
-  alwaysShowMask?: boolean;
-} & InputHTMLAttributes<HTMLInputElement>;
+  value: string
+  onValueChange?: (value: string) => void
+  disabled?: true
+  required?: boolean
+  error?: string[]
+  hideErrorMessage?: true
+  className?: string
+  label?: string
+  infoIcon?: true
+  onInfoIconOpen?: () => void
+  mask?: string
+  alwaysShowMask?: boolean
+} & InputHTMLAttributes<HTMLInputElement>
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
   (
@@ -22,7 +22,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       value,
       onValueChange = () => {},
       name,
-      type = "text",
+      type = 'text',
       placeholder,
       disabled,
       required = false,
@@ -39,8 +39,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     ref
   ) => {
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      onValueChange(e.target.value);
-    };
+      onValueChange(e.target.value)
+    }
     return (
       <InputContainer className={className}>
         <Label isError={!!error.length}>{label}</Label>
@@ -56,15 +56,11 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           ref={ref}
           {...rest}
         />
-        {!!error && !hideErrorMessage && (
-          <ErrorMessage>
-            {typeof error === "string" ? error : error[0]}
-          </ErrorMessage>
-        )}
+        {!!error && !hideErrorMessage && <ErrorMessage>{typeof error === 'string' ? error : error[0]}</ErrorMessage>}
       </InputContainer>
-    );
+    )
   }
-);
+)
 
 const InputContainer = styled.div`
   margin: 0;
@@ -72,7 +68,7 @@ const InputContainer = styled.div`
   padding: 0;
   display: flex;
   flex-direction: column;
-`;
+`
 
 const InputStyled = styled.input<{ isError: boolean }>`
   padding: 5px 15px;
@@ -83,16 +79,16 @@ const InputStyled = styled.input<{ isError: boolean }>`
   background-color: transparent;
   font-size: 16px;
   border-radius: 0;
-`;
+`
 
 const ErrorMessage = styled.p`
-  color: "red";
+  color: 'red';
   margin: 5px;
   font-size: 12px;
   text-align: right;
-`;
+`
 
 const Label = styled.label<{ isError: boolean }>`
   font-size: 12px;
-  color: ${({ isError }) => (isError ? "red" : "#555555")};
-`;
+  color: ${({ isError }) => (isError ? 'red' : '#555555')};
+`

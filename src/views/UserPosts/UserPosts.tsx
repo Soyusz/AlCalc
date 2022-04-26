@@ -1,19 +1,19 @@
-import { useEffect } from "react";
-import { useParams } from "react-router-dom";
-import styled from "styled-components";
-import { Post } from "../../components/Post";
-import { useUserPosts } from "../../queries/useUserPosts";
+import { useEffect } from 'react'
+import { useParams } from 'react-router-dom'
+import styled from 'styled-components'
+import { Post } from '../../components/Post'
+import { useUserPosts } from '../../queries/useUserPosts'
 
 export const UserPosts = () => {
-  const { userId, postId } = useParams();
-  const { data } = useUserPosts(userId);
+  const { userId, postId } = useParams()
+  const { data } = useUserPosts(userId)
 
   useEffect(() => {
-    if (!postId) return;
+    if (!postId) return
     document.getElementById(postId)?.scrollIntoView({
-      behavior: "smooth",
-    });
-  }, [postId]);
+      behavior: 'smooth',
+    })
+  }, [postId])
 
   return (
     <>
@@ -23,8 +23,8 @@ export const UserPosts = () => {
         ))}
       </Scroll>
     </>
-  );
-};
+  )
+}
 
 const Scroll = styled.div`
   padding-top: 5px;
@@ -32,4 +32,4 @@ const Scroll = styled.div`
   flex-direction: column;
   width: 100vw;
   overflow-y: scroll;
-`;
+`
