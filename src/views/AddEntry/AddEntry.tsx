@@ -45,10 +45,6 @@ export const AddEntry = () => {
     setStep((prev) => prev + 1)
   }, [isSuccess])
 
-  useEffect(() => {
-    console.log(image)
-  }, [image])
-
   return (
     <>
       <Container>

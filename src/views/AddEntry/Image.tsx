@@ -1,6 +1,7 @@
 import { useRef } from 'react'
 import styled from 'styled-components'
 import { Button } from '../../components/Button'
+import { Crop } from '../../components/Crop'
 import { blobToUri } from '../../utils/blobToUri'
 
 type Props = {
@@ -19,6 +20,13 @@ export const Image = ({ next, image, setImage }: Props) => {
     if (!newFile) return setImage(null)
     blobToUri(newFile).then((base) => setImage(base))
   }
+
+  return (
+    <Container onClick={handleClick}>
+      <input type="file" ref={inputRef} onChange={handleChange} hidden />
+      <Crop image={image ?? undefined} setImage={setImage} />
+    </Container>
+  )
 
   return (
     <Container>
