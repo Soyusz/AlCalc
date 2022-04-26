@@ -53,6 +53,6 @@ const EntryImage = styled.img`
   grid-column: 1 / 4;
   grid-row: 1 / 2;
   border-radius: 15px;
-  background: red;
+  background-color: #0000002c;
   object-fit: fill;
 `
