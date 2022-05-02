@@ -7,6 +7,7 @@ export type Entry = {
   volume: number
   verified: boolean | null
   photo: string | null
+  label: string[]
 }
 
-export type NewEntry = Pick<Entry, 'voltage' | 'name' | 'price' | 'volume' | 'photo'>
+export type NewEntry = Pick<Entry, 'voltage' | 'name' | 'price' | 'volume' | 'photo' | 'label'>
