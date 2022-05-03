@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion'
 import styled from 'styled-components'
 
 export type RowProps = {
@@ -9,7 +10,7 @@ export type RowProps = {
 
 export const Row = (p: RowProps) => {
   return (
-    <Container>
+    <Container layout>
       <Place>{p.place}</Place>
       <Name>{p.name}</Name>
       <Stats>{Math.floor(p.score)}</Stats>
@@ -17,13 +18,13 @@ export const Row = (p: RowProps) => {
   )
 }
 
-const Container = styled.div`
+const Container = styled(motion.div)`
   display: grid;
   justify-content: center;
   align-items: center;
   grid-template: 1fr / auto 1fr auto;
   padding: 20px 20px;
-  margin: 15px 5px;
+  margin: 15px 0px;
   background-color: ${(props) => props.theme.colors.white};
   position: relative;
   border-radius: ${(props) => props.theme.spacing.s};

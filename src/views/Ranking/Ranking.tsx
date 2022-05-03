@@ -1,76 +1,38 @@
-import { motion, AnimatePresence } from 'framer-motion'
 import { useState } from 'react'
 import styled from 'styled-components'
 import { useEntry } from '../../queries/useEntry'
 import { Row } from './components/Row'
-
-const labels = ['Beer', 'Vodka', 'Whiskey', 'Wine', 'Champagne', 'Gin', 'Cider', 'Rum', 'Tequila', 'Absinthe']
-type labelsType = typeof labels[number]
+import { Labels } from './components/Labels'
+import { calcScore } from '../../utils/calcScore'
 
 export const Ranking = () => {
-  const [selectedLabels, setSelectedLabels] = useState<labelsType[]>([])
+  const [selectedLabels, setSelectedLabels] = useState<string[]>([])
   const { data } = useEntry(selectedLabels)
 
-  const calcScore = (voltage: number, price: number, volume: number) => (voltage * volume) / (price * 100)
-
-  const handleLabelClick = (label: labelsType) => {
-    if (selectedLabels.includes(label)) setSelectedLabels(selectedLabels.filter((el) => el !== label))
-    else setSelectedLabels([...selectedLabels, label])
-  }
-
-  const renderLabels = () =>
-    labels
-      .sort((label) => (selectedLabels.includes(label) ? -1 : 1))
-      .map((label) => (
-        <motion.div key={label} layout>
-          <Label selected={selectedLabels.includes(label)} onClick={() => handleLabelClick(label)} key={label}>
-            {label}
-          </Label>
-        </motion.div>
-      ))
-
-  const renderEntries = () =>
-    data
-      ?.map((el) => ({
-        id: el.id,
-        name: el.name,
-        photo: el.photo,
-        score: calcScore(el.voltage, el.price, el.volume),
-      }))
-      .sort((a, b) => b.score - a.score)
-      .map((el, index) => <Row {...el} place={index + 1} />)
+  const rows = data
+    ?.map((el, index) => ({
+      id: el.id,
+      name: el.name,
+      photo: el.photo,
+      place: index + 1,
+      score: calcScore(el.voltage, el.price, el.volume),
+    }))
+    .sort((a, b) => b.score - a.score)
 
   return (
     <Container>
-      <Labels wrap={false}>
-        <AnimatePresence>{renderLabels()}</AnimatePresence>
-      </Labels>
-      <Content>{renderEntries()}</Content>
+      <Labels selectedLabels={selectedLabels} setSelectedLabels={setSelectedLabels} />
+      <Content>
+        {rows?.map((row) => (
+          <Row {...row} key={row.id} />
+        ))}
+      </Content>
     </Container>
   )
 }
 
 const Container = styled.div`
   background: ${(props) => props.theme.colors.appBackground};
-`
-
-const Labels = styled.div<{ wrap: boolean }>`
-  margin-top: 20px;
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  max-width: 100%;
-  height: 100px;
-  flex-wrap: ${(props) => (props.wrap ? 'wrap' : 'no-wrap')};
-`
-
-const Label = styled(motion.div)<{ selected: boolean }>`
-  border-radius: ${(props) => props.theme.borderRadii.l};
-  border: 1px solid black;
-  padding: 7px 10px;
-  margin: 3px 3px;
-  background: ${({ selected, theme }) => (selected ? theme.colors.black : theme.colors.white)};
-  color: ${({ selected, theme }) => (selected ? theme.colors.white : theme.colors.black)};
 `
 
 const Content = styled.div`
