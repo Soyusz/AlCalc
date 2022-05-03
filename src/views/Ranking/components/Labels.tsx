@@ -50,6 +50,7 @@ export const Labels = ({ selectedLabels, setSelectedLabels }: LabelsProps) => {
         <Label
           {...gestureBind()}
           layout
+          wrapped={wrap}
           selected={selectedLabels.includes(label)}
           onClick={() => handleLabelClick(label)}
           key={label}>
@@ -57,25 +58,32 @@ export const Labels = ({ selectedLabels, setSelectedLabels }: LabelsProps) => {
         </Label>
       ))
 
-  return <Container wrap={wrap}>{renderLabels()}</Container>
+  return (
+    <Container wrap={wrap}>
+      <div>{renderLabels()}</div>
+    </Container>
+  )
 }
 
 const Container = styled.div<{ wrap: boolean }>`
-  padding: 10px;
-  padding-top: 30px;
   width: 100%;
-  overflow: ${(props) => (props.wrap ? 'initial' : 'scroll')};
-  display: flex;
-  flex-direction: row;
-  flex-wrap: ${(props) => (props.wrap ? 'wrap' : 'no-wrap')};
+
+  & > div {
+    padding: 10px;
+    padding-top: 30px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: ${(props) => (props.wrap ? 'wrap' : 'no-wrap')};
+    overflow-x: ${(props) => (props.wrap ? 'initial' : 'scroll')};
+  }
 `
 
-const Label = styled(motion.div)<{ selected: boolean }>`
+const Label = styled(motion.div)<{ selected: boolean; wrapped: boolean }>`
   border-radius: ${(props) => props.theme.borderRadii.l};
   border: 1px solid black;
   padding: 7px 10px;
   margin: 3px 3px;
   background: ${({ selected, theme }) => (selected ? theme.colors.black : theme.colors.white)};
   color: ${({ selected, theme }) => (selected ? theme.colors.white : theme.colors.black)};
-  touch-action: none;
+  touch-action: ${(props) => (props.wrapped ? 'none' : 'initial')};
 `
