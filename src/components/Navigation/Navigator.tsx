@@ -14,10 +14,11 @@ import { AddEntry } from '../../views/AddEntry/AddEntry'
 export const Navigator = () => (
   <DefaultTemplate>
     <Routes>
-      <Route path="/" element={<Feed />} />
+      <Route path="/" element={<Ranking />} />
       <Route path="/calc" element={<Calc />} />
       <Route path="/about" element={<About />} />
       <Route path="/ranking" element={<Ranking />} />
+      <Route path="/feed" element={<Feed />} />
       <Route path="/404" element={<Fallback404 />} />
       <Route path="/admin" element={<Admin />} />
       <Route path="/login" element={<Login />} />
