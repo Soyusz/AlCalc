@@ -10,14 +10,17 @@ export const Ranking = () => {
   const { data } = useEntry(selectedLabels)
 
   const rows = data
-    ?.map((el, index) => ({
+    ?.map((el) => ({
       id: el.id,
       name: el.name,
       photo: el.photo,
-      place: index + 1,
       score: calcScore(el.voltage, el.price, el.volume),
     }))
     .sort((a, b) => b.score - a.score)
+    .map((el, index) => ({
+      ...el,
+      place: index + 1,
+    }))
 
   return (
     <Container>
