@@ -1,3 +1,4 @@
+import { motion, AnimatePresence } from 'framer-motion'
 import { useState } from 'react'
 import styled from 'styled-components'
 import { useEntry } from '../../queries/useEntry'
@@ -7,8 +8,8 @@ const labels = ['Beer', 'Vodka', 'Whiskey', 'Wine', 'Champagne', 'Gin', 'Cider',
 type labelsType = typeof labels[number]
 
 export const Ranking = () => {
-  const { data } = useEntry()
   const [selectedLabels, setSelectedLabels] = useState<labelsType[]>([])
+  const { data } = useEntry(selectedLabels)
 
   const calcScore = (voltage: number, price: number, volume: number) => (voltage * volume) / (price * 100)
 
@@ -17,30 +18,34 @@ export const Ranking = () => {
     else setSelectedLabels([...selectedLabels, label])
   }
 
+  const renderLabels = () =>
+    labels
+      .sort((label) => (selectedLabels.includes(label) ? -1 : 1))
+      .map((label) => (
+        <motion.div key={label} layout>
+          <Label selected={selectedLabels.includes(label)} onClick={() => handleLabelClick(label)} key={label}>
+            {label}
+          </Label>
+        </motion.div>
+      ))
+
+  const renderEntries = () =>
+    data
+      ?.map((el) => ({
+        id: el.id,
+        name: el.name,
+        photo: el.photo,
+        score: calcScore(el.voltage, el.price, el.volume),
+      }))
+      .sort((a, b) => b.score - a.score)
+      .map((el, index) => <Row {...el} place={index + 1} />)
+
   return (
     <Container>
       <Labels wrap={false}>
-        {labels
-          .sort((label) => (selectedLabels.includes(label) ? -1 : 1))
-          .map((label) => (
-            <Label selected={selectedLabels.includes(label)} onClick={() => handleLabelClick(label)} key={label}>
-              {label}
-            </Label>
-          ))}
+        <AnimatePresence>{renderLabels()}</AnimatePresence>
       </Labels>
-      <Content>
-        {data
-          ?.map((el) => ({
-            id: el.id,
-            name: el.name,
-            photo: el.photo,
-            score: calcScore(el.voltage, el.price, el.volume),
-          }))
-          .sort((a, b) => b.score - a.score)
-          .map((el, index) => (
-            <Row {...el} place={index + 1} />
-          ))}
-      </Content>
+      <Content>{renderEntries()}</Content>
     </Container>
   )
 }
@@ -59,7 +64,7 @@ const Labels = styled.div<{ wrap: boolean }>`
   flex-wrap: ${(props) => (props.wrap ? 'wrap' : 'no-wrap')};
 `
 
-const Label = styled.div<{ selected: boolean }>`
+const Label = styled(motion.div)<{ selected: boolean }>`
   border-radius: ${(props) => props.theme.borderRadii.l};
   border: 1px solid black;
   padding: 7px 10px;
