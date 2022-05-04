@@ -1,13 +1,13 @@
 import { useState } from 'react'
 import styled from 'styled-components'
-import { useEntry } from '../../queries/useEntry'
 import { Row } from './components/Row'
 import { Labels } from './components/Labels'
 import { calcScore } from '../../utils/calcScore'
+import { useRanking } from '../../queries/useRanking'
 
 export const Ranking = () => {
   const [selectedLabels, setSelectedLabels] = useState<string[]>([])
-  const { data } = useEntry(selectedLabels)
+  const { data } = useRanking(selectedLabels)
 
   const rows = data
     ?.map((el) => ({

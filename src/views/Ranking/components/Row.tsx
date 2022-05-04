@@ -1,16 +1,19 @@
 import { motion } from 'framer-motion'
 import styled from 'styled-components'
+import { useNavigation } from '../../../hooks/useNavigation'
 
 export type RowProps = {
+  id: string
   name: string
-  photo?: string
   score: number
   place: number
+  photo?: string
 }
 
 export const Row = (p: RowProps) => {
+  const navigation = useNavigation()
   return (
-    <Container layout>
+    <Container layout onClick={() => navigation.push(`/entry/view/${p.id}`)}>
       <Place>{p.place}</Place>
       <Name>{p.name}</Name>
       <Stats>{Math.floor(p.score)}</Stats>

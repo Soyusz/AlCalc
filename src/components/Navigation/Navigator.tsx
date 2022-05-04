@@ -10,6 +10,7 @@ import { User } from '../../views/User/User'
 import { UserPosts } from '../../views/UserPosts/UserPosts'
 import { Calc } from '../../views/Calc/Calc'
 import { AddEntry } from '../../views/AddEntry/AddEntry'
+import { Entry } from '../../views/Entry/Entry'
 
 export const Navigator = () => (
   <DefaultTemplate>
@@ -27,6 +28,7 @@ export const Navigator = () => (
         <Route path="user/:userId" element={<User />} />
         <Route path="user/:userId/posts/:postId" element={<UserPosts />} />
         <Route path="entry/add" element={<AddEntry />} />
+        <Route path="entry/view/:entryId" element={<Entry />} />
       </Route>
     </Routes>
   </DefaultTemplate>
