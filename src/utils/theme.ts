@@ -29,6 +29,7 @@ export const defaultTheme = {
     s: '12px',
     base: '14px',
     m: '16px',
+    l: '18px',
     lg: '18px',
     xl: '20px',
     xxl: '24px',
