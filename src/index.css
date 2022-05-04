@@ -5,10 +5,12 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
+  overscroll-behavior: none;
 }
 
 * {
   box-sizing: border-box;
+  overscroll-behavior: none;
 }
 
 code {
@@ -24,5 +26,10 @@ code {
 /* disable scroll-refresh  */
 html,
 body {
-  overscroll-behavior-y: contain;
+  overscroll-behavior: none;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }

@@ -43,6 +43,8 @@ export const Labels = ({ selectedLabels, setSelectedLabels }: LabelsProps) => {
     return setWrap(true)
   }) as any
 
+  const parseLabel = (label: string) => label.replace(/([A-Z])/g, ' $1').trim()
+
   const renderLabels = () =>
     labels
       .sort((label) => (selectedLabels.includes(label) ? -1 : 1))
@@ -54,7 +56,7 @@ export const Labels = ({ selectedLabels, setSelectedLabels }: LabelsProps) => {
           selected={selectedLabels.includes(label)}
           onClick={() => handleLabelClick(label)}
           key={label}>
-          {label}
+          {parseLabel(label)}
         </Label>
       ))
 
@@ -86,4 +88,5 @@ const Label = styled(motion.div)<{ selected: boolean; wrapped: boolean }>`
   background: ${({ selected, theme }) => (selected ? theme.colors.black : theme.colors.white)};
   color: ${({ selected, theme }) => (selected ? theme.colors.white : theme.colors.black)};
   touch-action: ${(props) => (props.wrapped ? 'none' : 'initial')};
+  white-space: nowrap;
 `
