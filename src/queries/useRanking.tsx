@@ -3,13 +3,13 @@ import { useQuery } from 'react-query'
 import { BACKEND_URL } from '../backend_url'
 
 export const useRanking = (labels?: string[]) => {
-  const { data, refetch } = useQuery<unknown, unknown, any[]>('entries', () =>
+  const { data, refetch } = useQuery<unknown, unknown, any[]>('ranking', () =>
     fetch(`${BACKEND_URL}/entry/verified`, {
       method: 'GET',
     }).then((res) => res.json())
   )
 
-  const { data: labeledData, refetch: labeledRefetch } = useQuery<unknown, unknown, any[]>('entries', () =>
+  const { data: labeledData, refetch: labeledRefetch } = useQuery<unknown, unknown, any[]>('ranking', () =>
     fetch(`${BACKEND_URL}/entry/verified`, {
       headers: {
         'Content-Type': 'application/json',

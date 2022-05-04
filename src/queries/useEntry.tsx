@@ -4,7 +4,7 @@ import { Entry } from '../types/entry'
 
 export const useEntry = (entry_id?: string) => {
   const query = useQuery<unknown, unknown, Entry>(
-    'entries',
+    ['entry', entry_id],
     () =>
       fetch(`${BACKEND_URL}/entry/${entry_id}`, {
         method: 'GET',
