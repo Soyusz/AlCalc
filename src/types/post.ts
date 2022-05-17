@@ -6,3 +6,5 @@ export type Post = {
   user_id: string
   skeleton?: boolean
 }
+
+export type NewPost = Pick<Post, 'photos' | 'location' | 'title'>
