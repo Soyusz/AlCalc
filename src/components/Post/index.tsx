@@ -10,19 +10,22 @@ import { useSendLike } from '../../queries/useSendLike'
 export type PostProps = ({ skeleton: false } & PostType) | ({ skeleton: true } & Partial<PostType>)
 
 export const Post = (p: PostProps) => {
-  const { amILiking, isLoading: areLikesLoading } = useFetchLike(!p.skeleton && p.id)
+  const { amILiking, data, isLoading: areLikesLoading, refetch } = useFetchLike(!p.skeleton && p.id)
   const { mutate: sendLike } = useSendLike()
   const [isLiked, setIsLiked] = useState<boolean | null>(null)
+  const [likeNumber, setLikeNumber] = useState<number>()
   const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0)
   const currentPhoto = p.photos?.[currentPhotoIndex]
 
   useEffect(() => setIsLiked(amILiking), [amILiking])
+  useEffect(() => setLikeNumber(data?.length), [data])
 
   const isLoading = areLikesLoading
   const isSkeleton = isLoading || p.skeleton
 
   const handleLikePost = (value: boolean) => {
     sendLike({ value, postId: p.id as string })
+    setLikeNumber((likeNumber ?? 0) + (value ? 1 : -1))
     setIsLiked(value)
   }
 
@@ -41,7 +44,14 @@ export const Post = (p: PostProps) => {
         skeleton={isSkeleton}
         onClick={handlePhotoClick}
       />
-      <Bottom isLiked={isLiked} setIsLiked={handleLikePost} skeleton={p.skeleton || isLoading} />
+      <Bottom
+        title={p.title}
+        author={undefined}
+        likeNumber={likeNumber}
+        isLiked={isLiked}
+        setIsLiked={handleLikePost}
+        skeleton={p.skeleton || isLoading}
+      />
     </Container>
   )
 }
