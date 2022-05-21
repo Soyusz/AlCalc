@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import Cropper from 'react-easy-crop'
 import { Point, Area, Size } from 'react-easy-crop/types'
 import styled from 'styled-components'
+import { getImageSize } from '../utils/getImageSize'
 
 type Props = {
   image?: string
@@ -11,22 +12,23 @@ type Props = {
 }
 
 export const Crop = (p: Props) => {
-  const [crop, setCrop] = useState<Point | undefined>(p.initialArea || { x: 0, y: 0 })
+  const [crop, setCrop] = useState<Point>(p.initialArea || { x: 0, y: 0 })
   const [zoom, setZoom] = useState<number | undefined>()
+  const [minZoom, setMinZoom] = useState<number | undefined>()
   const containerRef = useRef<null | HTMLDivElement>(null)
   const [cropSize, setCropSize] = useState<undefined | Size>()
 
-  /* useEffect(() => {
+  useEffect(() => {
     if (!p.image || !containerRef.current) return
-    console.log('calc zoom')
     const containerSize = containerRef.current.clientHeight
     getImageSize(p.image).then((imageSize) => {
       const naturalRatio = containerSize / Math.max(imageSize.height, imageSize.width)
       const minImageSize = Math.min(imageSize.height, imageSize.width)
       const minRatio = containerSize / (minImageSize * naturalRatio)
-      const ratio = p.initialArea && containerSize / (p.initialArea.width * naturalRatio)
+      if (!p.initialArea) setZoom(minRatio)
+      setMinZoom(minRatio)
     })
-    }, [p.image, p.initialArea]) */
+  }, [p.image, p.initialArea])
 
   const onCropComplete = useCallback((_: Area, croppedArea: Area) => p.onChange(croppedArea), [p.onChange])
 
@@ -42,19 +44,20 @@ export const Crop = (p: Props) => {
 
   return (
     <Container ref={containerRef} onClick={p.onClick}>
-      {crop && cropSize && (
+      {cropSize && (p.initialArea || zoom) && (
         <Cropper
           /* values */
           zoom={zoom}
+          minZoom={minZoom}
           crop={crop}
+          image={p.image}
           cropSize={cropSize}
           initialCroppedAreaPixels={p.initialArea}
           /* handlers */
           onCropChange={setCrop}
           onCropComplete={onCropComplete}
           onZoomChange={setZoom}
-          /* tested */
-          image={p.image}
+          /* styles */
           aspect={1}
           objectFit="contain"
           style={{

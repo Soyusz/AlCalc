@@ -1,7 +1,9 @@
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import { Area } from 'react-easy-crop/types'
 import styled from 'styled-components'
+import { Button } from '../../components/Button'
 import { Crop } from '../../components/Crop'
+import { useAddPost } from '../../queries/useAddPost'
 import { blobToUri } from '../../utils/blobToUri'
 import { getCroppedImg } from '../../utils/getCroppedImage'
 
@@ -16,6 +18,7 @@ export const AddPost = () => {
   const [images, setImages] = useState<ProcessedImage[]>([])
   const [currentImageIndex, setCurrentImageIndex] = useState<number>()
   const currentImage = (currentImageIndex !== undefined && images[currentImageIndex]) || undefined
+  const { mutate, isLoading, isError, isSuccess } = useAddPost()
 
   const handleImageSelected = async () => {
     const newFile = inputRef.current?.files?.[0]
@@ -44,13 +47,19 @@ export const AddPost = () => {
     ])
   }
 
+  const handleSubmit = () =>
+    mutate({
+      photos: images.map((el) => el.outcome.slice(el.outcome.search(',') + 1, el.outcome.length - 1)),
+      title: 'Twoja stara pije kurwa małże',
+      location: 'Imielin',
+    })
+
   return (
     <Container>
       <input type="file" ref={inputRef} onChange={handleImageSelected} hidden />
       <Crop
         onChange={handleCropChange}
         image={currentImage?.source}
-        /* initialArea={{ width: 667, height: 667, x: 557, y: 1085 }} */
         initialArea={currentImage?.crop}
         key={currentImageIndex}
       />
@@ -60,6 +69,13 @@ export const AddPost = () => {
         ))}
         <div onClick={() => inputRef.current?.click()}>+</div>
       </Preview>
+      <BottomBox>
+        <Status>
+          {isLoading && 'Loading...'}
+          {isError && 'Upload failed'}
+        </Status>
+        <Button label="Submit" onClick={handleSubmit} disabled={isLoading} />
+      </BottomBox>
     </Container>
   )
 }
@@ -70,12 +86,32 @@ const Container = styled.div`
   padding-top: 30px;
 `
 
+const BottomBox = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: auto;
+  padding-bottom: 30px;
+`
+
+const Status = styled.div`
+  font-size: 15px;
+  padding: 10px;
+`
+
 const Preview = styled.div`
   display: flex;
+  width: 100%;
   > img,
   > div {
-    margin: 10px;
+    margin: 10px 10px 10px 0px;
     height: 50px;
     width: 50px;
+    border: 1px solid grey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
   }
 `
