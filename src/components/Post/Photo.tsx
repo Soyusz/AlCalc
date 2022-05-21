@@ -10,6 +10,7 @@ type PhotoProps = {
   isLiked: boolean | null
   setIsLiked: React.Dispatch<boolean>
   skeleton: boolean
+  onClick?: () => void
 }
 
 export const Photo = (p: PhotoProps) => {
@@ -36,7 +37,7 @@ export const Photo = (p: PhotoProps) => {
   }
 
   return (
-    <Container onDoubleTap={handlePhotoDoubleClick}>
+    <Container onDoubleTap={handlePhotoDoubleClick} onPress={p.onClick}>
       {p.skeleton ? <Skeleton height={200} width="100vw" /> : <PostPhoto src={p.src ?? undefined} alt="entry" />}
       <LikedIconContainer>
         <motion.img variants={LikedIconAnimation} animate={showLikedIcon ? 'shown' : 'hidden'} src={like} alt="like" />

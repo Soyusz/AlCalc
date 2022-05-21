@@ -4,15 +4,15 @@ import styled from 'styled-components'
 import { useNavigation } from '../../hooks/useNavigation'
 import { useUser } from '../../queries/useUser'
 import { Post as PostType } from '../../types/post'
+import { User } from '../../types/user'
 import { SkelText } from '../SkelText'
 
 const placeholderImage =
   'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.WHfN_fEpKjn2hGiq_OgIUAHaHa%26pid%3DApi&f=1'
 
-type Props = ({ skeleton: true } & Partial<PostType>) | ({ skeleton: false } & PostType)
+type Props = { skeleton: boolean; author?: User } & Partial<PostType>
 
 export const Top = (p: Props) => {
-  const { data: user, isLoading: isUserLoading } = useUser(!p.skeleton && p.user_id)
   const [isImageLoaded, setIsImageLoaded] = useState(false)
   const { push } = useNavigation()
   const handleClick = () => {
@@ -21,7 +21,7 @@ export const Top = (p: Props) => {
   }
 
   const displayImageSkeleton = p.skeleton || !isImageLoaded
-  const imageSrc = !isUserLoading && !user?.photo ? placeholderImage : user?.photo ?? undefined
+  const imageSrc = !!p.author && !p.author?.photo ? placeholderImage : p.author?.photo ?? undefined
 
   return (
     <Container>
@@ -30,7 +30,7 @@ export const Top = (p: Props) => {
         <img alt="user" hidden={!isImageLoaded} src={imageSrc} onLoad={() => setIsImageLoaded(true)} />
       </UserPhoto>
       <Username onClick={handleClick}>
-        <SkelText v={user?.name} w={9} />
+        <SkelText v={p.author?.name} w={9} />
       </Username>
       <Location>
         <SkelText v={p.location} w={13} />
