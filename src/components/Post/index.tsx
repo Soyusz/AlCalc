@@ -13,6 +13,8 @@ export const Post = (p: PostProps) => {
   const { amILiking, isLoading: areLikesLoading } = useFetchLike(!p.skeleton && p.id)
   const { mutate: sendLike } = useSendLike()
   const [isLiked, setIsLiked] = useState<boolean | null>(null)
+  const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0)
+  const currentPhoto = p.photos?.[currentPhotoIndex]
 
   useEffect(() => setIsLiked(amILiking), [amILiking])
 
@@ -24,10 +26,21 @@ export const Post = (p: PostProps) => {
     setIsLiked(value)
   }
 
+  const handlePhotoClick = () => {
+    if (!p.photos) return
+    setCurrentPhotoIndex((currentPhotoIndex + 1) % p.photos?.length)
+  }
+
   return (
     <Container id={p.id}>
       <Top {...p} />
-      <Photo src={p.photos?.[0]} isLiked={isLiked} setIsLiked={handleLikePost} skeleton={isSkeleton} />
+      <Photo
+        src={currentPhoto}
+        isLiked={isLiked}
+        setIsLiked={handleLikePost}
+        skeleton={isSkeleton}
+        onClick={handlePhotoClick}
+      />
       <Bottom isLiked={isLiked} setIsLiked={handleLikePost} skeleton={p.skeleton || isLoading} />
     </Container>
   )
