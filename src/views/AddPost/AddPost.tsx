@@ -1,8 +1,10 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Area } from 'react-easy-crop/types'
 import styled from 'styled-components'
 import { Button } from '../../components/Button'
 import { Crop } from '../../components/Crop'
+import { Input } from '../../components/Input'
+import { useNavigation } from '../../hooks/useNavigation'
 import { useAddPost } from '../../queries/useAddPost'
 import { blobToUri } from '../../utils/blobToUri'
 import { getCroppedImg } from '../../utils/getCroppedImage'
@@ -15,10 +17,21 @@ type ProcessedImage = {
 
 export const AddPost = () => {
   const inputRef = useRef<HTMLInputElement>(null)
+  const cropRef = useRef<HTMLDivElement>(null)
   const [images, setImages] = useState<ProcessedImage[]>([])
   const [currentImageIndex, setCurrentImageIndex] = useState<number>()
   const currentImage = (currentImageIndex !== undefined && images[currentImageIndex]) || undefined
   const { mutate, isLoading, isError, isSuccess } = useAddPost()
+  const [title, setTitle] = useState('')
+  const [location, setLocation] = useState('')
+  const navigation = useNavigation()
+
+  console.log(cropRef.current?.clientWidth)
+
+  useEffect(() => {
+    if (!isSuccess) return
+    navigation.back()
+  }, [isSuccess, navigation.back])
 
   const handleImageSelected = async () => {
     const newFile = inputRef.current?.files?.[0]
@@ -50,18 +63,20 @@ export const AddPost = () => {
   const handleSubmit = () =>
     mutate({
       photos: images.map((el) => el.outcome.slice(el.outcome.search(',') + 1, el.outcome.length - 1)),
-      title: 'Twoja stara pije kurwa małże',
-      location: 'Imielin',
+      title,
+      location,
     })
 
   return (
     <Container>
       <input type="file" ref={inputRef} onChange={handleImageSelected} hidden />
-      <Crop
+      <SCrop
+        ref={cropRef}
         onChange={handleCropChange}
         image={currentImage?.source}
         initialArea={currentImage?.crop}
         key={currentImageIndex}
+        height={cropRef.current?.clientWidth}
       />
       <Preview>
         {images.map((image, index) => (
@@ -69,6 +84,10 @@ export const AddPost = () => {
         ))}
         <div onClick={() => inputRef.current?.click()}>+</div>
       </Preview>
+      <FormBox>
+        <Input value={title} label="Title" onValueChange={setTitle} />
+        <Input value={location} label="Location" onValueChange={setLocation} />
+      </FormBox>
       <BottomBox>
         <Status>
           {isLoading && 'Loading...'}
@@ -84,6 +103,17 @@ const Container = styled.div`
   background: ${(props) => props.theme.colors.white};
   padding: ${(props) => props.theme.spacing.s};
   padding-top: 30px;
+`
+
+const SCrop = styled(Crop)<{ height?: number }>`
+  min-height: ${(props) => props.height}px;
+`
+
+const FormBox = styled.div`
+  margin-top: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 `
 
 const BottomBox = styled.div`

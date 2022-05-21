@@ -11,10 +11,11 @@ type SidebarProps = {
 
 export const Sidebar = ({ show, onClick = () => {}, afterClick = () => {} }: SidebarProps) => {
   const { isAdmin } = useUserContext()
-  const { navigate } = useNavigation()
-  const handleNavigate = (path: string) => {
+  const { navigate, push } = useNavigation()
+  const handleNavigate = (path: string, stack = false) => {
     afterClick()
-    navigate(path)
+    if (stack) push(path)
+    else navigate(path)
   }
   return (
     <Container onClick={onClick} animate={show ? ContainerStyles.shown : ContainerStyles.hidden}>
@@ -22,6 +23,7 @@ export const Sidebar = ({ show, onClick = () => {}, afterClick = () => {} }: Sid
       <Element onClick={() => handleNavigate('/calc')}>Calc</Element>
       <Element onClick={() => handleNavigate('/feed')}>Feed</Element>
       <Element onClick={() => handleNavigate('/about')}>About</Element>
+      <Element onClick={() => handleNavigate('/post/add', true)}>Add post</Element>
       {isAdmin && (
         <>
           <Element onClick={() => handleNavigate('/admin')}>Admin</Element>
