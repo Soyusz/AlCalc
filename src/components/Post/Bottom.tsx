@@ -21,7 +21,7 @@ export const Bottom = ({ isLiked, setIsLiked, skeleton, ...p }: BottomProps) => 
       {!!p.likeNumber && <LikeNumber>{`${p.likeNumber > 1 ? p.likeNumber : ''} cheers`}</LikeNumber>}
       {
         <Title>
-          {p.author && `${p.author}: `}
+          <span>{p.author && `${p.author} `}</span>
           {p.title}
         </Title>
       }
@@ -42,7 +42,11 @@ const Container = styled.div`
 const LikeNumber = styled.div`
   font-weight: 600;
 `
-const Title = styled.div``
+const Title = styled.div`
+  > span {
+    font-weight: 600;
+  }
+`
 
 const IconContainer = styled.div`
   height: 30px;

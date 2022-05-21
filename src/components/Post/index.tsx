@@ -6,6 +6,7 @@ import { Bottom } from './Bottom'
 import { Photo } from './Photo'
 import { useFetchLike } from '../../queries/useFetchLike'
 import { useSendLike } from '../../queries/useSendLike'
+import { useUser } from '../../queries/useUser'
 
 export type PostProps = ({ skeleton: false } & PostType) | ({ skeleton: true } & Partial<PostType>)
 
@@ -15,6 +16,7 @@ export const Post = (p: PostProps) => {
   const [isLiked, setIsLiked] = useState<boolean | null>(null)
   const [likeNumber, setLikeNumber] = useState<number>()
   const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0)
+  const { data: author, isLoading: isAuthorLoading } = useUser(!p.skeleton && p.user_id)
   const currentPhoto = p.photos?.[currentPhotoIndex]
 
   useEffect(() => setIsLiked(amILiking), [amILiking])
@@ -36,7 +38,7 @@ export const Post = (p: PostProps) => {
 
   return (
     <Container id={p.id}>
-      <Top {...p} />
+      <Top {...p} author={author} />
       <Photo
         src={currentPhoto}
         isLiked={isLiked}
@@ -46,7 +48,7 @@ export const Post = (p: PostProps) => {
       />
       <Bottom
         title={p.title}
-        author={undefined}
+        author={author?.name}
         likeNumber={likeNumber}
         isLiked={isLiked}
         setIsLiked={handleLikePost}
