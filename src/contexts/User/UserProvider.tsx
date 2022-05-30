@@ -5,7 +5,7 @@ import { useNavigation } from '../../hooks/useNavigation'
 
 export const UserContextProvider: FC = memo(({ children }) => {
   const [token, setToken] = useState<string | null | undefined>()
-  const { data: user, error: authError } = useMe(token)
+  const { data: user, error: authError } = useMe()
   const navigation = useNavigation()
 
   useEffect(() => {
@@ -23,6 +23,7 @@ export const UserContextProvider: FC = memo(({ children }) => {
   }, [])
 
   useEffect(() => {
+    console.log(authError)
     if (authError === 401) setToken(null)
   }, [authError])
 
