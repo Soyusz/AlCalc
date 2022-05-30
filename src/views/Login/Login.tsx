@@ -2,15 +2,19 @@ import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { Button } from '../../components/Button'
 import { Input } from '../../components/Input'
+import { Modal } from '../../components/Modal'
 import { useUserContext } from '../../contexts/User/useUserContext'
 import { useNavigation } from '../../hooks/useNavigation'
 import { useLogin } from '../../queries/useLogin'
+import { useMe } from '../../queries/useMe'
 
 export const Login = () => {
+  const { setToken, token } = useUserContext()
   const { mutate, isSuccess, data } = useLogin()
+  const { refetch, isSuccess: isMeSuccess } = useMe(token)
   const navigation = useNavigation()
-  const { setToken } = useUserContext()
   const [email, setEmail] = useState('')
+  const [showAuthSessionModal, setShowAuthSessionModal] = useState(false)
 
   const handleClick = () => {
     if (!email) return
@@ -20,14 +24,29 @@ export const Login = () => {
   useEffect(() => {
     if (!isSuccess || !data?.token) return
     setToken(data.token)
-    navigation.navigate('/')
+    setShowAuthSessionModal(true)
   }, [isSuccess, data?.token, navigation, setToken])
+
+  useEffect(() => {
+    if (!showAuthSessionModal) return
+    const interval = setInterval(() => refetch(), 5 * 1000)
+    return () => clearInterval(interval)
+  }, [showAuthSessionModal])
+
+  useEffect(() => {
+    if (showAuthSessionModal && isMeSuccess) navigation.navigate('/')
+  }, [isMeSuccess])
 
   return (
     <>
       <Container>
         <SInput value={email} onValueChange={setEmail} label="Email" type="email" />
         <SButton label="Log in" onClick={handleClick} />
+        <Modal
+          isOpen={showAuthSessionModal}
+          title="Authorize your session"
+          text="Lorem ipsum aksjdadja kasj dsaf jsad; fnsda ;fan sf"
+        />
       </Container>
     </>
   )
