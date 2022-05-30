@@ -75,14 +75,15 @@ const InputStyled = styled.input<{ isError: boolean }>`
   outline: none;
   align-self: stretch;
   border: none;
-  border-bottom: 1px solid ${(props) => props.theme.colors.black};
+  border-bottom: 1px solid ${(props) => (props.isError ? 'red' : props.theme.colors.black)};
   background-color: transparent;
   font-size: 16px;
   border-radius: 0;
+  color: ${(props) => (props.isError ? 'red' : 'black')};
 `
 
 const ErrorMessage = styled.p`
-  color: 'red';
+  color: red;
   margin: 5px;
   font-size: 12px;
   text-align: right;
