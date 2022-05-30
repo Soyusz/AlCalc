@@ -10,7 +10,7 @@ import { useMe } from '../../queries/useMe'
 
 export const Login = () => {
   const { setToken, token } = useUserContext()
-  const { mutate, isSuccess, data } = useLogin()
+  const { mutate, isSuccess, data, error } = useLogin()
   const { refetch, isSuccess: isMeSuccess } = useMe(token)
   const navigation = useNavigation()
   const [email, setEmail] = useState('')
@@ -40,7 +40,13 @@ export const Login = () => {
   return (
     <>
       <Container>
-        <SInput value={email} onValueChange={setEmail} label="Email" type="email" />
+        <SInput
+          value={email}
+          onValueChange={setEmail}
+          label="Email"
+          type="email"
+          error={error ? ['Invalid email'] : undefined}
+        />
         <SButton label="Log in" onClick={handleClick} />
         <Modal
           isOpen={showAuthSessionModal}
