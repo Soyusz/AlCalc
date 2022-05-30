@@ -23,15 +23,14 @@ export const Button = ({
 )
 
 const WrapperButton = styled.button<any>`
-  max-width: 200px;
   width: 100%;
-  font-weight: 700;
   padding: 12px 12px;
   background-color: ${({ variant, theme }) => (variant === 'primary' ? theme.colors.primary : theme.colors.white)};
   color: ${({ variant, theme }) => (variant === 'primary' ? theme.colors.white : theme.colors.primary)};
   border: none;
-  border-radius: 10px;
+  border-radius: 100px;
   font-size: 16px;
+  font-weight: 700;
 
   opacity: ${({ disabled }) => (disabled ? 0.5 : 1)};
 

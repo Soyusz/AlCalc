@@ -7,6 +7,7 @@ import { useUserContext } from '../../contexts/User/useUserContext'
 import { useNavigation } from '../../hooks/useNavigation'
 import { useLogin } from '../../queries/useLogin'
 import { useMe } from '../../queries/useMe'
+import MailIcon from '../../assets/mail.png'
 
 export const Login = () => {
   const { setToken, token } = useUserContext()
@@ -48,33 +49,24 @@ export const Login = () => {
           error={error ? ['Invalid email'] : undefined}
         />
         <SButton label="Log in" onClick={handleClick} />
-        <Modal
-          isOpen={showAuthSessionModal}
-          title="Authorize your session"
-          text="Lorem ipsum aksjdadja kasj dsaf jsad; fnsda ;fan sf"
-        />
+        <Modal isOpen={showAuthSessionModal} title="Authorize your session" text={descText} icon={MailIcon} />
       </Container>
     </>
   )
 }
 
+const descText =
+  'A link activating this session has been sent to your email address. Click on it to complete the registration process. You may need to check your "spam" folder.'
+
 const Container = styled.div`
-  width: 100%;
-  flex: 1;
-  display: grid !important;
+  justify-content: center;
+  display: grid;
+  grid-template: 1fr auto / 1fr;
+  align-items: center;
   justify-items: center;
-  grid-template: 2fr auto auto 3fr / 1fr;
+  padding: 20px;
 `
 
-const SInput = styled(Input)`
-  grid-row: 2 / 3;
-  width: 250px;
-  max-width: 90vw;
-  align-self: stretch;
-`
+const SInput = styled(Input)``
 
-const SButton = styled(Button)`
-  grid-row: 3 / 4;
-  width: 250px;
-  max-width: 90vw;
-`
+const SButton = styled(Button)``
