@@ -18,7 +18,11 @@ export const Modal = (p: ModalProps) => {
   return (
     <>
       <Blur onClick={p.handleClose} initial={{ opacity: 0 }} animate={{ opacity: 0.5 }} transition={transitionConfig} />
-      <Container animate={{ y: '-50%' }} initial={{ y: '100vh' }} exit={{ y: '100vh' }} transition={transitionConfig}>
+      <Container
+        initial={{ translateY: '100vh' }}
+        animate={{ translateY: '-50%' }}
+        exit={{ translateY: '100vh' }}
+        transition={transitionConfig}>
         <Title>{p.title}</Title>
         <Text>{p.text}</Text>
       </Container>
@@ -44,6 +48,7 @@ const Container = styled(motion.div)`
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  top: 50%;
 `
 
 const Title = styled.div`
