@@ -103,6 +103,7 @@ const Container = styled.div`
   background: ${(props) => props.theme.colors.white};
   padding: ${(props) => props.theme.spacing.s};
   padding-top: 30px;
+  display: flex;
 `
 
 const SCrop = styled(Crop)<{ height?: number }>`

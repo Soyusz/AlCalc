@@ -18,6 +18,7 @@ export const DefaultTemplate: React.FC<DefaultTemplateProps> = ({ children, clas
 
   return (
     <Container className={className}>
+      <Header onIconClick={() => setShowSidebar(!showSidebar)} />
       <Sidebar show={showSidebar} afterClick={() => setShowSidebar(false)} />
       <Content
         onClick={handleClickContent}
@@ -37,21 +38,21 @@ const Container = styled.div`
   height: 100vh;
   overflow: hidden;
   display: grid;
-  grid-template: 1fr / auto 100vw;
+  grid-template: 60px 1fr / auto 100vw;
   perspective: 200px;
 `
 
 const Content = styled(motion.div)<{ padding?: string }>`
-  grid-column: 2 / 3;
-  grid-row: 1 / 3;
-  z-index: 32;
-  display: flex;
+  display: grid;
+  grid-template: 1fr / 1fr;
   overflow: hidden;
-  align-items: stretch;
+  z-index: 32;
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
   & > div {
     flex-direction: column;
+    align-items: center;
     overflow: scroll;
-    flex: 1;
   }
 `
 

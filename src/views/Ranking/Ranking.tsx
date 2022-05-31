@@ -4,6 +4,7 @@ import { Row } from './components/Row'
 import { Labels } from './components/Labels'
 import { calcScore } from '../../utils/calcScore'
 import { useRanking } from '../../queries/useRanking'
+import { Header } from '../../components/Header'
 
 export const Ranking = () => {
   const [selectedLabels, setSelectedLabels] = useState<string[]>([])
@@ -36,6 +37,7 @@ export const Ranking = () => {
 
 const Container = styled.div`
   background: ${(props) => props.theme.colors.appBackground};
+  display: flex;
 `
 
 const Content = styled.div`

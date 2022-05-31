@@ -31,5 +31,5 @@ const StyledInput = styled(Input)`
 
 const NextButton = styled(Button)`
   margin-top: auto;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
 `
