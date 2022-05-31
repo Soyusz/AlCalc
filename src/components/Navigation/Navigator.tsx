@@ -12,6 +12,7 @@ import { Calc } from '../../views/Calc/Calc'
 import { AddEntry } from '../../views/AddEntry/AddEntry'
 import { Entry } from '../../views/Entry/Entry'
 import { AddPost } from '../../views/AddPost/AddPost'
+import { Register } from '../../views/Register/Register'
 
 export const Navigator = () => (
   <DefaultTemplate>
@@ -24,6 +25,7 @@ export const Navigator = () => (
       <Route path="/404" element={<Fallback404 />} />
       <Route path="/admin" element={<Admin />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
 
       <Route path="/stack">
         <Route path="user/:userId" element={<User />} />

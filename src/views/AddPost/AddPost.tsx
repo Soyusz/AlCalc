@@ -62,7 +62,7 @@ export const AddPost = () => {
 
   const handleSubmit = () =>
     mutate({
-      photos: images.map((el) => el.outcome.slice(el.outcome.search(',') + 1, el.outcome.length - 1)),
+      photos: images.map((el) => el.outcome),
       title,
       location,
     })
@@ -103,6 +103,7 @@ const Container = styled.div`
   background: ${(props) => props.theme.colors.white};
   padding: ${(props) => props.theme.spacing.s};
   padding-top: 30px;
+  display: flex;
 `
 
 const SCrop = styled(Crop)<{ height?: number }>`

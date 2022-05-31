@@ -15,6 +15,7 @@ type PhotoProps = {
 
 export const Photo = (p: PhotoProps) => {
   const [showLikedIcon, setShowLikedIcon] = useState(false)
+  const [imageLoaded, setImageLoaded] = useState(false)
   const isInitial = useRef(true)
 
   const animateLike = useCallback(() => {
@@ -38,7 +39,8 @@ export const Photo = (p: PhotoProps) => {
 
   return (
     <Container onDoubleTap={handlePhotoDoubleClick} onPress={p.onClick}>
-      {p.skeleton ? <Skeleton height={200} width="100vw" /> : <PostPhoto src={p.src ?? undefined} alt="entry" />}
+      {(p.skeleton || !imageLoaded) && <Skeleton height="100vw" width="100vw" />}
+      <PostPhoto src={p.src ?? undefined} onLoad={() => setImageLoaded(true)} alt="entry" show={imageLoaded} />
       <LikedIconContainer>
         <motion.img variants={LikedIconAnimation} animate={showLikedIcon ? 'shown' : 'hidden'} src={like} alt="like" />
       </LikedIconContainer>
@@ -63,9 +65,10 @@ const Container = styled(Touchable)`
   position: relative;
 `
 
-const PostPhoto = styled.img`
-  min-height: 200px;
-  width: 100%;
+const PostPhoto = styled.img<{ show?: boolean }>`
+  height: 100vw;
+  width: 100vw;
+  display: ${(props) => (props.show ? 'initial' : 'none')};
 `
 
 const LikedIconContainer = styled.div`

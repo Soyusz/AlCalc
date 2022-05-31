@@ -68,18 +68,21 @@ const InputContainer = styled.div`
   padding: 0;
   display: flex;
   flex-direction: column;
+  width: 100%;
 `
 
 const InputStyled = styled.input<{ isError: boolean }>`
-  padding: 5px 15px;
+  padding: 10px 12px;
   outline: none;
   align-self: stretch;
   border: none;
-  border-bottom: 1px solid ${(props) => (props.isError ? 'red' : props.theme.colors.black)};
-  background-color: transparent;
-  font-size: 16px;
-  border-radius: 0;
+  background-color: #eceef2;
+  font-size: 14px;
+  border-radius: 100px;
+  box-shadow: none;
   color: ${(props) => (props.isError ? 'red' : 'black')};
+  width: 100%;
+  border: ${(props) => (props.isError ? '1px solid red' : 'none')};
 `
 
 const ErrorMessage = styled.p`
@@ -91,5 +94,7 @@ const ErrorMessage = styled.p`
 
 const Label = styled.label<{ isError: boolean }>`
   font-size: 12px;
+  margin-bottom: 4px;
+  padding-left: 10px;
   color: ${({ isError }) => (isError ? 'red' : '#555555')};
 `

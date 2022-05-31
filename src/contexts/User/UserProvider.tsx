@@ -2,14 +2,18 @@ import { FC, memo, useEffect, useState } from 'react'
 import { UserContext, UserContextType } from './UserContext'
 import { useMe } from '../../queries/useMe'
 import { useNavigation } from '../../hooks/useNavigation'
+import { useLocation } from 'react-router-dom'
 
 export const UserContextProvider: FC = memo(({ children }) => {
   const [token, setToken] = useState<string | null | undefined>()
   const { data: user, error: authError } = useMe()
   const navigation = useNavigation()
+  const location = useLocation()
 
   useEffect(() => {
-    if (token === null) navigation.navigate('/login')
+    if (token !== null) return
+    if (['/login', '/register'].includes(location.pathname)) return
+    navigation.navigate('/login')
   }, [token, navigation])
 
   useEffect(() => {

@@ -69,6 +69,7 @@ const Container = styled.div`
   background: ${(props) => props.theme.colors.white};
   padding: ${(props) => props.theme.spacing.s};
   padding-top: 30px;
+  display: flex;
 `
 
 const StyledInput = styled(Input)`
@@ -77,6 +78,6 @@ const StyledInput = styled(Input)`
 
 const AddButton = styled(Button)`
   margin-top: auto;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
   z-index: 1;
 `

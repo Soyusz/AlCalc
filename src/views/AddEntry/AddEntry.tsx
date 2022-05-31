@@ -35,7 +35,7 @@ export const AddEntry = () => {
         volume: parseFloat(value.volume),
         price: parseFloat(value.price),
         name: value.name,
-        photo: image.slice(image.search(',') + 1, image.length - 1),
+        photo: image,
         label: [],
       })
     setStep(step + 1)
@@ -69,4 +69,5 @@ const Container = styled.div`
   background: ${(props) => props.theme.colors.white};
   padding: ${(props) => props.theme.spacing.s};
   padding-top: 30px;
+  display: flex;
 `

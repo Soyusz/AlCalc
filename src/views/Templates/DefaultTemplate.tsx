@@ -50,7 +50,6 @@ const Content = styled(motion.div)<{ padding?: string }>`
   grid-column: 2 / 3;
   grid-row: 2 / 3;
   & > div {
-    display: flex;
     flex-direction: column;
     align-items: center;
     overflow: scroll;

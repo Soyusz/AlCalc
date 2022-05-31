@@ -1,80 +1,78 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import styled from 'styled-components'
 import { Button } from '../../components/Button'
 import { Input } from '../../components/Input'
 import { Modal } from '../../components/Modal'
-import { useUserContext } from '../../contexts/User/useUserContext'
+import MailIcon from '../../assets/mail.png'
+import { useLoginLogic } from './useLoginLogic'
 import { useNavigation } from '../../hooks/useNavigation'
-import { useLogin } from '../../queries/useLogin'
-import { useMe } from '../../queries/useMe'
 
 export const Login = () => {
-  const { setToken, token } = useUserContext()
-  const { mutate, isSuccess, data, error } = useLogin()
-  const { refetch, isSuccess: isMeSuccess } = useMe(token)
-  const navigation = useNavigation()
   const [email, setEmail] = useState('')
-  const [showAuthSessionModal, setShowAuthSessionModal] = useState(false)
+  const navigation = useNavigation()
+  const { login, showAuthSessionModal, error, isLoading, showSignupModal, closeSignupModal } = useLoginLogic()
 
-  const handleClick = () => {
-    if (!email) return
-    mutate({ email })
-  }
-
-  useEffect(() => {
-    if (!isSuccess || !data?.token) return
-    setToken(data.token)
-    setShowAuthSessionModal(true)
-  }, [isSuccess, data?.token, navigation, setToken])
-
-  useEffect(() => {
-    if (!showAuthSessionModal) return
-    const interval = setInterval(() => refetch(), 5 * 1000)
-    return () => clearInterval(interval)
-  }, [showAuthSessionModal])
-
-  useEffect(() => {
-    if (showAuthSessionModal && isMeSuccess) navigation.navigate('/')
-  }, [isMeSuccess])
+  const goToSignup = () => navigation.navigate(`/register?email=${email}`)
 
   return (
     <>
       <Container>
+        <Title>Welcome to Alkierzv2!</Title>
+        <Subtitle>To start using the app, please enter your email address.</Subtitle>
         <SInput
           value={email}
           onValueChange={setEmail}
+          error={showSignupModal ? undefined : error}
           label="Email"
           type="email"
-          error={error ? ['Invalid email'] : undefined}
+          placeholder="Email"
         />
-        <SButton label="Log in" onClick={handleClick} />
+        <SButton label="Next" onClick={() => login(email)} disabled={isLoading} />
+        <Modal isOpen={showAuthSessionModal} title="Authorize your session" text={descText} icon={MailIcon} />
         <Modal
-          isOpen={showAuthSessionModal}
-          title="Authorize your session"
-          text="Lorem ipsum aksjdadja kasj dsaf jsad; fnsda ;fan sf"
+          isOpen={showSignupModal}
+          title="Email not found"
+          text={descText2}
+          primaryLabel="Close"
+          secondaryLabel="Create an account"
+          handleClose={closeSignupModal}
+          handlePrimaryClick={closeSignupModal}
+          handleSecondaryClick={goToSignup}
         />
       </Container>
     </>
   )
 }
 
-const Container = styled.div`
-  width: 100%;
-  flex: 1;
-  display: grid !important;
-  justify-items: center;
-  grid-template: 2fr auto auto 3fr / 1fr;
+const descText =
+  'A link activating this session has been sent to your email address. Click on it to complete the registration process. You may need to check your "spam" folder.'
+
+const descText2 =
+  'The email address you entered was not found in the database. If you already have an account, please make sure you have entered the email correctly. If you are new here, you can proceed to create a new account.'
+
+const Title = styled.div`
+  font-size: 20px;
+  font-weight: 700;
+  margin: 64px 16px 16px 16px;
 `
 
-const SInput = styled(Input)`
-  grid-row: 2 / 3;
-  width: 250px;
-  max-width: 90vw;
-  align-self: stretch;
+const Subtitle = styled.div`
+  font-size: 14px;
+  font-weight: 400;
+  color: #333a55;
 `
+
+const Container = styled.div`
+  justify-content: center;
+  display: grid;
+  grid-template: auto auto 1fr 1fr auto / 1fr;
+  align-items: center;
+  justify-items: center;
+  padding: 20px;
+`
+
+const SInput = styled(Input)``
 
 const SButton = styled(Button)`
-  grid-row: 3 / 4;
-  width: 250px;
-  max-width: 90vw;
+  grid-row: 5 / 6;
 `
