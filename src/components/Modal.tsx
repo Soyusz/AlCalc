@@ -49,6 +49,7 @@ const Blur = styled(motion.div)`
 const Icon = styled.img`
   height: 50px;
   object-fit: scale-down;
+  margin-bottom: 20px;
 `
 
 const Container = styled(motion.div)`

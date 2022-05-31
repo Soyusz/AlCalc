@@ -1,33 +1,45 @@
 import { useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import styled from 'styled-components'
 import { Button } from '../../components/Button'
 import { Input } from '../../components/Input'
 import { Modal } from '../../components/Modal'
-import MailIcon from '../../assets/mail.png'
 import { useNavigation } from '../../hooks/useNavigation'
+import { useRegister } from '../../queries/useRegister'
 
 export const Register = () => {
-  const [email, setEmail] = useState('')
+  const [params] = useSearchParams()
+  const [email, setEmail] = useState(params.get('email') ?? '')
   const [name, setName] = useState('')
+
   const navigation = useNavigation()
+
+  const { mutate, isLoading, isSuccess } = useRegister()
 
   return (
     <>
       <Container>
         <Title>Create an account</Title>
-        <Subtitle>To start using the app, please enter your email address.</Subtitle>
-        <SInput value={email} onValueChange={setEmail} label="Email" type="email" placeholder="Email" />
+        <Subtitle>We are glad you want to join us</Subtitle>
+        <InputContainer>
+          <Input value={email} onValueChange={setEmail} label="Email" type="email" placeholder="Email" />
+          <Input value={name} onValueChange={setName} label="Name" type="text" placeholder="Name" />
+        </InputContainer>
         <SButton label="Next" onClick={() => mutate({ email, name })} disabled={isLoading} />
+        <Modal
+          title="Account has been created"
+          text={text1}
+          isOpen={isSuccess}
+          primaryLabel="Go to login page"
+          handlePrimaryClick={() => navigation.navigate('/login')}
+        />
       </Container>
     </>
   )
 }
 
-const descText =
-  'A link activating this session has been sent to your email address. Click on it to complete the registration process. You may need to check your "spam" folder.'
-
-const descText2 =
-  'The email address you entered was not found in the database. If you already have an account, please make sure you have entered the email correctly. If you are new here, you can proceed to create a new account.'
+const text1 =
+  'We sent you an email with an activation link to your address. To complete the registration process, confirm your account. You will then be able to proceed to login.'
 
 const Title = styled.div`
   font-size: 20px;
@@ -48,10 +60,13 @@ const Container = styled.div`
   align-items: center;
   justify-items: center;
   padding: 20px;
+  grid-auto-flow: column;
 `
 
-const SInput = styled(Input)``
+const InputContainer = styled.div`
+  width: 100%;
+`
 
 const SButton = styled(Button)`
-  grid-row: 5 / 6;
+  grid-row: 7 / 8;
 `

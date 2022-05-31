@@ -12,7 +12,7 @@ export const Login = () => {
   const navigation = useNavigation()
   const { login, showAuthSessionModal, error, isLoading, showSignupModal, closeSignupModal } = useLoginLogic()
 
-  const goToSignup = () => navigation.navigate('/register')
+  const goToSignup = () => navigation.navigate(`/register?email=${email}`)
 
   return (
     <>
