@@ -4,41 +4,20 @@ import { Button } from '../../components/Button'
 import { Input } from '../../components/Input'
 import { Modal } from '../../components/Modal'
 import MailIcon from '../../assets/mail.png'
-import { useLoginLogic } from './useLoginLogic'
 import { useNavigation } from '../../hooks/useNavigation'
 
-export const Login = () => {
+export const Register = () => {
   const [email, setEmail] = useState('')
+  const [name, setName] = useState('')
   const navigation = useNavigation()
-  const { login, showAuthSessionModal, error, isLoading, showSignupModal, closeSignupModal } = useLoginLogic()
-
-  const goToSignup = () => navigation.navigate('/register')
 
   return (
     <>
       <Container>
-        <Title>Welcome to Alkierzv2!</Title>
+        <Title>Create an account</Title>
         <Subtitle>To start using the app, please enter your email address.</Subtitle>
-        <SInput
-          value={email}
-          onValueChange={setEmail}
-          error={showSignupModal ? undefined : error}
-          label="Email"
-          type="email"
-          placeholder="Email"
-        />
-        <SButton label="Next" onClick={() => login(email)} disabled={isLoading} />
-        <Modal isOpen={showAuthSessionModal} title="Authorize your session" text={descText} icon={MailIcon} />
-        <Modal
-          isOpen={showSignupModal}
-          title="Email not found"
-          text={descText2}
-          primaryLabel="Close"
-          secondaryLabel="Create an account"
-          handleClose={closeSignupModal}
-          handlePrimaryClick={closeSignupModal}
-          handleSecondaryClick={goToSignup}
-        />
+        <SInput value={email} onValueChange={setEmail} label="Email" type="email" placeholder="Email" />
+        <SButton label="Next" onClick={() => mutate({ email, name })} disabled={isLoading} />
       </Container>
     </>
   )

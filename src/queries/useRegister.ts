@@ -1,8 +1,8 @@
 import { useMutation } from 'react-query'
 import { BACKEND_URL } from '../backend_url'
 
-export const useLogin = () => {
-  return useMutation<Data, Error, Params>('login', (params) =>
+export const useRegister = () => {
+  return useMutation<Data, Error, Params>('me', (params) =>
     fetch(`${BACKEND_URL}/user/login`, {
       method: 'post',
       headers: {
@@ -15,6 +15,7 @@ export const useLogin = () => {
 
 type Params = {
   email: string
+  name: string
 }
 type Data = {
   token: string

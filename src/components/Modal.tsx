@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import styled from 'styled-components'
+import { Button } from './Button'
 
 type ModalProps = {
   isOpen: boolean
@@ -7,6 +8,10 @@ type ModalProps = {
   text: string
   icon?: string
   handleClose?: () => void
+  primaryLabel?: string
+  handlePrimaryClick?: () => void
+  secondaryLabel?: string
+  handleSecondaryClick?: () => void
 }
 
 const transitionConfig = {
@@ -27,6 +32,8 @@ export const Modal = (p: ModalProps) => {
         {p.icon && <Icon src={p.icon} />}
         <Title>{p.title}</Title>
         <Text>{p.text}</Text>
+        {p.secondaryLabel && <SButton variant="secondary" label={p.secondaryLabel} onClick={p.handleSecondaryClick} />}
+        {p.primaryLabel && <SButton variant="primary" label={p.primaryLabel} onClick={p.handlePrimaryClick} />}
       </Container>
     </>
   )
@@ -70,4 +77,9 @@ const Text = styled.div`
   font-size: 16px;
   font-weight: 400;
   color: #333a55;
+  padding: 20px 0;
+`
+
+const SButton = styled(Button)`
+  margin-top: 10px;
 `
