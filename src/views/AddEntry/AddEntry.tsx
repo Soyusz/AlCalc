@@ -35,7 +35,7 @@ export const AddEntry = () => {
         volume: parseFloat(value.volume),
         price: parseFloat(value.price),
         name: value.name,
-        photo: image.slice(image.search(',') + 1, image.length - 1),
+        photo: image,
         label: [],
       })
     setStep(step + 1)

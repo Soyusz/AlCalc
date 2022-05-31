@@ -62,7 +62,7 @@ export const AddPost = () => {
 
   const handleSubmit = () =>
     mutate({
-      photos: images.map((el) => el.outcome.slice(el.outcome.search(',') + 1, el.outcome.length - 1)),
+      photos: images.map((el) => el.outcome),
       title,
       location,
     })
