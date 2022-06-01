@@ -59,13 +59,14 @@ const Container = styled.div`
   padding: 10px 0;
   border-top-right-radius: 15px;
   border-top-left-radius: 15px;
+  border-radius: 15px;
   background-color: white !important;
-  box-shadow: 0px 3px 10px 0px #00000070;
+  box-shadow: 0px 0px 10px 0px #00000020;
   z-index: 100;
   position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  bottom: 10px;
+  left: 10px;
+  right: 10px;
 `
 
 const ElementContainer = styled.div`
