@@ -35,11 +35,12 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: row;
-  width: 100vw;
   box-shadow: 0px 3px 10px 0px #00000030;
   z-index: 200;
   position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   height: 55px;
   border-bottom-right-radius: 15px;
   border-bottom-left-radius: 15px;

@@ -26,8 +26,6 @@ export const AddPost = () => {
   const [location, setLocation] = useState('')
   const navigation = useNavigation()
 
-  console.log(cropRef.current?.clientWidth)
-
   useEffect(() => {
     if (!isSuccess) return
     navigation.back()
@@ -104,6 +102,7 @@ const Container = styled.div`
   padding: ${(props) => props.theme.spacing.s};
   padding-top: 30px;
   display: flex;
+  flex-direction: column;
 `
 
 const SCrop = styled(Crop)<{ height?: number }>`
