@@ -1,24 +1,28 @@
 import styled from 'styled-components'
+import { Header } from '../../components/Header'
 
 export const About = () => {
   return (
-    <Container>
-      <Element></Element>
-      <Element></Element>
-      <Element></Element>
-      <Soyusz>
-        <div className="title">
-          <h5>created by</h5>
-          <h4>Soyusz</h4>
-        </div>
-        <div className="links">
-          <a href="https://soyusz.netlify.app/">website</a>
-          <a href="https://github.com/Soyusz">github</a>
-        </div>
-      </Soyusz>
-      <Element></Element>
-      <Element></Element>
-    </Container>
+    <>
+      <Header />
+      <Container>
+        <Element></Element>
+        <Element></Element>
+        <Element></Element>
+        <Soyusz>
+          <div className="title">
+            <h5>created by</h5>
+            <h4>Soyusz</h4>
+          </div>
+          <div className="links">
+            <a href="https://soyusz.netlify.app/">website</a>
+            <a href="https://github.com/Soyusz">github</a>
+          </div>
+        </Soyusz>
+        <Element></Element>
+        <Element></Element>
+      </Container>
+    </>
   )
 }
 
@@ -29,6 +33,7 @@ const Container = styled.div`
   display: grid !important;
   grid-template: 1fr 1fr 1fr 1fr / 1fr 1fr;
   align-items: stretch !important;
+  margin-top: 60px;
 `
 
 const Element = styled.div`

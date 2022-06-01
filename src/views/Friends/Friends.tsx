@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { Post } from '../../components/Post'
 import { useFeed } from '../../queries/useFeed'
 
-export const Feed = () => {
+export const Friends = () => {
   const { data, isLoading } = useFeed()
 
   return (

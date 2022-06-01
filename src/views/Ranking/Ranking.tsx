@@ -5,6 +5,7 @@ import { Labels } from './components/Labels'
 import { calcScore } from '../../utils/calcScore'
 import { useRanking } from '../../queries/useRanking'
 import { Header } from '../../components/Header'
+import { Bottomnav } from '../../components/Bottomnav'
 
 export const Ranking = () => {
   const [selectedLabels, setSelectedLabels] = useState<string[]>([])
@@ -24,20 +25,26 @@ export const Ranking = () => {
     }))
 
   return (
-    <Container>
-      <Labels selectedLabels={selectedLabels} setSelectedLabels={setSelectedLabels} />
-      <Content>
-        {rows?.map((row) => (
-          <Row {...row} key={row.id} />
-        ))}
-      </Content>
-    </Container>
+    <>
+      <Header />
+      <Container>
+        <Labels selectedLabels={selectedLabels} setSelectedLabels={setSelectedLabels} />
+        <Content>
+          {rows?.map((row) => (
+            <Row {...row} key={row.id} />
+          ))}
+        </Content>
+      </Container>
+      <Bottomnav />
+    </>
   )
 }
 
 const Container = styled.div`
   background: ${(props) => props.theme.colors.appBackground};
   display: flex;
+  margin-top: 60px;
+  flex-direction: column;
 `
 
 const Content = styled.div`

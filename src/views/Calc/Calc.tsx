@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react'
 import styled from 'styled-components'
+import { Bottomnav } from '../../components/Bottomnav'
 import { BubbleContainer } from '../../components/BubbleContainer'
 import { Button } from '../../components/Button'
+import { Header } from '../../components/Header'
 import { Input } from '../../components/Input'
 import { useCachedState } from '../../hooks/useCachedState'
 import { useNavigation } from '../../hooks/useNavigation'
@@ -38,37 +40,43 @@ export const Calc = () => {
   }, [value])
 
   return (
-    <Container>
-      <BubbleContainer intensity={Math.min(100, score * 4)} />
-      <StyledInput
-        label="Voltage"
-        value={value.voltage}
-        onValueChange={(v) => handleChange(v, 'voltage')}
-        type="number"
-      />
-      <StyledInput
-        label="Volume"
-        value={`${value.volume}`}
-        onValueChange={(v) => handleChange(v, 'volume')}
-        type="number"
-      />
-      <StyledInput
-        label="Price"
-        value={`${value.price}`}
-        onValueChange={(v) => handleChange(v, 'price')}
-        type="number"
-      />
-      <Ring fill={Math.floor(score)} total={100}></Ring>
+    <>
+      <Header />
+      <Container>
+        <BubbleContainer intensity={Math.min(100, score * 4)} />
+        <StyledInput
+          label="Voltage"
+          value={value.voltage}
+          onValueChange={(v) => handleChange(v, 'voltage')}
+          type="number"
+        />
+        <StyledInput
+          label="Volume"
+          value={`${value.volume}`}
+          onValueChange={(v) => handleChange(v, 'volume')}
+          type="number"
+        />
+        <StyledInput
+          label="Price"
+          value={`${value.price}`}
+          onValueChange={(v) => handleChange(v, 'price')}
+          type="number"
+        />
+        <Ring fill={Math.floor(score)} total={100}></Ring>
 
-      <AddButton label="Save" onClick={handleClick} />
-    </Container>
+        <AddButton label="Save" onClick={handleClick} />
+      </Container>
+      <Bottomnav />
+    </>
   )
 }
 
 const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 85px ${({ theme }) => theme.spacing.s} 55px ${({ theme }) => theme.spacing.s};
   background: ${(props) => props.theme.colors.white};
-  padding: ${(props) => props.theme.spacing.s};
-  padding-top: 30px;
   display: flex;
 `
 

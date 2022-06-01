@@ -4,17 +4,14 @@ import { ReactComponent as HamburgerIcon } from '../assets/hamburger.svg'
 import { ReactComponent as BackArrow } from '../assets/back.svg'
 import { useNavigation } from '../hooks/useNavigation'
 import { stackScreens } from './Navigation/Navigator'
-
-type HeaderProps = {
-  onIconClick: () => void
-}
-
+import { useHistory } from '../contexts/History/useHistory'
 const NoMenuLocations = ['/login']
 
-export const Header = ({ onIconClick }: HeaderProps) => {
+export const Header = () => {
   const { pathname } = useLocation()
   const isStack = pathname.includes('/stack')
   const { back } = useNavigation()
+  const { toggleSidebar } = useHistory()
 
   if (isStack)
     return (
@@ -26,8 +23,7 @@ export const Header = ({ onIconClick }: HeaderProps) => {
 
   return (
     <Container className="Header">
-      {!NoMenuLocations.includes(pathname) && <SidebarIcon onClick={onIconClick} />}
-      <Title>Alkierz v2</Title>
+      {!NoMenuLocations.includes(pathname) && <SidebarIcon onClick={() => toggleSidebar()} />}
     </Container>
   )
 }
@@ -44,7 +40,9 @@ const Container = styled.div`
   z-index: 200;
   position: fixed;
   top: 0;
-  min-height: 65px;
+  height: 55px;
+  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 15px;
 `
 
 const Title = styled.div`

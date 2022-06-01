@@ -19,11 +19,8 @@ export const Sidebar = ({ show, onClick = () => {}, afterClick = () => {} }: Sid
   }
   return (
     <Container onClick={onClick} animate={show ? ContainerStyles.shown : ContainerStyles.hidden}>
-      <Element onClick={() => handleNavigate('/')}>Ranking</Element>
-      <Element onClick={() => handleNavigate('/calc')}>Calc</Element>
-      <Element onClick={() => handleNavigate('/feed')}>Feed</Element>
+      <Element onClick={() => handleNavigate('/home')}>Home</Element>
       <Element onClick={() => handleNavigate('/about')}>About</Element>
-      <Element onClick={() => handleNavigate('/post/add', true)}>Add post</Element>
       {isAdmin && (
         <>
           <Element onClick={() => handleNavigate('/admin')}>Admin</Element>

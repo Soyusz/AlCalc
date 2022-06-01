@@ -123,7 +123,7 @@ const BottomBox = styled.div`
   flex-direction: column;
   align-items: center;
   margin-top: auto;
-  padding-bottom: 30px;
+  padding-bottom: 20px;
 `
 
 const Status = styled.div`
