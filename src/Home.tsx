@@ -13,7 +13,6 @@ export const Home = () => {
   const { navigate } = useNavigation()
 
   useEffect(() => {
-    console.log({ location })
     if (location.pathname === '/home') navigate('/home/friends')
   }, [navigate, location.pathname])
 

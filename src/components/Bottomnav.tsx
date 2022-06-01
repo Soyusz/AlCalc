@@ -15,23 +15,10 @@ type ElementProps = {
 const Element = ({ icon, path }: ElementProps) => {
   const { pathname } = useLocation()
   const { navigate } = useNavigation()
-  const variants = {
-    hidden: {
-      transform: 'scale(0)',
-    },
-    shown: {
-      transform: 'scale(1)',
-    },
-  }
   return (
     <ElementContainer onClick={() => navigate(`/home${path}`)}>
       <img src={icon} />
-      <Dot
-        variants={variants}
-        initial={'hidden'}
-        animate={pathname === `/home${path}` ? 'shown' : 'hidden'}
-        transition={{ duration: 0.2 }}
-      />
+      {pathname === `/home${path}` && <Dot transition={{ duration: 0.2 }} layoutId="dot" />}
     </ElementContainer>
   )
 }

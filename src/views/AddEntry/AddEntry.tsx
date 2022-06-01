@@ -70,4 +70,5 @@ const Container = styled.div`
   padding: ${(props) => props.theme.spacing.s};
   padding-top: 30px;
   display: flex;
+  flex-direction: column;
 `
