@@ -13,11 +13,12 @@ import { AddEntry } from '../../views/AddEntry/AddEntry'
 import { Entry } from '../../views/Entry/Entry'
 import { AddPost } from '../../views/AddPost/AddPost'
 import { Register } from '../../views/Register/Register'
+import { Friends } from '../../views/Friends/Friends'
 
 export const Navigator = () => (
   <DefaultTemplate>
     <Routes>
-      <Route path="/" element={<Ranking />} />
+      <Route path="/" element={<Friends />} />
       <Route path="/calc" element={<Calc />} />
       <Route path="/about" element={<About />} />
       <Route path="/ranking" element={<Ranking />} />
@@ -26,6 +27,7 @@ export const Navigator = () => (
       <Route path="/admin" element={<Admin />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
+      <Route path="/friends" element={<Friends />} />
 
       <Route path="/stack">
         <Route path="user/:userId" element={<User />} />

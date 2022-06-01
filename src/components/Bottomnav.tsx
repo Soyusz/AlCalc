@@ -5,26 +5,43 @@ import friendsIcon from '../assets/friends.png'
 import addIcon from '../assets/add.png'
 import calcIcon from '../assets/calc.png'
 import rankingIcon from '../assets/ranking.png'
+import { useLocation } from 'react-router-dom'
+import { motion } from 'framer-motion'
+
+type ElementProps = {
+  icon: string
+  path: string
+}
+const Element = ({ icon, path }: ElementProps) => {
+  const { pathname } = useLocation()
+  const { navigate } = useNavigation()
+  const variants = {
+    hidden: {
+      transform: 'scale(0)',
+    },
+    shown: {
+      transform: 'scale(1)',
+    },
+  }
+  return (
+    <ElementContainer onClick={() => navigate(path)}>
+      <img src={icon} />
+      <Dot variants={variants} initial={'hidden'} animate={pathname === path ? 'shown' : 'hidden'} />
+    </ElementContainer>
+  )
+}
 
 export const Bottomnav = () => {
-  const { navigate, push } = useNavigation()
+  const { push } = useNavigation()
   return (
     <Container>
-      <Element onClick={() => navigate('/feed')}>
-        <img src={friendsIcon} />
-      </Element>
-      <Element onClick={() => navigate('/feed')}>
-        <img src={feedIcon} />
-      </Element>
+      <Element path="/friends" icon={friendsIcon} />
+      <Element path="/feed" icon={feedIcon} />
       <Add onClick={() => push('/post/add')}>
         <img src={addIcon} />
       </Add>
-      <Element onClick={() => navigate('/calc')}>
-        <img src={calcIcon} />
-      </Element>
-      <Element onClick={() => navigate('/ranking')}>
-        <img src={rankingIcon} />
-      </Element>
+      <Element path="/calc" icon={calcIcon} />
+      <Element path="/ranking" icon={rankingIcon} />
     </Container>
   )
 }
@@ -42,7 +59,8 @@ const Container = styled.div`
   z-index: 100;
 `
 
-const Element = styled.div`
+const ElementContainer = styled.div`
+  position: relative;
   img {
     height: 30px;
     width: 30px;
@@ -57,4 +75,15 @@ const Add = styled.div`
     transform: scale(1.3);
     opacity: 0.8;
   }
+`
+
+const Dot = styled(motion.div)`
+  height: 5px;
+  width: 5px;
+  border-radius: 50%;
+  background: black;
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
 `
