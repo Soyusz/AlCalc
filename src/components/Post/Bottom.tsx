@@ -32,7 +32,6 @@ export const Bottom = ({ isLiked, setIsLiked, skeleton, ...p }: BottomProps) => 
 const IconSkeleton = () => <Skeleton height="100%" width="30px" />
 
 const Container = styled.div`
-  width: 100%;
   display: flex;
   align-items: flex-start;
   margin: 0 15px 10px 15px;
