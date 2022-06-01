@@ -60,10 +60,12 @@ const variants = {
     transform: 'scale(1.00) rotateY(0deg)',
     borderRadius: 0,
     boxShadow: '0px 0px 10px 0px #00000000',
+    border: '0px solid white',
   },
   sidebar: {
     transform: 'scale(0.9) rotateY(-5deg)',
     borderRadius: '10px',
     boxShadow: '0px 0px 10px 0px #00000035',
+    border: '1px solid #333a55',
   },
 }

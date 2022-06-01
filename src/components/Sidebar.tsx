@@ -23,7 +23,6 @@ export const Sidebar = ({ show, onClick = () => {}, afterClick = () => {} }: Sid
       <Element onClick={() => handleNavigate('/calc')}>Calc</Element>
       <Element onClick={() => handleNavigate('/feed')}>Feed</Element>
       <Element onClick={() => handleNavigate('/about')}>About</Element>
-      <Element onClick={() => handleNavigate('/post/add', true)}>Add post</Element>
       {isAdmin && (
         <>
           <Element onClick={() => handleNavigate('/admin')}>Admin</Element>

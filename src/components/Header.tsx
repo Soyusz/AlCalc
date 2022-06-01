@@ -24,7 +24,6 @@ export const Header = () => {
   return (
     <Container className="Header">
       {!NoMenuLocations.includes(pathname) && <SidebarIcon onClick={() => toggleSidebar()} />}
-      <Title>Alkierz v2</Title>
     </Container>
   )
 }
@@ -41,7 +40,9 @@ const Container = styled.div`
   z-index: 200;
   position: fixed;
   top: 0;
-  min-height: 65px;
+  height: 55px;
+  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 15px;
 `
 
 const Title = styled.div`

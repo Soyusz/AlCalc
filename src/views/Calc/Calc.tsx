@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import styled from 'styled-components'
+import { Bottomnav } from '../../components/Bottomnav'
 import { BubbleContainer } from '../../components/BubbleContainer'
 import { Button } from '../../components/Button'
 import { Header } from '../../components/Header'
@@ -65,6 +66,7 @@ export const Calc = () => {
 
         <AddButton label="Save" onClick={handleClick} />
       </Container>
+      <Bottomnav />
     </>
   )
 }

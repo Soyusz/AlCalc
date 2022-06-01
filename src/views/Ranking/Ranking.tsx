@@ -5,6 +5,7 @@ import { Labels } from './components/Labels'
 import { calcScore } from '../../utils/calcScore'
 import { useRanking } from '../../queries/useRanking'
 import { Header } from '../../components/Header'
+import { Bottomnav } from '../../components/Bottomnav'
 
 export const Ranking = () => {
   const [selectedLabels, setSelectedLabels] = useState<string[]>([])
@@ -34,6 +35,7 @@ export const Ranking = () => {
           ))}
         </Content>
       </Container>
+      <Bottomnav />
     </>
   )
 }
