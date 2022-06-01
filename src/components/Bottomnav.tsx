@@ -24,9 +24,14 @@ const Element = ({ icon, path }: ElementProps) => {
     },
   }
   return (
-    <ElementContainer onClick={() => navigate(path)}>
+    <ElementContainer onClick={() => navigate(`/home${path}`)}>
       <img src={icon} />
-      <Dot variants={variants} initial={'hidden'} animate={pathname === path ? 'shown' : 'hidden'} />
+      <Dot
+        variants={variants}
+        initial={'hidden'}
+        animate={pathname === `/home${path}` ? 'shown' : 'hidden'}
+        transition={{ duration: 0.2 }}
+      />
     </ElementContainer>
   )
 }
@@ -57,6 +62,10 @@ const Container = styled.div`
   background-color: white !important;
   box-shadow: 0px 3px 10px 0px #00000070;
   z-index: 100;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
 `
 
 const ElementContainer = styled.div`

@@ -48,11 +48,6 @@ const Content = styled(motion.div)<{ padding?: string }>`
   z-index: 32;
   grid-column: 2 / 3;
   grid-row: 1 / 3;
-  & > div {
-    flex-direction: column;
-    align-items: center;
-    overflow: scroll;
-  }
 `
 
 const variants = {

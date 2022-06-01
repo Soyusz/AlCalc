@@ -72,11 +72,12 @@ export const Calc = () => {
 }
 
 const Container = styled.div`
-  background: ${(props) => props.theme.colors.white};
-  padding: ${(props) => props.theme.spacing.s};
-  padding-top: 30px;
   display: flex;
-  margin-top: 60px;
+  flex-direction: column;
+  height: 100%;
+  padding: 85px ${({ theme }) => theme.spacing.s} 55px ${({ theme }) => theme.spacing.s};
+  background: ${(props) => props.theme.colors.white};
+  display: flex;
 `
 
 const StyledInput = styled(Input)`

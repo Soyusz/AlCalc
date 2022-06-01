@@ -44,6 +44,7 @@ const Container = styled.div`
   background: ${(props) => props.theme.colors.appBackground};
   display: flex;
   margin-top: 60px;
+  flex-direction: column;
 `
 
 const Content = styled.div`
