@@ -1,19 +1,13 @@
 import { Route, Routes, useLocation } from 'react-router-dom'
-import { Fallback404 } from '../../views/Fallback404/Fallback404'
 import { About } from '../../views/About/About'
 import { DefaultTemplate } from '../../views/Templates/DefaultTemplate'
 import { Admin } from '../../views/Admin/Admin'
 import { Login } from '../../views/Login/Login'
-import { User } from '../../views/User/User'
-import { UserPosts } from '../../views/UserPosts/UserPosts'
-import { AddEntry } from '../../views/AddEntry/AddEntry'
-import { Entry } from '../../views/Entry/Entry'
-import { AddPost } from '../../views/AddPost/AddPost'
 import { Register } from '../../views/Register/Register'
-import { Home } from '../../Home'
 import { useEffect } from 'react'
 import { useNavigation } from '../../hooks/useNavigation'
-import { Friends } from '../../views/Friends/Friends'
+import { Stack } from '../../Stack'
+import { Home } from '../../Home'
 
 export const Navigator = () => {
   const location = useLocation()
@@ -32,13 +26,7 @@ export const Navigator = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
 
-        <Route path="/stack">
-          <Route path="user/:userId" element={<User />} />
-          <Route path="user/:userId/posts/:postId" element={<UserPosts />} />
-          <Route path="entry/add" element={<AddEntry />} />
-          <Route path="post/add" element={<AddPost />} />
-          <Route path="entry/view/:entryId" element={<Entry />} />
-        </Route>
+        <Route path="/stack/*" element={<Stack />} />
       </Routes>
     </DefaultTemplate>
   )
