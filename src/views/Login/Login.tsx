@@ -53,13 +53,17 @@ const descText2 =
 const Title = styled.div`
   font-size: 20px;
   font-weight: 700;
-  margin: 64px 16px 16px 16px;
+  margin-top: 64px;
+  margin-bottom: 16px;
+  text-align: center;
 `
 
 const Subtitle = styled.div`
   font-size: 14px;
   font-weight: 400;
   color: #333a55;
+  margin: 16px 0;
+  text-align: center;
 `
 
 const Container = styled.div`

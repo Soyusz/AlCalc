@@ -7,6 +7,8 @@ export type HistoryContextType = {
   back: () => void
   displayedScreen: StackScreens | DrawerScreens
   isStackOnTop: boolean
+  toggleSidebar: (value?: boolean) => void
+  sidebarOpen: boolean
 }
 
 export const HistoryContext = createContext<HistoryContextType | null>(null)

@@ -24,20 +24,24 @@ export const Ranking = () => {
     }))
 
   return (
-    <Container>
-      <Labels selectedLabels={selectedLabels} setSelectedLabels={setSelectedLabels} />
-      <Content>
-        {rows?.map((row) => (
-          <Row {...row} key={row.id} />
-        ))}
-      </Content>
-    </Container>
+    <>
+      <Header />
+      <Container>
+        <Labels selectedLabels={selectedLabels} setSelectedLabels={setSelectedLabels} />
+        <Content>
+          {rows?.map((row) => (
+            <Row {...row} key={row.id} />
+          ))}
+        </Content>
+      </Container>
+    </>
   )
 }
 
 const Container = styled.div`
   background: ${(props) => props.theme.colors.appBackground};
   display: flex;
+  margin-top: 60px;
 `
 
 const Content = styled.div`

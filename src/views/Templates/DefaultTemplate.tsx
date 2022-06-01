@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion'
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { Header } from '../../components/Header'
 import { Sidebar } from '../../components/Sidebar'
+import { useHistory } from '../../contexts/History/useHistory'
 
 type DefaultTemplateProps = {
   className?: string
@@ -10,21 +10,20 @@ type DefaultTemplateProps = {
 }
 
 export const DefaultTemplate: React.FC<DefaultTemplateProps> = ({ children, className, contentPadding }) => {
-  const [showSidebar, setShowSidebar] = useState(false)
+  const { sidebarOpen, toggleSidebar } = useHistory()
   const handleClickContent = () => {
-    if (!showSidebar) return
-    setShowSidebar(false)
+    if (!sidebarOpen) return
+    toggleSidebar(false)
   }
 
   return (
     <Container className={className}>
-      <Header onIconClick={() => setShowSidebar(!showSidebar)} />
-      <Sidebar show={showSidebar} afterClick={() => setShowSidebar(false)} />
+      <Sidebar show={sidebarOpen} afterClick={() => toggleSidebar(false)} />
       <Content
         onClick={handleClickContent}
         padding={contentPadding}
         variants={variants}
-        animate={showSidebar ? 'sidebar' : 'normal'}
+        animate={sidebarOpen ? 'sidebar' : 'normal'}
         initial={false}
         transition={{ type: 'tween' }}>
         {children}
@@ -48,7 +47,7 @@ const Content = styled(motion.div)<{ padding?: string }>`
   overflow: hidden;
   z-index: 32;
   grid-column: 2 / 3;
-  grid-row: 2 / 3;
+  grid-row: 1 / 3;
   & > div {
     flex-direction: column;
     align-items: center;
