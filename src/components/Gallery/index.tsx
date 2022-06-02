@@ -26,7 +26,7 @@ export const Gallery = ({ posts, userId }: GalleryProps) => {
 }
 
 const Container = styled.div`
-  width: 100vw;
+  width: 100%;
   display: grid;
   grid-template: 1fr 1fr 1fr / 1fr 1fr 1fr;
   grid-gap: 5px;
