@@ -51,6 +51,8 @@ const Header = styled.div`
   top: 0;
   left: 0;
   right: 0;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
 
   > svg {
     margin-right: auto;

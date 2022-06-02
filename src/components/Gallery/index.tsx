@@ -36,6 +36,7 @@ const Container = styled.div`
 const Image = styled.div`
   aspect-ratio: 1;
   overflow: hidden;
+  border-radius: 5px;
   & > img {
     object-fit: cover;
     height: 100%;
