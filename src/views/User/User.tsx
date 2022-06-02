@@ -29,12 +29,11 @@ export const User = () => {
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  z-index: 3000;
 `
 
 const GallerySection = styled.div`
   margin: 10px 0 0 0;
-  box-shadow: 0px 3px 10px 0px #00000030;
+  box-shadow: 0px -3px 10px 0px #00000020;
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
   padding: 10px;
