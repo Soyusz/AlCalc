@@ -36,7 +36,7 @@ export const Image = ({ next }: Props) => {
     <Container>
       <input type="file" ref={inputRef} onChange={handleChange} hidden />
       <Crop image={selectedImage} onChange={setCroppedArea} onClick={handleClick} />
-      <NextButton label="Submit" onClick={handleSubmit} />
+      <NextButton label="Submit" onClick={handleSubmit} disabled={!selectedImage} />
     </Container>
   )
 }

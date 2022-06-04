@@ -12,7 +12,7 @@ export const Volume = ({ value, update, next }: Props) => {
   return (
     <Container>
       <StyledInput label="Volume" value={value} onValueChange={update} type="text" />
-      <NextButton label="Next" onClick={next} />
+      <NextButton label="Next" onClick={next} disabled={!parseFloat(value)} />
     </Container>
   )
 }

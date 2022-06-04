@@ -13,7 +13,7 @@ export const Labels = ({ value, update, next }: Props) => {
   return (
     <Container>
       <LabelList wrap selectedLabels={value} setSelectedLabels={update} />
-      <NextButton label="Next" onClick={next} />
+      <NextButton label="Next" onClick={next} disabled={!value.length} />
     </Container>
   )
 }
