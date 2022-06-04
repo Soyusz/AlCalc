@@ -27,7 +27,7 @@ export const Login = () => {
           type="email"
           placeholder="Email"
         />
-        <SButton label="Next" onClick={() => login(email)} disabled={isLoading} />
+        <SButton label="Next" onClick={() => login(email)} isLoading={isLoading} />
         <Modal isOpen={showAuthSessionModal} title="Authorize your session" text={descText} icon={MailIcon} />
         <Modal
           isOpen={showSignupModal}

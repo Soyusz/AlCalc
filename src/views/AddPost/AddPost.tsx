@@ -87,11 +87,7 @@ export const AddPost = () => {
         <Input value={location} label="Location" onValueChange={setLocation} />
       </FormBox>
       <BottomBox>
-        <Status>
-          {isLoading && 'Loading...'}
-          {isError && 'Upload failed'}
-        </Status>
-        <Button label="Submit" onClick={handleSubmit} disabled={isLoading} />
+        <Button label="Submit" onClick={handleSubmit} isLoading={isLoading} />
       </BottomBox>
     </Container>
   )
@@ -123,11 +119,6 @@ const BottomBox = styled.div`
   align-items: center;
   margin-top: auto;
   padding-bottom: 20px;
-`
-
-const Status = styled.div`
-  font-size: 15px;
-  padding: 10px;
 `
 
 const Preview = styled.div`

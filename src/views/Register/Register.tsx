@@ -25,7 +25,7 @@ export const Register = () => {
           <Input value={email} onValueChange={setEmail} label="Email" type="email" placeholder="Email" />
           <Input value={name} onValueChange={setName} label="Name" type="text" placeholder="Name" />
         </InputContainer>
-        <SButton label="Next" onClick={() => mutate({ email, name })} disabled={isLoading} />
+        <SButton label="Next" onClick={() => mutate({ email, name })} isLoading={isLoading} />
         <Modal
           title="Account has been created"
           text={text1}
