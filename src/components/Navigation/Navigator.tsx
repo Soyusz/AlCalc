@@ -8,6 +8,7 @@ import { useEffect } from 'react'
 import { useNavigation } from '../../hooks/useNavigation'
 import { Stack } from '../../Stack'
 import { Home } from '../../Home'
+import { Settings } from '../../views/Settings/Settings'
 
 export const Navigator = () => {
   const location = useLocation()
@@ -25,6 +26,7 @@ export const Navigator = () => {
         <Route path="/admin" element={<Admin />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/settings/*" element={<Settings />} />
 
         <Route path="/stack/*" element={<Stack />} />
       </Routes>

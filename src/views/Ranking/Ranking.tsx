@@ -1,11 +1,11 @@
 import { useState } from 'react'
 import styled from 'styled-components'
 import { Row } from './components/Row'
-import { Labels } from './components/Labels'
 import { calcScore } from '../../utils/calcScore'
 import { useRanking } from '../../queries/useRanking'
 import { Header } from '../../components/Header'
 import { Bottomnav } from '../../components/Bottomnav'
+import { Labels } from '../../components/Labels'
 
 export const Ranking = () => {
   const [selectedLabels, setSelectedLabels] = useState<string[]>([])

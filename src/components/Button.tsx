@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import loaderGif from '../assets/loader.gif'
 
 type CustomButtonVariants = 'primary' | 'secondary'
 
@@ -8,17 +9,19 @@ type ButtonProps = {
   onClick?: () => void
   disabled?: boolean
   className?: string
+  isLoading?: boolean
 }
 
 export const Button = ({
   label,
   variant = 'primary',
   onClick = () => {},
-  disabled = false,
+  isLoading,
+  disabled = isLoading,
   className,
 }: ButtonProps) => (
   <WrapperButton variant={variant} onClick={onClick} disabled={disabled} className={className}>
-    {label}
+    {isLoading ? <img src={loaderGif} /> : label}
   </WrapperButton>
 )
 
@@ -31,11 +34,18 @@ const WrapperButton = styled.button<any>`
   border-radius: 100px;
   font-size: 16px;
   font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   opacity: ${({ disabled }) => (disabled ? 0.5 : 1)};
 
   &:activee {
     background-color: ${({ variant }) => (variant === 'primary' ? '#a04eff' : 'white')};
+  }
+
+  > img {
+    max-height: 1.2em;
   }
 
   @media screen and (max-height: 600px) {

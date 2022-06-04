@@ -46,7 +46,7 @@ export const Sidebar = ({ show, onClick = () => {}, afterClick = () => {} }: Sid
     <Container onClick={onClick} animate={show ? ContainerStyles.shown : ContainerStyles.hidden}>
       <Element onClick={() => handleNavigate('/home')} name="Home" icon={homeIcon} />
       <Element onClick={() => handleNavigate('/about')} name="About" icon={aboutIcon} />
-      <Element onClick={() => {}} name="Settings" icon={settingsIcon} />
+      <Element onClick={() => handleNavigate('/settings')} name="Settings" icon={settingsIcon} />
       <BottomBox>
         {isAdmin && <Element onClick={() => handleNavigate('/admin')} name="Admin" icon={adminIcon} />}
         <Element onClick={() => handleLogout()} name="Sign out" icon={logoutIcon} />

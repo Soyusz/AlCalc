@@ -12,7 +12,7 @@ export const Name = ({ value, update, next }: Props) => {
   return (
     <Container>
       <StyledInput label="Name" value={value} onValueChange={update} type="text" />
-      <NextButton label="Next" onClick={next} />
+      <NextButton label="Next" onClick={next} disabled={!value} />
     </Container>
   )
 }
