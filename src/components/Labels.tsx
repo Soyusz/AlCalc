@@ -25,18 +25,20 @@ const labels = [
 
 type LabelsProps = {
   selectedLabels: string[]
-  setSelectedLabels: React.Dispatch<string[] | SetStateAction<string[]>>
+  setSelectedLabels: React.Dispatch<string[]>
+  wrap?: boolean
 }
 
-export const Labels = ({ selectedLabels, setSelectedLabels }: LabelsProps) => {
-  const [wrap, setWrap] = useState(false)
+export const Labels = (p: LabelsProps) => {
+  const [wrap, setWrap] = useState(p.wrap ?? false)
 
   const handleLabelClick = (label: string) => {
-    if (!selectedLabels.includes(label)) setSelectedLabels([...selectedLabels, label])
-    else setSelectedLabels(selectedLabels.filter((el) => el !== label))
+    if (!p.selectedLabels.includes(label)) p.setSelectedLabels([...p.selectedLabels, label])
+    else p.setSelectedLabels(p.selectedLabels.filter((el) => el !== label))
   }
 
   const gestureBind = useDrag(({ movement }) => {
+    if (p.wrap !== undefined) return
     const value = movement[1]
     if (Math.abs(value) < 10) return
     if (value < 0) return setWrap(false)
@@ -47,13 +49,13 @@ export const Labels = ({ selectedLabels, setSelectedLabels }: LabelsProps) => {
 
   const renderLabels = () =>
     labels
-      .sort((label) => (selectedLabels.includes(label) ? -1 : 1))
+      .sort((label) => (p.selectedLabels.includes(label) ? -1 : 1))
       .map((label) => (
         <Label
           {...gestureBind()}
           layout
           wrapped={wrap}
-          selected={selectedLabels.includes(label)}
+          selected={p.selectedLabels.includes(label)}
           onClick={() => handleLabelClick(label)}
           key={label}>
           {parseLabel(label)}
