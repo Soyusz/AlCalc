@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import { Header } from '../../components/Header'
 import { Route, Routes } from 'react-router-dom'
 import { Main } from './Main'
+import { MyEntriesStatus } from '../MyEntriesStatus/MyEntriesStatus'
 
 export const Settings = () => {
   return (
@@ -9,7 +10,7 @@ export const Settings = () => {
       <Header />
       <Routes>
         <Route path="/" element={<Main />} />
-        <Route path="/hehe" element={<h1>hehe</h1>} />
+        <Route path="/myEntriesStatus" element={<MyEntriesStatus />} />
       </Routes>
     </Container>
   )
