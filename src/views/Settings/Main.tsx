@@ -6,6 +6,7 @@ export const Main = () => {
   return (
     <Container>
       <Category text="My Profile" disabled />
+      <Category text="My Entries" navigate="/myEntriesStatus" />
       <Category text="Language" disabled />
       <Category text="Notifications" disabled />
       <Category text="Privacy Policy" disabled />
@@ -26,7 +27,7 @@ const Category = (p: CategoryProps) => {
   return (
     <CategoryContainer
       disabled={p.disabled}
-      onClick={() => p.disabled && p.navigate && navigate(`/settings${p.navigate}`)}>
+      onClick={() => !p.disabled && p.navigate && navigate(`/settings${p.navigate}`)}>
       <span>{p.text}</span>
       <Arrow />
     </CategoryContainer>
