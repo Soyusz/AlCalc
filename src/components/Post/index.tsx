@@ -15,9 +15,7 @@ export const Post = (p: PostProps) => {
   const { mutate: sendLike } = useSendLike()
   const [isLiked, setIsLiked] = useState<boolean | null>(null)
   const [likeNumber, setLikeNumber] = useState<number>()
-  const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0)
   const { data: author, isLoading: isAuthorLoading } = useUser(!p.skeleton && p.user_id)
-  const currentPhoto = p.photos?.[currentPhotoIndex]
 
   useEffect(() => setIsLiked(amILiking), [amILiking])
   useEffect(() => setLikeNumber(data?.length), [data])
@@ -31,21 +29,10 @@ export const Post = (p: PostProps) => {
     setIsLiked(value)
   }
 
-  const handlePhotoClick = () => {
-    if (!p.photos) return
-    setCurrentPhotoIndex((currentPhotoIndex + 1) % p.photos?.length)
-  }
-
   return (
     <Container id={p.id}>
       <Top {...p} author={author} />
-      <Photo
-        src={currentPhoto}
-        isLiked={isLiked}
-        setIsLiked={handleLikePost}
-        skeleton={isSkeleton}
-        onClick={handlePhotoClick}
-      />
+      <Photo photos={p.photos} isLiked={isLiked} setIsLiked={handleLikePost} skeleton={isSkeleton} />
       <Bottom
         title={p.title}
         author={author?.name}

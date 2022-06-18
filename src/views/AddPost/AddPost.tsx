@@ -58,12 +58,14 @@ export const AddPost = () => {
     ])
   }
 
-  const handleSubmit = () =>
+  const handleSubmit = () => {
+    if (!images.length || !title || !location) return
     mutate({
       photos: images.map((el) => el.outcome),
       title,
       location,
     })
+  }
 
   return (
     <Container>
