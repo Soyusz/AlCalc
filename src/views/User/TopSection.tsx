@@ -1,6 +1,8 @@
 import styled from 'styled-components'
 import { Button } from '../../components/Button'
 import { SkelText } from '../../components/SkelText'
+import { useUserContext } from '../../contexts/User/useUserContext'
+import { useFollow } from '../../queries/useFollow'
 import { User } from '../../types/user'
 
 type Props = {
@@ -9,6 +11,14 @@ type Props = {
 }
 
 export const TopSection = ({ imageSrc, user }: Props) => {
+  const follow = useFollow()
+  const amIFollowing = follow.amIFollowing(user?.id)
+
+  const handleFollowClick = () => {
+    if (!user?.id) return
+    follow.followUser({ userId: user?.id, value: !amIFollowing })
+  }
+
   return (
     <Container>
       <InfoSection>
@@ -22,7 +32,11 @@ export const TopSection = ({ imageSrc, user }: Props) => {
               <SkelText v={user?.name && `@${user.name}`} w={10} />
             </div>
           </UserName>
-          <FollowButton label="follow" />
+          <FollowButton
+            label={amIFollowing ? 'Unfollow' : 'Follow'}
+            onClick={handleFollowClick}
+            isLoading={follow.isLoading}
+          />
         </RightPanel>
         <Description>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean molestie augue mi.</Description>
       </InfoSection>
