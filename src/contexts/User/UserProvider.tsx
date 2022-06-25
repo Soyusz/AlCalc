@@ -13,7 +13,7 @@ export const UserContextProvider: FC = memo(({ children }) => {
   useEffect(() => {
     if (token !== null) return
     if (['/login', '/register'].includes(location.pathname)) return
-    navigation.navigate('/login')
+    // navigation.navigate('/login')
   }, [token, navigation])
 
   useEffect(() => {
