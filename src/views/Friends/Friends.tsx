@@ -3,7 +3,7 @@ import { Post } from '../../components/Post'
 import { useFeed } from '../../queries/useFeed'
 
 export const Friends = () => {
-  const { data, isLoading } = useFeed()
+  const { data, isLoading } = useFeed('FOLLOWED')
 
   return (
     <Scroll disabled={isLoading}>
