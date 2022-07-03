@@ -11,6 +11,12 @@ export const MyEntriesStatus = () => {
   return (
     <Container>
       <StackHeader />
+      {data?.length === 0 && (
+        <Empty>
+          <h1>Nothing here!</h1>
+          <h2>Here you will see the entries you added</h2>
+        </Empty>
+      )}
       <Scroll>
         {data?.map((entry) => (
           <Element {...entry} />
@@ -68,6 +74,27 @@ const Container = styled.div`
   max-height: 100vh;
   padding-bottom: 55px;
   overflow: scroll;
+  height: 100%;
 `
 
 const Scroll = styled.div``
+
+const Empty = styled.div`
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  flex: 1;
+
+  h1 {
+    font-size: 24px;
+    font-weight: 700;
+  }
+
+  h2 {
+    font-size: 16px;
+    font-weight: 400;
+  }
+`
