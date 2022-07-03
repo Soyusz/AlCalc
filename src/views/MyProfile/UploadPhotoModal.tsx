@@ -63,4 +63,5 @@ const Container = styled.div`
 
 const NextButton = styled(Button)`
   margin-top: auto;
+  margin-bottom: 5px;
 `
