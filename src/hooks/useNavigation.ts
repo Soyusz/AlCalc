@@ -8,6 +8,7 @@ export const useNavigation = () => {
     () => ({
       navigate: (path: string) => navigate(path, { replace: true }),
       push: (path: string) => navigate(`/stack${path}`, { replace: false }),
+      pushScreen: (path: string) => navigate(path, { replace: false }),
       back: () => navigate(-1),
     }),
     [navigate]

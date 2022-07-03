@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { Button } from '../../components/Button'
 import { Input } from '../../components/Input'
+import { StackHeader } from '../../components/StackHeader'
 import { useUserContext } from '../../contexts/User/useUserContext'
 import { ProfilePhoto } from './ProfilePhoto'
 
@@ -18,6 +19,7 @@ export const MyProfile = () => {
 
   return (
     <Container>
+      <StackHeader />
       <ProfilePhoto src={me?.photo} />
       <FormContainer>
         <Input value={displayName ?? ''} onValueChange={setDisplayName} label="Display name" />
