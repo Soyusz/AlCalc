@@ -40,10 +40,10 @@ const Container = styled.div`
   z-index: 3;
   flex: 1;
   background: #f5f5f5;
-  box-shadow: 0 0 10px 0px #ccc;
+  box-shadow: 0 0 10px 0px #cccccc93;
   border: 1px solid lightgrey;
   padding: ${(props) => props.theme.spacing.l};
-  min-height: 100vh;
+  min-height: 80vh;
 `
 
 const Name = styled.div`

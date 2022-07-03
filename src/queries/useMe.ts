@@ -16,8 +16,7 @@ export const useMe = (token?: string | null) => {
         return res.json()
       }),
     {
-      enabled: !!token,
-      retry: 0,
+      enabled: token !== undefined && token !== null && !!token,
     }
   )
 }

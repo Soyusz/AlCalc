@@ -29,6 +29,8 @@ export const Post = (p: PostProps) => {
     setIsLiked(value)
   }
 
+  if (!p.photos?.length) return null
+
   return (
     <Container id={p.id}>
       <Top {...p} author={author} />

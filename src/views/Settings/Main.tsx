@@ -1,11 +1,13 @@
 import styled from 'styled-components'
 import { ReactComponent as Arrow } from '../../assets/back.svg'
+import { Header } from '../../components/Header'
 import { useNavigation } from '../../hooks/useNavigation'
 
 export const Main = () => {
   return (
     <Container>
-      <Category text="My Profile" disabled />
+      <Header />
+      <Category text="My Profile" navigate="/myProfile" />
       <Category text="My Entries" navigate="/myEntriesStatus" />
       <Category text="Language" disabled />
       <Category text="Notifications" disabled />
@@ -23,11 +25,11 @@ type CategoryProps = {
 }
 
 const Category = (p: CategoryProps) => {
-  const { navigate } = useNavigation()
+  const navigation = useNavigation()
   return (
     <CategoryContainer
       disabled={p.disabled}
-      onClick={() => !p.disabled && p.navigate && navigate(`/settings${p.navigate}`)}>
+      onClick={() => !p.disabled && p.navigate && navigation.pushScreen(`/settings${p.navigate}`)}>
       <span>{p.text}</span>
       <Arrow />
     </CategoryContainer>
@@ -37,7 +39,7 @@ const Category = (p: CategoryProps) => {
 const CategoryContainer = styled.div<{ disabled?: boolean }>`
   display: flex;
   justify-content: space-between;
-  alig-items: center;
+  align-items: center;
   background: white;
   padding: 15px;
   border-radius: 15px;

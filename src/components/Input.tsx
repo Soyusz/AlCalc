@@ -14,7 +14,7 @@ export type InputProps = {
   onInfoIconOpen?: () => void
   mask?: string
   alwaysShowMask?: boolean
-} & InputHTMLAttributes<HTMLInputElement>
+} & Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onValueChange'>
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
   (

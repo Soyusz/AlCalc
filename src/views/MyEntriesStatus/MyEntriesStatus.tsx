@@ -4,11 +4,13 @@ import { Entry } from '../../types/entry'
 import pendingIcon from '../../assets/pending.png'
 import acceptedIcon from '../../assets/accepted.png'
 import rejectedIcon from '../../assets/rejected.png'
+import { StackHeader } from '../../components/StackHeader'
 
 export const MyEntriesStatus = () => {
   const { data } = useMyEntries()
   return (
     <Container>
+      <StackHeader />
       <Scroll>
         {data?.map((entry) => (
           <Element {...entry} />

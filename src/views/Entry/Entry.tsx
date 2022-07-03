@@ -11,18 +11,16 @@ export const Entry = () => {
 
   const scrollableRef = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useElementScroll(scrollableRef)
-  const scaleValue = useTransform(scrollYProgress, [0, 1], [1, 1.5])
-  const offsetValue = useTransform(scrollYProgress, [0, 1], [0, -400])
+  const scaleValue = useTransform(scrollYProgress, [0, 1], [1, 1.1])
+  const offsetValue = useTransform(scrollYProgress, [0, 1], [0, -10])
 
   return (
-    <>
-      <Container ref={scrollableRef}>
-        <Image style={{ scale: scaleValue, y: offsetValue }}>
-          <img src={data?.photo ?? undefined} />
-        </Image>
-        <Card entry={data} />
-      </Container>
-    </>
+    <Container ref={scrollableRef}>
+      <Image style={{ scale: scaleValue, y: offsetValue }}>
+        <img src={data?.photo ?? undefined} />
+      </Image>
+      <Card entry={data} />
+    </Container>
   )
 }
 
@@ -30,14 +28,15 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: stretch !important;
+  overflow: scroll;
 `
 
 const Image = styled(motion.div)`
   position: fixed;
-  top: 0;
+  top: 40px;
   left: 0;
   right: 0;
-  height: calc(40vh + ${(props) => props.theme.borderRadii.lplus});
+  height: calc(40vh + ${({ theme }) => theme.borderRadii.lplus + 15});
   z-index: 1;
 
   & > img {

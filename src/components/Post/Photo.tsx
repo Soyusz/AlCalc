@@ -95,6 +95,7 @@ const PostPhoto = styled(motion.img)<{ show?: boolean }>`
   height: 100vw;
   width: 100vw;
   scroll-snap-align: start;
+  scroll-snap-stop: always;
   display: ${(props) => (props.show ? 'initial' : 'none')};
 `
 

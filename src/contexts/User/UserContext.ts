@@ -6,6 +6,7 @@ export type UserContextType = {
   user: User | null
   isAdmin: boolean
   setToken: React.Dispatch<string>
+  refetchMe: () => void
 }
 
 export const UserContext = createContext<UserContextType | null>(null)

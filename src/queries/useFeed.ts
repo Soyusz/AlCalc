@@ -5,12 +5,14 @@ import { Post } from '../types/post'
 import { getPlacehodlerPost } from '../utils/placeholders'
 import { wait } from '../utils/wait'
 
-export const useFeed = () => {
+type FeedSources = 'FEED' | 'FOLLOWED'
+
+export const useFeed = (source: FeedSources) => {
   const { token } = useUserContext()
   return useQuery<Post[]>(
-    'feed',
+    source,
     () =>
-      fetch(`${BACKEND_URL}/post/feed`, {
+      fetch(`${BACKEND_URL}/post/${source === 'FOLLOWED' ? 'followed-feed' : 'feed'}`, {
         method: 'GET',
         headers: {
           Authorization: token as string,

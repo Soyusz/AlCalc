@@ -3,7 +3,7 @@ import { Post } from '../../components/Post'
 import { useFeed } from '../../queries/useFeed'
 
 export const Feed = () => {
-  const { data, isLoading } = useFeed()
+  const { data, isLoading } = useFeed('FEED')
 
   return (
     <Scroll disabled={isLoading}>
