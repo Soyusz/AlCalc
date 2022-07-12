@@ -43,7 +43,9 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     }
     return (
       <InputContainer className={className}>
-        <Label isError={!!error.length}>{label}</Label>
+        <Label isError={!!error.length} isDisabled={disabled}>
+          {label}
+        </Label>
         <InputStyled
           value={value}
           onChange={handleChange}
@@ -52,6 +54,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           required={required}
           placeholder={placeholder}
           disabled={disabled}
+          isDisabled={disabled}
           isError={!!error.length}
           ref={ref}
           {...rest}
@@ -71,7 +74,7 @@ const InputContainer = styled.div`
   width: 100%;
 `
 
-const InputStyled = styled.input<{ isError: boolean }>`
+const InputStyled = styled.input<{ isError: boolean; isDisabled?: boolean }>`
   padding: 10px 12px;
   outline: none;
   align-self: stretch;
@@ -80,7 +83,7 @@ const InputStyled = styled.input<{ isError: boolean }>`
   font-size: 14px;
   border-radius: 100px;
   box-shadow: none;
-  color: ${(props) => (props.isError ? 'red' : 'black')};
+  color: ${({ isError, isDisabled }) => (isDisabled ? 'gray' : isError ? 'red' : 'black')};
   width: 100%;
   border: ${(props) => (props.isError ? '1px solid red' : 'none')};
 `
@@ -92,9 +95,9 @@ const ErrorMessage = styled.p`
   text-align: right;
 `
 
-const Label = styled.label<{ isError: boolean }>`
+const Label = styled.label<{ isError: boolean; isDisabled?: boolean }>`
   font-size: 12px;
   margin-bottom: 4px;
   padding-left: 10px;
-  color: ${({ isError }) => (isError ? 'red' : '#555555')};
+  color: ${({ isError, isDisabled }) => (isDisabled ? 'gray' : isError ? 'red' : '#555555')};
 `

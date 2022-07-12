@@ -1,9 +1,14 @@
+import { useEffect } from 'react'
 import styled from 'styled-components'
 import { Post } from '../../components/Post'
 import { useFeed } from '../../queries/useFeed'
 
 export const Feed = () => {
   const { data, isLoading } = useFeed('FEED')
+
+  useEffect(() => {
+    console.log({ data })
+  })
 
   return (
     <Scroll disabled={isLoading}>

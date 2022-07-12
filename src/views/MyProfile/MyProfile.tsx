@@ -8,21 +8,21 @@ import { ProfilePhoto } from './ProfilePhoto'
 
 export const MyProfile = () => {
   const { user: me, refetchMe } = useUserContext()
-  const [displayName, setDisplayName] = useState(me?.displayName)
+  const [displayName] = useState(me?.name)
   const [description, setDescription] = useState(me?.description)
 
   useEffect(() => {
     refetchMe()
   }, [refetchMe])
 
-  const displaySave = haveChanged(displayName, me?.displayName) || haveChanged(description, me?.description)
+  const displaySave = haveChanged(description, me?.description)
 
   return (
     <Container>
       <StackHeader />
       <ProfilePhoto src={me?.photo} />
       <FormContainer>
-        <Input value={displayName ?? ''} onValueChange={setDisplayName} label="Display name" />
+        <Input value={displayName ?? ''} onValueChange={() => {}} label="Display name" disabled />
         <Input value={description ?? ''} onValueChange={setDescription} label="Description" />
       </FormContainer>
       {displaySave && <SButton label="Save" onClick={() => {}} />}

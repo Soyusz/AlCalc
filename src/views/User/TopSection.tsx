@@ -1,22 +1,23 @@
 import styled from 'styled-components'
 import { Button } from '../../components/Button'
 import { SkelText } from '../../components/SkelText'
-import { useUserContext } from '../../contexts/User/useUserContext'
 import { useFollow } from '../../queries/useFollow'
-import { User } from '../../types/user'
+import { useStats } from '../../queries/useStats'
 
 type Props = {
-  user?: User
+  userId?: string
   imageSrc?: string
+  description?: string
 }
 
-export const TopSection = ({ imageSrc, user }: Props) => {
+export const TopSection = ({ imageSrc, userId, description }: Props) => {
   const follow = useFollow()
-  const amIFollowing = follow.amIFollowing(user?.id)
+  const stats = useStats(userId)
+  const amIFollowing = follow.amIFollowing(userId)
 
   const handleFollowClick = () => {
-    if (!user?.id) return
-    follow.followUser({ userId: user?.id, value: !amIFollowing })
+    if (!userId) return
+    follow.followUser({ userId, value: !amIFollowing })
   }
 
   return (
@@ -26,10 +27,10 @@ export const TopSection = ({ imageSrc, user }: Props) => {
         <RightPanel>
           <UserName>
             <div>
-              <SkelText v={user?.name} w={10} />
+              <SkelText v={stats.data?.name} w={10} />
             </div>
             <div>
-              <SkelText v={user?.name && `@${user.name}`} w={10} />
+              <SkelText v={stats.data?.name && `@${stats.data?.name}`} w={10} />
             </div>
           </UserName>
           <FollowButton
@@ -38,19 +39,19 @@ export const TopSection = ({ imageSrc, user }: Props) => {
             isLoading={follow.isLoading}
           />
         </RightPanel>
-        <Description>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean molestie augue mi.</Description>
+        {description && <Description>{description}</Description>}
       </InfoSection>
       <StatsSection>
         <div>
-          <div>37</div>
+          <div>{stats.data?.post_number}</div>
           <div>posts</div>
         </div>
         <div>
-          <div>14</div>
+          <div>{stats.data?.followers_number}</div>
           <div>followers</div>
         </div>
         <div>
-          <div>102</div>
+          <div>{stats.data?.following_number}</div>
           <div>following</div>
         </div>
       </StatsSection>

@@ -11,7 +11,7 @@ export const Dots = (p: Props) => {
       {Array(p.number)
         .fill(0)
         .map((_, index) => (
-          <Dot active={index === p.current} />
+          <Dot active={index === p.current} key={index} />
         ))}
     </Container>
   )

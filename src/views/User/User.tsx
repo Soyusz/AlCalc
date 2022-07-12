@@ -18,7 +18,7 @@ export const User = () => {
 
   return (
     <Container>
-      <TopSection user={user} imageSrc={imageSrc} />
+      <TopSection userId={userId} imageSrc={imageSrc} />
       <GallerySection>
         <Gallery userId={userId} posts={posts ?? []} />
       </GallerySection>

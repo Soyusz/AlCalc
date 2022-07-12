@@ -29,7 +29,7 @@ export const Post = (p: PostProps) => {
     setIsLiked(value)
   }
 
-  if (!p.photos?.length) return null
+  if (!p.photos?.length && !isSkeleton) return null
 
   return (
     <Container id={p.id}>

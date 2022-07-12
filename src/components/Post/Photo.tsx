@@ -1,4 +1,4 @@
-import { motion, useMotionTemplate, useMotionValue } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
 import { Touchable } from '../Touchable'
@@ -52,13 +52,19 @@ export const Photo = (p: PhotoProps) => {
     <Container onDoubleTap={handlePhotoDoubleClick}>
       {(p.skeleton || !imageLoaded) && <Skeleton height="100vw" width="100vw" />}
       <PhotoList onScroll={handleScroll} ref={listRef}>
-        {p.photos?.map((src) => (
-          <PostPhoto src={src ?? undefined} show />
+        {p.photos?.map((src, index) => (
+          <PostPhoto src={src ?? undefined} key={index} show />
         ))}
       </PhotoList>
       {p.photos?.length && p.photos.length > 1 && <Dots current={currentPhotoIndex} number={p.photos?.length ?? 0} />}
       <LikedIconContainer>
-        <motion.img variants={LikedIconAnimation} animate={showLikedIcon ? 'shown' : 'hidden'} src={like} alt="like" />
+        <motion.img
+          variants={LikedIconAnimation}
+          animate={showLikedIcon ? 'shown' : 'hidden'}
+          initial={false}
+          src={like}
+          alt="like"
+        />
       </LikedIconContainer>
     </Container>
   )
