@@ -7,6 +7,7 @@ import { User } from '../../types/user'
 import { SkelText } from '../SkelText'
 import blankProfileImage from '../../assets/blank_profile.png'
 import optionImage from '../../assets/option.png'
+import { BottomModal } from '../BottomModal'
 
 type Props = { skeleton: boolean; author?: User } & Partial<PostType>
 
@@ -34,7 +35,30 @@ export const Top = (p: Props) => {
       <Location>
         <SkelText v={p.location} w={13} />
       </Location>
-      <Options src={optionImage} onClick={() => setShowOptions(true)} />
+      <Options onClick={() => setShowOptions(true)}>
+        <img src={optionImage} />
+      </Options>
+      <BottomModal
+        show={showOptions}
+        onClose={() => setShowOptions(false)}
+        buttons={[
+          {
+            variant: 'secondary',
+            label: 'Edit',
+            onClick: () => {},
+          },
+          {
+            variant: 'secondary',
+            label: 'Delete',
+            onClick: () => {},
+          },
+          {
+            variant: 'primary',
+            label: 'Close',
+            onClick: () => setShowOptions(false),
+          },
+        ]}
+      />
     </Container>
   )
 }
@@ -69,10 +93,13 @@ const Location = styled.div`
   grid-column: 2 / 3;
 `
 
-const Options = styled.img`
-  height: 20px;
+const Options = styled.div`
   grid-column: 4 / 5;
   grid-row: 1 / 3;
   align-self: center;
-  margin-right: 10px;
+  padding: 5px;
+  > img {
+    height: 20px;
+    margin-right: 5px;
+  }
 `

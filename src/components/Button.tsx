@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import loaderGif from '../assets/loader.gif'
 
-type CustomButtonVariants = 'primary' | 'secondary'
+export type CustomButtonVariants = 'primary' | 'secondary'
 
 type ButtonProps = {
   label: string
