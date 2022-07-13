@@ -6,11 +6,13 @@ import { Post as PostType } from '../../types/post'
 import { User } from '../../types/user'
 import { SkelText } from '../SkelText'
 import blankProfileImage from '../../assets/blank_profile.png'
+import optionImage from '../../assets/option.png'
 
 type Props = { skeleton: boolean; author?: User } & Partial<PostType>
 
 export const Top = (p: Props) => {
   const [isImageLoaded, setIsImageLoaded] = useState(false)
+  const [showOptions, setShowOptions] = useState(false)
   const { push } = useNavigation()
   const handleClick = () => {
     if (p.skeleton) return
@@ -32,13 +34,14 @@ export const Top = (p: Props) => {
       <Location>
         <SkelText v={p.location} w={13} />
       </Location>
+      <Options src={optionImage} onClick={() => setShowOptions(true)} />
     </Container>
   )
 }
 
 const Container = styled.div`
   display: grid;
-  grid-template: auto / auto 1fr;
+  grid-template: auto auto 1fr auto/ auto 1fr;
   margin: 10px 5px;
 `
 
@@ -63,4 +66,13 @@ const Username = styled.div`
 const Location = styled.div`
   font-weight: 300;
   font-size: 14px;
+  grid-column: 2 / 3;
+`
+
+const Options = styled.img`
+  height: 20px;
+  grid-column: 4 / 5;
+  grid-row: 1 / 3;
+  align-self: center;
+  margin-right: 10px;
 `
