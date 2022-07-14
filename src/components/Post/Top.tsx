@@ -8,14 +8,20 @@ import { SkelText } from '../SkelText'
 import blankProfileImage from '../../assets/blank_profile.png'
 import optionImage from '../../assets/option.png'
 import { BottomModal } from '../BottomModal'
+import { useUserContext } from '../../contexts/User/useUserContext'
+import { Modal } from '../Modal'
+import ograniczenie60 from '../../assets/ograniczenie.png'
 
 type Props = { skeleton: boolean; author?: User } & Partial<PostType>
 
 export const Top = (p: Props) => {
   const [isImageLoaded, setIsImageLoaded] = useState(false)
+  const [show60, setShow60] = useState(false)
   const [showOptions, setShowOptions] = useState(false)
+  const { user: me } = useUserContext()
   const { push } = useNavigation()
-  const handleClick = () => {
+  const isPostMine = p.author?.id === me?.id
+  const handleUserClick = () => {
     if (p.skeleton) return
     push(`/user/${p.user_id}`)
   }
@@ -23,13 +29,43 @@ export const Top = (p: Props) => {
   const displayImageSkeleton = p.skeleton || !isImageLoaded
   const imageSrc = !!p.author && !p.author?.photo ? blankProfileImage : p.author?.photo ?? undefined
 
+  const optionsButtons = [
+    {
+      display: 'my',
+      variant: 'secondary',
+      label: 'Edit',
+      onClick: () => {},
+    },
+    {
+      display: 'my',
+      variant: 'secondary',
+      label: 'Delete',
+      onClick: () => {},
+    },
+    {
+      display: 'others',
+      variant: 'secondary',
+      label: 'Report',
+      onClick: () => {
+        setShowOptions(false)
+        setShow60(true)
+      },
+    },
+    {
+      display: 'always',
+      variant: 'primary',
+      label: 'Close',
+      onClick: () => setShowOptions(false),
+    },
+  ] as const
+
   return (
     <Container>
-      <UserPhoto onClick={handleClick}>
+      <UserPhoto onClick={handleUserClick}>
         {displayImageSkeleton && <UserPhotoSkeleton />}
         <img alt="user" hidden={!isImageLoaded} src={imageSrc} onLoad={() => setIsImageLoaded(true)} />
       </UserPhoto>
-      <Username onClick={handleClick}>
+      <Username onClick={handleUserClick}>
         <SkelText v={p.author?.name} w={9} />
       </Username>
       <Location>
@@ -41,24 +77,13 @@ export const Top = (p: Props) => {
       <BottomModal
         show={showOptions}
         onClose={() => setShowOptions(false)}
-        buttons={[
-          {
-            variant: 'secondary',
-            label: 'Edit',
-            onClick: () => {},
-          },
-          {
-            variant: 'secondary',
-            label: 'Delete',
-            onClick: () => {},
-          },
-          {
-            variant: 'primary',
-            label: 'Close',
-            onClick: () => setShowOptions(false),
-          },
-        ]}
+        buttons={optionsButtons.filter((b) => {
+          if (b.display === 'always') return true
+          if (b.display === 'my') return isPostMine
+          return !isPostMine
+        })}
       />
+      <Modal isOpen={show60} icon={ograniczenie60} title="giga słabo" handleClose={() => setShow60(false)} />
     </Container>
   )
 }

@@ -4,8 +4,8 @@ import { Button } from './Button'
 
 type ModalProps = {
   isOpen: boolean
-  title: string
-  text: string
+  title?: string
+  text?: string
   icon?: string
   handleClose?: () => void
   primaryLabel?: string
@@ -37,8 +37,8 @@ export const Modal = (p: ModalProps) => {
             exit={{ y: '100vh' }}
             transition={transitionConfig}>
             {p.icon && <Icon src={p.icon} />}
-            <Title>{p.title}</Title>
-            <Text>{p.text}</Text>
+            {p.title && <Title>{p.title}</Title>}
+            {p.text && <Text>{p.text}</Text> }
             {p.secondaryLabel && (
               <SButton variant="secondary" label={p.secondaryLabel} onClick={p.handleSecondaryClick} />
             )}
