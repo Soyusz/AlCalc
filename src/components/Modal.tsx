@@ -20,22 +20,33 @@ const transitionConfig = {
 }
 
 export const Modal = (p: ModalProps) => {
-  if (!p.isOpen) return null
   return (
-    <>
-      <Blur onClick={p.handleClose} initial={{ opacity: 0 }} animate={{ opacity: 0.7 }} transition={transitionConfig} />
-      <Container
-        initial={{ translateY: '100vh' }}
-        animate={{ translateY: '-50%' }}
-        exit={{ translateY: '100vh' }}
-        transition={transitionConfig}>
-        {p.icon && <Icon src={p.icon} />}
-        <Title>{p.title}</Title>
-        <Text>{p.text}</Text>
-        {p.secondaryLabel && <SButton variant="secondary" label={p.secondaryLabel} onClick={p.handleSecondaryClick} />}
-        {p.primaryLabel && <SButton variant="primary" label={p.primaryLabel} onClick={p.handlePrimaryClick} />}
-      </Container>
-    </>
+    <AnimatePresence>
+      {p.isOpen && (
+        <>
+          <Blur
+            onClick={p.handleClose}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 0.7 }}
+            exit={{ opacity: 0 }}
+            transition={transitionConfig}
+          />
+          <Container
+            initial={{ y: '100vh' }}
+            animate={{ y: '-50%' }}
+            exit={{ y: '100vh' }}
+            transition={transitionConfig}>
+            {p.icon && <Icon src={p.icon} />}
+            <Title>{p.title}</Title>
+            <Text>{p.text}</Text>
+            {p.secondaryLabel && (
+              <SButton variant="secondary" label={p.secondaryLabel} onClick={p.handleSecondaryClick} />
+            )}
+            {p.primaryLabel && <SButton variant="primary" label={p.primaryLabel} onClick={p.handlePrimaryClick} />}
+          </Container>
+        </>
+      )}
+    </AnimatePresence>
   )
 }
 
@@ -64,6 +75,7 @@ const Container = styled(motion.div)`
   flex-direction: column;
   align-items: stretch;
   top: 50%;
+  transformorigin: center;
 `
 
 const Title = styled.div`
