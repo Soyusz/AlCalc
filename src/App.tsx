@@ -7,12 +7,14 @@ import { BrowserRouter as Router } from 'react-router-dom'
 import 'react-loading-skeleton/dist/skeleton.css'
 import { CacheContextProvider } from './contexts/Cache/CacheProvider'
 import { HistoryProvider } from './contexts/History/HistoryProvider'
+import { PwaCheck } from './components/PwaCheck'
 
 function App() {
   return (
     <HistoryProvider>
-      <Router>
-        <ThemeProvider theme={defaultTheme}>
+      <ThemeProvider theme={defaultTheme}>
+        <PwaCheck />
+        <Router>
           <CacheContextProvider>
             <QueryClientProvider client={new QueryClient()}>
               <UserContextProvider>
@@ -20,8 +22,8 @@ function App() {
               </UserContextProvider>
             </QueryClientProvider>
           </CacheContextProvider>
-        </ThemeProvider>
-      </Router>
+        </Router>
+      </ThemeProvider>
     </HistoryProvider>
   )
 }
